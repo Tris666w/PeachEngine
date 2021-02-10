@@ -10,7 +10,10 @@ namespace dae
 	public:
 		void Add(const std::shared_ptr<SceneObject>& object);
 
-		void Update();
+		void Initialize();
+		void FixedUpdate();
+		void Update(float deltaTime);
+		void LateUpdate();
 		void Render() const;
 
 		~Scene();
@@ -19,13 +22,12 @@ namespace dae
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
 
-	private: 
+	private:
 		explicit Scene(const std::string& name);
 
 		std::string m_Name;
 		std::vector < std::shared_ptr<SceneObject>> m_Objects{};
 
-		static unsigned int m_IdCounter; 
+		static unsigned int m_IdCounter;
 	};
-
 }
