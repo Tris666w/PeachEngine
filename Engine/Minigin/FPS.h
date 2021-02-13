@@ -5,7 +5,7 @@ class FPS final : public dae::ComponentBase
 public:
 	void Initialize() override;
 	void FixedUpdate() override;
-	void Update(float deltaTime) override;
+	void Update() override;
 	void LateUpdate() override;
 	void Render() override;
 
@@ -13,6 +13,6 @@ public:
 private:
 	int m_AverageFPS{};
 	int m_AmountOfPassedFrames{};
-	float m_PassedTime{ 1.f };
-	const float m_PassTime{ 1 };
+	float m_PassedTime{ 1.5f };
+	const float m_PassTime{ 0.5f };
 };

@@ -11,6 +11,7 @@
 #include "GameObject.h"
 #include "Scene.h"
 #include "FPSCounter.h"
+#include "Time.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -90,18 +91,26 @@ void dae::Minigin::Run()
 
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
+		float lag = 0.f;
 
 		while (doContinue)
 		{
 			const auto currentTime = high_resolution_clock::now();
-			float const deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-			lastTime = currentTime;
+			float const elapsedSec = std::chrono::duration<float>(currentTime - lastTime).count();
 
-			sceneManager.FixedUpdate();
+			Time::GetInstance().SetElapsedSec(elapsedSec);
+
+			lastTime = currentTime;
+			lag += elapsedSec;
 
 			doContinue = input.ProcessInput();
+			while (lag >= MsPerFrame)
+			{
+				sceneManager.FixedUpdate();
+				lag -= MsPerFrame;
+			}
 
-			sceneManager.Update(deltaTime);
+			sceneManager.Update();
 			sceneManager.LateUpdate();
 
 			renderer.Render();

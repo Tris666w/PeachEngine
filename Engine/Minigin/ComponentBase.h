@@ -6,7 +6,7 @@ namespace dae
 	public:
 		virtual void Initialize() = 0;
 		virtual void FixedUpdate() = 0;
-		virtual void Update(float deltaTime) = 0;
+		virtual void Update() = 0;
 		virtual void LateUpdate() = 0;
 		virtual void Render() = 0;
 

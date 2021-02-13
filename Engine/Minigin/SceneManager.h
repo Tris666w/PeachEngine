@@ -11,7 +11,7 @@ namespace dae
 
 		void Initialize();
 		void FixedUpdate();
-		void Update(float deltaTime);
+		void Update();
 		void LateUpdate();
 		void Render() const;
 	private:

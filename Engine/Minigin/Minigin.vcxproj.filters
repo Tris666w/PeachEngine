@@ -20,6 +20,12 @@
     <Filter Include="GameObject\Components">
       <UniqueIdentifier>{d596ab6d-8215-4e97-ab29-b0921a0cb2aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{52569513-d40c-4f03-af40-8f38ab22bcbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FPS">
+      <UniqueIdentifier>{edaad1e4-fc14-4fe0-822a-0d49aa601842}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -67,8 +73,15 @@
     <ClInclude Include="Transform.h">
       <Filter>GameObject\Components</Filter>
     </ClInclude>
-    <ClInclude Include="FPS.h" />
-    <ClInclude Include="FPSCounter.h" />
+    <ClInclude Include="Time.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="FPS.h">
+      <Filter>FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSCounter.h">
+      <Filter>FPS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -113,7 +126,14 @@
     <ClCompile Include="Transform.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
-    <ClCompile Include="FPS.cpp" />
-    <ClCompile Include="FPSCounter.cpp" />
+    <ClCompile Include="Time.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="FPS.cpp">
+      <Filter>FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSCounter.cpp">
+      <Filter>FPS</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

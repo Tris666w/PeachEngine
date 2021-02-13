@@ -15,7 +15,7 @@ public:
 	~FPSCounter();
 	void Initialize() override;
 	void FixedUpdate() override;
-	void Update(float deltaTime) override;
+	void Update() override;
 	void LateUpdate() override;
 	void Render() override;
 

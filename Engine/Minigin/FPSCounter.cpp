@@ -23,9 +23,9 @@ void FPSCounter::FixedUpdate()
 {
 }
 
-void FPSCounter::Update(float deltaTime)
+void FPSCounter::Update()
 {
-	m_pFPS->Update(deltaTime);
+	m_pFPS->Update();
 	m_pTextObject->SetText(std::to_string(m_pFPS->GetAverageFPS()));
 }
 

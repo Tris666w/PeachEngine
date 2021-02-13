@@ -36,7 +36,7 @@ void dae::TextObject::FixedUpdate()
 	}
 }
 
-void dae::TextObject::Update(float deltaTime)
+void dae::TextObject::Update()
 {
 	if (m_NeedsUpdate)
 	{
@@ -58,7 +58,7 @@ void dae::TextObject::Update(float deltaTime)
 
 	for (ComponentBase* element : m_pComponents)
 	{
-		element->Update(deltaTime);
+		element->Update();
 	}
 }
 

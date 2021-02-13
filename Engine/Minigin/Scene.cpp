@@ -39,11 +39,11 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Update(float deltaTime)
+void Scene::Update()
 {
 	for (auto& object : m_Objects)
 	{
-		object->Update(deltaTime);
+		object->Update();
 	}
 }
 
