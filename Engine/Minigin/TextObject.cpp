@@ -14,6 +14,15 @@ dae::TextObject::TextObject(const std::string& text, const std::shared_ptr<Font>
 	: m_NeedsUpdate(true), m_Text(text), m_Font(font), m_Texture(nullptr)
 { }
 
+dae::TextObject::~TextObject()
+{
+	for (ComponentBase* pComponentBase : m_pComponents)
+	{
+		delete pComponentBase;
+		pComponentBase = nullptr;
+	}
+}
+
 void dae::TextObject::AddComponent(ComponentBase* newComponent)
 {
 	if (newComponent)

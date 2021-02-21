@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
 #include <SDL.h>
-
+#include "Command.h"
 
 bool dae::InputManager::ProcessInput()
 {
@@ -21,22 +21,67 @@ bool dae::InputManager::ProcessInput()
 		}
 	}
 
+	//Loop over all Buttons in the unordered map and execute if appropriate
+	for (auto& [button, command] : m_CommandMap)
+	{
+		if (IsPressed(button))
+		{
+			if (command.second == CommandExecuteCause::ButtonPressed || command.second == CommandExecuteCause::ButtonDown && IsButtonDown(button))
+				command.first->Execute();
+			m_IsKeyPressedVector[static_cast<int>(button)] = true;
+		}
+		else
+		{
+			if (command.second == CommandExecuteCause::ButtonUp && IsButtonUp(button))
+				command.first->Execute();
+			m_IsKeyPressedVector[static_cast<int>(button)] = false;	
+		}
+	}
+
 	return true;
 }
 
 bool dae::InputManager::IsPressed(ControllerButton button) const
 {
-	switch (button)
-	{
-	case ControllerButton::ButtonA:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-	case ControllerButton::ButtonB:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-	case ControllerButton::ButtonX:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-	case ControllerButton::ButtonY:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-	default: return false;
-	}
+	bool isLargeEnumValue = false;
+	int const correctingFactor = 2;
+	if(static_cast<int>(button)>9)
+		isLargeEnumValue = true;
+
+	int const bitmask = static_cast<int>(pow(2.0, static_cast<double>(button) + static_cast<double>(isLargeEnumValue) * correctingFactor));
+	
+	return (m_CurrentState.Gamepad.wButtons & bitmask ) != 0;
 }
+
+bool dae::InputManager::IsButtonUp(const ControllerButton button) const
+{
+	if (!m_IsKeyPressedVector[static_cast<int>(button)])
+	{
+		return false;
+	}
+	return true;
+}
+
+bool dae::InputManager::IsButtonDown(const ControllerButton button) const
+{
+		if (m_IsKeyPressedVector[static_cast<int>(button)])
+	{
+		return false;
+	}
+	return true;
+}
+
+void dae::InputManager::AddOrChangeCommand(const ControllerButton button, const std::shared_ptr<Command>& pCommand,CommandExecuteCause executeCause)
+{
+	std::pair<std::shared_ptr<Command>,CommandExecuteCause> pair = std::make_pair(pCommand,executeCause);
+	m_CommandMap.insert_or_assign(button, pair);
+}
+
+void dae::InputManager::Init()
+{
+	//Setup IsKeyPressed vector
+	for (int index = 0; index<static_cast<int>(ControllerButton::Count); ++index)
+		m_IsKeyPressedVector.push_back(false);
+}
+
 
