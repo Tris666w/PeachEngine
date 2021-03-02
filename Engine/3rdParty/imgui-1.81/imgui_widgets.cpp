@@ -6184,6 +6184,8 @@ bool ImGui::ListBoxHeader(const char* label, int items_count, int height_in_item
 }
 #endif
 
+#pragma warning (push)
+#pragma warning (disable : 4189)
 void ImGui::EndListBox()
 {
     ImGuiContext& g = *GImGui;
@@ -6193,7 +6195,7 @@ void ImGui::EndListBox()
     EndChildFrame();
     EndGroup(); // This is only required to be able to do IsItemXXX query on the whole ListBox including label
 }
-
+#pragma warning (pop)
 bool ImGui::ListBox(const char* label, int* current_item, const char* const items[], int items_count, int height_items)
 {
     const bool value_changed = ListBox(label, current_item, Items_ArrayGetter, (void*)items, items_count, height_items);

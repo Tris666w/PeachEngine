@@ -29,6 +29,9 @@
     <Filter Include="Imgui">
       <UniqueIdentifier>{f41587af-7e15-47ae-912a-eddcb393f441}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Observer Pattern">
+      <UniqueIdentifier>{a98ffa05-200a-49e1-9ef6-0bf4c5ea0dfb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene.h">
@@ -109,6 +112,24 @@
     <ClInclude Include="..\3rdParty\imgui-1.81\backends\imgui_impl_sdl.h">
       <Filter>Imgui</Filter>
     </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Observer Pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Observer Pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerUI.h" />
+    <ClInclude Include="Health.h">
+      <Filter>GameObject\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthObserver.h" />
+    <ClInclude Include="Command.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageCommand.h" />
+    <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="ScoreObserver.h" />
+    <ClInclude Include="ScoreCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -147,9 +168,6 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentBase.cpp">
-      <Filter>GameObject\Components</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
       <Filter>GameObject\Components</Filter>
     </ClCompile>
@@ -183,5 +201,23 @@
     <ClCompile Include="..\3rdParty\imgui-1.81\backends\imgui_impl_sdl.cpp">
       <Filter>Imgui</Filter>
     </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>Observer Pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Observer Pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerUI.cpp" />
+    <ClCompile Include="Health.cpp">
+      <Filter>GameObject\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthObserver.cpp" />
+    <ClCompile Include="Command.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageCommand.cpp" />
+    <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="ScoreObserver.cpp" />
+    <ClCompile Include="ScoreCommand.cpp" />
   </ItemGroup>
 </Project>

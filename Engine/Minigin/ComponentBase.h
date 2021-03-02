@@ -4,11 +4,26 @@ namespace dae
 	class ComponentBase
 	{
 	public:
-		virtual void Initialize() = 0;
-		virtual void FixedUpdate() = 0;
-		virtual void Update() = 0;
-		virtual void LateUpdate() = 0;
-		virtual void Render() = 0;
+		virtual void Initialize()
+		{
+			
+		};
+		virtual void FixedUpdate()
+		{
+			
+		};
+		virtual void Update()
+		{
+			
+		};
+		virtual void LateUpdate()
+		{
+			
+		};
+		virtual void Render()
+		{
+			
+		};
 
 		ComponentBase() = default;
 		virtual ~ComponentBase() = default;
