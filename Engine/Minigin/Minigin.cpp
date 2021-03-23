@@ -6,7 +6,6 @@
 #include "SceneManager.h"
 #include "Renderer.h"
 #include "ResourceManager.h"
-#include <SDL.h>
 
 #include "DamageCommand.h"
 #include "TextObject.h"
@@ -19,6 +18,7 @@
 #include "ScoreCommand.h"
 #include "ScoreComponent.h"
 #include "Time.h"
+#include "SoundSystems.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -112,13 +112,12 @@ void dae::Minigin::LoadGame() const
 	const auto playerUi2 = std::make_shared<PlayerUI>(ImVec2(350,150),"2", 0, 5,healthComponent2->GetpSubject(),scoreComponent2->GetpSubject());
 	scene.Add(playerUi2);
 
-
 	
 	go = std::make_shared<GameObject>();
 	go->SetTexture("ControllerScheme.png");
 	go->SetPosition(0, 250);
 	scene.Add(go);
-	
+
 	
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
@@ -130,6 +129,24 @@ void dae::Minigin::LoadGame() const
 	FPSCounter* fpsCounter = new FPSCounter((to).get());
 	to->AddComponent(fpsCounter);
 	scene.Add(to);
+	
+	auto& t1 =ServiceLocator::GetSoundSystem();
+	t1.Play(5,50);
+
+
+	auto* sdlSs = new SDLMixerSoundSystem();
+	ServiceLocator::RegisterSoundSystem(sdlSs);
+	
+	auto& ss = ServiceLocator::GetSoundSystem();
+	ss.Play(5,50);
+
+	auto* mutedSs = new MutedSoundSystem();
+	ServiceLocator::RegisterSoundSystem(mutedSs);
+	auto& newSs = ServiceLocator::GetSoundSystem();
+	newSs.Play(5,50);
+
+	delete sdlSs;
+	delete mutedSs;
 }
 
 void dae::Minigin::Cleanup()
