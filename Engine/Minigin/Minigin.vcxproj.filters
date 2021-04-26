@@ -143,8 +143,12 @@
     <ClInclude Include="ScoreObserver.h">
       <Filter>Observer Pattern</Filter>
     </ClInclude>
-    <ClInclude Include="SoundSystems.h" />
-    <ClInclude Include="ServicesBase.h" />
+    <ClInclude Include="SoundSystems.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="ServicesBase.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp">
@@ -244,6 +248,8 @@
     <ClCompile Include="ScoreObserver.cpp">
       <Filter>Observer Pattern</Filter>
     </ClCompile>
-    <ClCompile Include="SoundSystems.cpp" />
+    <ClCompile Include="SoundSystems.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

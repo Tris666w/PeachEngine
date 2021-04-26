@@ -131,22 +131,19 @@ void dae::Minigin::LoadGame() const
 	scene.Add(to);
 	
 	auto& t1 =ServiceLocator::GetSoundSystem();
-	t1.Play(5,50);
+	t1.PlaySoundEffect(5,50);
 
 
 	auto* sdlSs = new SDLMixerSoundSystem();
 	ServiceLocator::RegisterSoundSystem(sdlSs);
+	SoundEffectID const soundID = sdlSs->AddSound("../Data/Sound/Powerup.wav");
+	MusicID const musicID = sdlSs->AddMusic("../Data/Sound/TWICE_Mix.wav");
 	
 	auto& ss = ServiceLocator::GetSoundSystem();
-	ss.Play(5,50);
-
-	auto* mutedSs = new MutedSoundSystem();
-	ServiceLocator::RegisterSoundSystem(mutedSs);
-	auto& newSs = ServiceLocator::GetSoundSystem();
-	newSs.Play(5,50);
+	ss.PlaySoundEffect(soundID,50);
+	ss.PlayMusic(musicID,10);
 
 	delete sdlSs;
-	delete mutedSs;
 }
 
 void dae::Minigin::Cleanup()

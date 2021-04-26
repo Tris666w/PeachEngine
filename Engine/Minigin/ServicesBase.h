@@ -1,10 +1,18 @@
 #pragma once
-using sound_id = unsigned short;
+using SoundEffectID =  unsigned short;
+using MusicID =  unsigned short;
+
 class SoundSystem
 {
 public:
+	
 	virtual ~SoundSystem() = default;
-	virtual void Play(const sound_id id, const float volume) = 0;
+
+	virtual SoundEffectID AddSound(const std::string& filePath) = 0;
+	virtual MusicID AddMusic(const std::string& filePath) = 0;
+	
+	virtual void PlayMusic(const SoundEffectID id, const int volume) = 0;
+	virtual void PlaySoundEffect(const MusicID id, const int volume) = 0;
 };
 
 
@@ -13,7 +21,10 @@ class NullSoundSystem final: public SoundSystem
 public:
 	NullSoundSystem() = default;
 	
-	void Play(const sound_id, const float) override {};
+	SoundEffectID AddSound(const std::string& ) override { return static_cast<SoundEffectID>(-1);}
+	MusicID AddMusic(const std::string& ) override {return static_cast<MusicID>(-1);}
+	virtual void PlayMusic(const SoundEffectID , const int ) override {}
+	virtual void PlaySoundEffect(const MusicID , const int ) override{}
 };
 
 class ServiceLocator final
