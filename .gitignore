@@ -3,3 +3,5 @@ Engine/Win32/*
 Engine/x64/*
 Engine/Minigin/Win32*
 Engine/Minigin/x64/*
+Engine/bin/
+Engine/bin-int/
