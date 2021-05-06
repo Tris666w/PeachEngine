@@ -2,7 +2,7 @@
 struct SDL_Window;
 namespace peach
 {
-	class Minigin
+	class PeachEngine
 	{
 	public:
 		void Initialize();

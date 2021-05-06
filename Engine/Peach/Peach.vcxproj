@@ -216,36 +216,36 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_truetype.h" />
-    <ClInclude Include="Command.h" />
-    <ClInclude Include="ComponentBase.h" />
-    <ClInclude Include="DamageCommand.h" />
-    <ClInclude Include="Font.h" />
-    <ClInclude Include="FPS.h" />
-    <ClInclude Include="FPSCounter.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Health.h" />
-    <ClInclude Include="HealthObserver.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Peach.h" />
-    <ClInclude Include="PeachPCH.h" />
-    <ClInclude Include="Observer.h" />
-    <ClInclude Include="PlayerUI.h" />
-    <ClInclude Include="SceneObject.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="ScoreCommand.h" />
-    <ClInclude Include="ScoreComponent.h" />
-    <ClInclude Include="ScoreObserver.h" />
-    <ClInclude Include="ServicesBase.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="SoundSystems.h" />
-    <ClInclude Include="Subject.h" />
-    <ClInclude Include="TextObject.h" />
-    <ClInclude Include="Texture2D.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Transform.h" />
+    <ClInclude Include="src\Command.h" />
+    <ClInclude Include="src\ComponentBase.h" />
+    <ClInclude Include="src\DamageCommand.h" />
+    <ClInclude Include="src\Font.h" />
+    <ClInclude Include="src\FPS.h" />
+    <ClInclude Include="src\FPSCounter.h" />
+    <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\Health.h" />
+    <ClInclude Include="src\HealthObserver.h" />
+    <ClInclude Include="src\InputManager.h" />
+    <ClInclude Include="src\Peach.h" />
+    <ClInclude Include="src\PeachPCH.h" />
+    <ClInclude Include="src\Observer.h" />
+    <ClInclude Include="src\PlayerUI.h" />
+    <ClInclude Include="src\SceneObject.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\ResourceManager.h" />
+    <ClInclude Include="src\Scene.h" />
+    <ClInclude Include="src\SceneManager.h" />
+    <ClInclude Include="src\ScoreCommand.h" />
+    <ClInclude Include="src\ScoreComponent.h" />
+    <ClInclude Include="src\ScoreObserver.h" />
+    <ClInclude Include="src\ServicesBase.h" />
+    <ClInclude Include="src\Singleton.h" />
+    <ClInclude Include="src\SoundSystems.h" />
+    <ClInclude Include="src\Subject.h" />
+    <ClInclude Include="src\TextObject.h" />
+    <ClInclude Include="src\Texture2D.h" />
+    <ClInclude Include="src\Time.h" />
+    <ClInclude Include="src\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\backends\imgui_impl_opengl2.cpp">
@@ -290,39 +290,39 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Command.cpp" />
-    <ClCompile Include="DamageCommand.cpp" />
-    <ClCompile Include="Font.cpp" />
-    <ClCompile Include="FPS.cpp" />
-    <ClCompile Include="FPSCounter.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Health.cpp" />
-    <ClCompile Include="HealthObserver.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Peach.cpp" />
-    <ClCompile Include="PeachPCH.cpp">
+    <ClCompile Include="src\Command.cpp" />
+    <ClCompile Include="src\DamageCommand.cpp" />
+    <ClCompile Include="src\Font.cpp" />
+    <ClCompile Include="src\FPS.cpp" />
+    <ClCompile Include="src\FPSCounter.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\Health.cpp" />
+    <ClCompile Include="src\HealthObserver.cpp" />
+    <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Peach.cpp" />
+    <ClCompile Include="src\PeachPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PeachPCH.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="PlayerUI.cpp" />
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="ScoreCommand.cpp" />
-    <ClCompile Include="ScoreComponent.cpp" />
-    <ClCompile Include="ScoreObserver.cpp" />
-    <ClCompile Include="SoundSystems.cpp" />
-    <ClCompile Include="Subject.cpp" />
-    <ClCompile Include="TextObject.cpp" />
-    <ClCompile Include="Texture2D.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="src\Observer.cpp" />
+    <ClCompile Include="src\PlayerUI.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\ResourceManager.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\SceneManager.cpp" />
+    <ClCompile Include="src\ScoreCommand.cpp" />
+    <ClCompile Include="src\ScoreComponent.cpp" />
+    <ClCompile Include="src\ScoreObserver.cpp" />
+    <ClCompile Include="src\SoundSystems.cpp" />
+    <ClCompile Include="src\Subject.cpp" />
+    <ClCompile Include="src\TextObject.cpp" />
+    <ClCompile Include="src\Texture2D.cpp" />
+    <ClCompile Include="src\Time.cpp" />
+    <ClCompile Include="src\Transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

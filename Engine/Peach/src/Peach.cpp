@@ -22,8 +22,8 @@
 
 using namespace std;
 using namespace std::chrono;
-
-void peach::PeachEngine::Initialize()
+using namespace peach;
+void PeachEngine::Initialize()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
@@ -49,7 +49,7 @@ void peach::PeachEngine::Initialize()
 /**
  * Code constructing the scene world starts here
  */
-void peach::PeachEngine::LoadGame() const
+void PeachEngine::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 	
@@ -146,7 +146,7 @@ void peach::PeachEngine::LoadGame() const
 	delete sdlSs;
 }
 
-void peach::PeachEngine::Cleanup()
+void PeachEngine::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
@@ -154,7 +154,7 @@ void peach::PeachEngine::Cleanup()
 	SDL_Quit();
 }
 
-void peach::PeachEngine::Run()
+void PeachEngine::Run()
 {
 	Initialize();
 
