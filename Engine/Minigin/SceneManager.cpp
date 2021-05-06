@@ -1,8 +1,8 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "SceneManager.h"
 #include "Scene.h"
 
-void dae::SceneManager::Update()
+void peach::SceneManager::Update()
 {
 	for (auto& scene : m_Scenes)
 	{
@@ -10,7 +10,7 @@ void dae::SceneManager::Update()
 	}
 }
 
-void dae::SceneManager::LateUpdate()
+void peach::SceneManager::LateUpdate()
 {
 	for (auto& scene : m_Scenes)
 	{
@@ -18,7 +18,7 @@ void dae::SceneManager::LateUpdate()
 	}
 }
 
-void dae::SceneManager::Render()const
+void peach::SceneManager::Render()const
 {
 	for (const auto& scene : m_Scenes)
 	{
@@ -26,14 +26,14 @@ void dae::SceneManager::Render()const
 	}
 }
 
-dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
+peach::Scene& peach::SceneManager::CreateScene(const std::string& name)
 {
 	const auto scene = std::shared_ptr<Scene>(new Scene(name));
 	m_Scenes.push_back(scene);
 	return *m_Scenes.at((m_Scenes.size() - 1));
 }
 
-void dae::SceneManager::Initialize()
+void peach::SceneManager::Initialize()
 {
 	for (auto& scene : m_Scenes)
 	{
@@ -41,7 +41,7 @@ void dae::SceneManager::Initialize()
 	}
 }
 
-void dae::SceneManager::FixedUpdate()
+void peach::SceneManager::FixedUpdate()
 {
 	for (auto& scene : m_Scenes)
 	{

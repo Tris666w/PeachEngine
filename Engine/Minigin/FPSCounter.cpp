@@ -1,9 +1,9 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "FPSCounter.h"
 #include "FPS.h"
 #include "TextObject.h"
 
-FPSCounter::FPSCounter(dae::TextObject* pTextObject)
+FPSCounter::FPSCounter(peach::TextObject* pTextObject)
 	:m_pTextObject(pTextObject)
 	, m_pFPS(new FPS())
 {

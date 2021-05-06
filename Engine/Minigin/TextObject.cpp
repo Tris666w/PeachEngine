@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -10,11 +10,11 @@
 
 #pragma warning (disable: 4100)
 
-dae::TextObject::TextObject(const std::string& text, const std::shared_ptr<Font>& font)
+peach::TextObject::TextObject(const std::string& text, const std::shared_ptr<Font>& font)
 	: m_NeedsUpdate(true), m_Text(text), m_Font(font), m_Texture(nullptr)
 { }
 
-dae::TextObject::~TextObject()
+peach::TextObject::~TextObject()
 {
 	for (ComponentBase* pComponentBase : m_pComponents)
 	{
@@ -23,13 +23,13 @@ dae::TextObject::~TextObject()
 	}
 }
 
-void dae::TextObject::AddComponent(ComponentBase* newComponent)
+void peach::TextObject::AddComponent(ComponentBase* newComponent)
 {
 	if (newComponent)
 		m_pComponents.push_back(newComponent);
 }
 
-void dae::TextObject::Initialize()
+void peach::TextObject::Initialize()
 {
 	for (ComponentBase* element : m_pComponents)
 	{
@@ -37,7 +37,7 @@ void dae::TextObject::Initialize()
 	}
 }
 
-void dae::TextObject::FixedUpdate()
+void peach::TextObject::FixedUpdate()
 {
 	for (ComponentBase* element : m_pComponents)
 	{
@@ -45,7 +45,7 @@ void dae::TextObject::FixedUpdate()
 	}
 }
 
-void dae::TextObject::Update()
+void peach::TextObject::Update()
 {
 	if (m_NeedsUpdate)
 	{
@@ -71,7 +71,7 @@ void dae::TextObject::Update()
 	}
 }
 
-void dae::TextObject::LateUpdate()
+void peach::TextObject::LateUpdate()
 {
 	for (ComponentBase* element : m_pComponents)
 	{
@@ -79,7 +79,7 @@ void dae::TextObject::LateUpdate()
 	}
 }
 
-void dae::TextObject::Render() const
+void peach::TextObject::Render() const
 {
 	if (m_Texture != nullptr)
 	{
@@ -93,13 +93,13 @@ void dae::TextObject::Render() const
 }
 
 // This implementation uses the "dirty flag" pattern
-void dae::TextObject::SetText(const std::string& text)
+void peach::TextObject::SetText(const std::string& text)
 {
 	m_Text = text;
 	m_NeedsUpdate = true;
 }
 
-void dae::TextObject::SetPosition(const float x, const float y)
+void peach::TextObject::SetPosition(const float x, const float y)
 {
 	m_Transform.SetPosition(x, y, 0.0f);
 }

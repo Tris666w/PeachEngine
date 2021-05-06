@@ -55,10 +55,10 @@
     <ClInclude Include="TextObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Minigin.h">
+    <ClInclude Include="Peach.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="MiniginPCH.h">
+    <ClInclude Include="PeachPCH.h">
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="ResourceManager.h">
@@ -172,10 +172,10 @@
     <ClCompile Include="Main.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Minigin.cpp">
+    <ClCompile Include="Peach.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="MiniginPCH.cpp">
+    <ClCompile Include="PeachPCH.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="ResourceManager.cpp">

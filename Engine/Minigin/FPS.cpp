@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "FPS.h"
 
 #include "Time.h"
@@ -15,7 +15,7 @@ void FPS::Update()
 {
 	m_AmountOfPassedFrames++;
 
-	m_PassedTime += dae::Time::GetInstance().GetElapsedSec();
+	m_PassedTime += peach::Time::GetInstance().GetElapsedSec();
 
 	if (m_PassedTime > m_PassTime)
 	{

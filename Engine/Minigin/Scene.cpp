@@ -1,8 +1,8 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "Scene.h"
 #include "GameObject.h"
 
-using namespace dae;
+using namespace peach;
 
 unsigned int Scene::m_IdCounter = 0;
 

@@ -177,11 +177,13 @@ namespace detail
 	{}
 
 	// -- Explicit basic constructors --
-
+	
+#pragma warning(push)
+#pragma warning(disable:26812 26495)
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR_SIMD tvec4<T, P>::tvec4(ctor)
 	{}
-
+#pragma warning(pop)
 	template <typename T, precision P>
 	GLM_FUNC_QUALIFIER GLM_CONSTEXPR_SIMD tvec4<T, P>::tvec4(T scalar)
 		: x(scalar), y(scalar), z(scalar), w(scalar)

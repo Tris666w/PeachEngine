@@ -1,7 +1,7 @@
 #pragma once
 #include "Singleton.h"
 
-namespace dae
+namespace peach
 {
 	class Texture2D;
 	class Font;

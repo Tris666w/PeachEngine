@@ -2,12 +2,12 @@
 #include "imgui.h"
 #include "SceneObject.h"
 
-namespace dae {
+namespace peach {
 	class ScoreObserver;
 	class Subject;
 	class HealthObserver;
 
-	class PlayerUI : public dae::SceneObject
+	class PlayerUI : public peach::SceneObject
 	{
 	public:
 		PlayerUI(ImVec2 screenPos, const std::string& playerID,int playerScore, int playerHealth,Subject* pHealthSubject,Subject* pScoreSubject);

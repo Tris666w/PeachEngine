@@ -2,7 +2,7 @@
 #include "Transform.h"
 #include "SceneObject.h"
 
-namespace dae
+namespace peach
 {
 	class ComponentBase;
 	class Texture2D;

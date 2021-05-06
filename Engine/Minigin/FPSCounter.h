@@ -1,16 +1,16 @@
 #pragma once
 #include "ComponentBase.h"
 
-namespace dae
+namespace peach
 {
 	class TextObject;
 }
 class FPS;
 
-class FPSCounter final : public dae::ComponentBase
+class FPSCounter final : public peach::ComponentBase
 {
 public:
-	FPSCounter(dae::TextObject* pTextObject);
+	FPSCounter(peach::TextObject* pTextObject);
 
 	~FPSCounter();
 	void Initialize() override;
@@ -25,6 +25,6 @@ public:
 	FPSCounter& operator=(FPSCounter&& other) = delete;
 
 private:
-	dae::TextObject* m_pTextObject = nullptr;
+	peach::TextObject* m_pTextObject = nullptr;
 	FPS* m_pFPS = nullptr;
 };

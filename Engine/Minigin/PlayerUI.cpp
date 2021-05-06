@@ -1,11 +1,11 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "PlayerUI.h"
 #include "Subject.h"
 #include "imgui.h"
 #include "HealthObserver.h"
 #include "ScoreObserver.h"
 
-dae::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, Subject* pHealthSubject,Subject* pScoreSubject)
+peach::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, Subject* pHealthSubject,Subject* pScoreSubject)
 	:m_ScreenPos(screenPos)
 	,m_PlayerID(playerID)
 	,m_PlayerScore(playerScore)
@@ -15,7 +15,7 @@ dae::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int playe
 	m_pScoreObserver = std::make_unique<ScoreObserver>(&m_PlayerScore, pScoreSubject);
 }
 
-void dae::PlayerUI::Render() const
+void peach::PlayerUI::Render() const
 {
 	const std::string windowTitle = "Player " + m_PlayerID;
 	const std::string playerScore = "Score: " + std::to_string(m_PlayerScore);

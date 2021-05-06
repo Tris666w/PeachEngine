@@ -1,7 +1,7 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "ScoreCommand.h"
 
-ScoreCommand::ScoreCommand(dae::ScoreComponent* pScoreComponent, int addedScore)
+ScoreCommand::ScoreCommand(peach::ScoreComponent* pScoreComponent, int addedScore)
 	:m_pScoreComponent(pScoreComponent)
 	,m_AmountOfAddedScore(addedScore)
 {

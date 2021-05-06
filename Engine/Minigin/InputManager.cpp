@@ -1,9 +1,9 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "InputManager.h"
 #include <SDL.h>
 #include "Command.h"
 
-bool dae::InputManager::ProcessInput()
+bool peach::InputManager::ProcessInput()
 {
 	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
 	XInputGetState(0, &m_CurrentState);
@@ -41,7 +41,7 @@ bool dae::InputManager::ProcessInput()
 	return true;
 }
 
-bool dae::InputManager::IsPressed(ControllerButton button) const
+bool peach::InputManager::IsPressed(ControllerButton button) const
 {
 	bool isLargeEnumValue = false;
 	int const correctingFactor = 2;
@@ -53,7 +53,7 @@ bool dae::InputManager::IsPressed(ControllerButton button) const
 	return (m_CurrentState.Gamepad.wButtons & bitmask ) != 0;
 }
 
-bool dae::InputManager::IsButtonUp(const ControllerButton button) const
+bool peach::InputManager::IsButtonUp(const ControllerButton button) const
 {
 	if (!m_IsKeyPressedVector[static_cast<int>(button)])
 	{
@@ -62,7 +62,7 @@ bool dae::InputManager::IsButtonUp(const ControllerButton button) const
 	return true;
 }
 
-bool dae::InputManager::IsButtonDown(const ControllerButton button) const
+bool peach::InputManager::IsButtonDown(const ControllerButton button) const
 {
 		if (m_IsKeyPressedVector[static_cast<int>(button)])
 	{
@@ -71,13 +71,13 @@ bool dae::InputManager::IsButtonDown(const ControllerButton button) const
 	return true;
 }
 
-void dae::InputManager::AddOrChangeCommand(const ControllerButton button, const std::shared_ptr<Command>& pCommand,CommandExecuteCause executeCause)
+void peach::InputManager::AddOrChangeCommand(const ControllerButton button, const std::shared_ptr<Command>& pCommand,CommandExecuteCause executeCause)
 {
 	std::pair<std::shared_ptr<Command>,CommandExecuteCause> pair = std::make_pair(pCommand,executeCause);
 	m_CommandMap.insert_or_assign(button, pair);
 }
 
-void dae::InputManager::Init()
+void peach::InputManager::Init()
 {
 	//Setup IsKeyPressed vector
 	for (int index = 0; index<static_cast<int>(ControllerButton::Count); ++index)

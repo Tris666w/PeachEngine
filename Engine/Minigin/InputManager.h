@@ -5,7 +5,7 @@
 #include <memory>
 
 class Command;
-namespace dae
+namespace peach
 {
 
 	enum class ControllerButton

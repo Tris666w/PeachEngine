@@ -1,11 +1,11 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "GameObject.h"
 #include "ResourceManager.h"
 #include "Renderer.h"
 
 #include "ComponentBase.h"
 
-dae::GameObject::~GameObject()
+peach::GameObject::~GameObject()
 {
 	for (ComponentBase* pComponentBase : m_pComponents)
 	{
@@ -14,13 +14,13 @@ dae::GameObject::~GameObject()
 	}
 };
 
-void dae::GameObject::AddComponent(ComponentBase* newComponent)
+void peach::GameObject::AddComponent(ComponentBase* newComponent)
 {
 	if (newComponent)
 		m_pComponents.push_back(newComponent);
 }
 
-void dae::GameObject::Initialize()
+void peach::GameObject::Initialize()
 {
 	for (ComponentBase* element : m_pComponents)
 	{
@@ -28,7 +28,7 @@ void dae::GameObject::Initialize()
 	}
 }
 
-void dae::GameObject::FixedUpdate()
+void peach::GameObject::FixedUpdate()
 {
 	for (ComponentBase* element : m_pComponents)
 	{
@@ -36,7 +36,7 @@ void dae::GameObject::FixedUpdate()
 	}
 }
 
-void dae::GameObject::Update()
+void peach::GameObject::Update()
 {
 	for (ComponentBase* element : m_pComponents)
 	{
@@ -44,7 +44,7 @@ void dae::GameObject::Update()
 	}
 }
 
-void dae::GameObject::LateUpdate()
+void peach::GameObject::LateUpdate()
 {
 	for (ComponentBase* element : m_pComponents)
 	{
@@ -52,7 +52,7 @@ void dae::GameObject::LateUpdate()
 	}
 }
 
-void dae::GameObject::Render() const
+void peach::GameObject::Render() const
 {
 	const auto pos = m_Transform.GetPosition();
 	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
@@ -63,12 +63,12 @@ void dae::GameObject::Render() const
 	}
 }
 
-void dae::GameObject::SetTexture(const std::string& filename)
+void peach::GameObject::SetTexture(const std::string& filename)
 {
 	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
-void dae::GameObject::SetPosition(float x, float y)
+void peach::GameObject::SetPosition(float x, float y)
 {
 	m_Transform.SetPosition(x, y, 0.0f);
 }

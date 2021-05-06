@@ -1,7 +1,7 @@
 #pragma once
 #include "ComponentBase.h"
 
-namespace dae {
+namespace peach {
 	class Subject;
 	class GameObject;
 

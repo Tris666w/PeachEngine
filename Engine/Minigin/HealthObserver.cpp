@@ -1,14 +1,14 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "HealthObserver.h"
 #include "Health.h"
-dae::HealthObserver::HealthObserver(int* pOwnerHealth, Subject* pSubject)
+peach::HealthObserver::HealthObserver(int* pOwnerHealth, Subject* pSubject)
 	:m_pOwnerHealth(pOwnerHealth)
 	,m_Subject(pSubject)
 {
 	m_Subject->AddObserver(this);
 }
 
-void dae::HealthObserver::Notify(const GameObject& GameObject, Event event)
+void peach::HealthObserver::Notify(const GameObject& GameObject, Event event)
 {
 	switch (event)
 	{

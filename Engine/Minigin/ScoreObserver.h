@@ -1,6 +1,6 @@
 #pragma once
 #include "Observer.h"
-namespace dae {
+namespace peach {
     class ScoreObserver final: public Observer
     {
     public:

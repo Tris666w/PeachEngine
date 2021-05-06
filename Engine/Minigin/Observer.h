@@ -1,7 +1,7 @@
 #pragma once
 #include "Subject.h"
 #include "GameObject.h"
-namespace dae {
+namespace peach {
 	class Observer
 	{
 	public:

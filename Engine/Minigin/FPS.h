@@ -1,6 +1,6 @@
 #pragma once
 #include "ComponentBase.h"
-class FPS final : public dae::ComponentBase
+class FPS final : public peach::ComponentBase
 {
 public:
 	void Initialize() override;

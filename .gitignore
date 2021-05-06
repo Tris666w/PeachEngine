@@ -1,5 +1,5 @@
 Engine/.vs/*
 Engine/Win32/*
 Engine/x64/*
-Engine/Minigin/Win32*
-Engine/Minigin/x64/*
+Engine/Build/*
+Engine/Build-Int/*

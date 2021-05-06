@@ -2,7 +2,7 @@
 #include "SceneObject.h"
 #include "Transform.h"
 
-namespace dae
+namespace peach
 {
 	class ComponentBase;
 

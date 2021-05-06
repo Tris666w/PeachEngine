@@ -1,7 +1,7 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "DamageCommand.h"
 
-DamageCommand::DamageCommand(dae::Health* pHealthComponent)
+DamageCommand::DamageCommand(peach::Health* pHealthComponent)
 	:m_pHealth(pHealthComponent)
 {
 }

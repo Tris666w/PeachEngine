@@ -1,25 +1,25 @@
-#include "MiniginPCH.h"
+#include "PeachPCH.h"
 #include "ScoreComponent.h"
 #include "Subject.h"
 
-dae::ScoreComponent::ScoreComponent(GameObject* pOwner)
+peach::ScoreComponent::ScoreComponent(GameObject* pOwner)
 	:m_pOwner(pOwner)
 	,m_ScoreSubject(std::make_unique<Subject>())
 {
 }
 
-void dae::ScoreComponent::IncreaseScore(const int amount)
+void peach::ScoreComponent::IncreaseScore(const int amount)
 {
 	m_Score += amount;
 	m_ScoreSubject.get()->Notify(*(m_pOwner), Event::ScoreIncreased);
 }
 
-int dae::ScoreComponent::GetScore() const
+int peach::ScoreComponent::GetScore() const
 {
 	return m_Score;
 }
 
-dae::Subject* dae::ScoreComponent::GetpSubject() const
+peach::Subject* peach::ScoreComponent::GetpSubject() const
 {
 	return m_ScoreSubject.get();
 }
