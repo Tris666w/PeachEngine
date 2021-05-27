@@ -1,5 +1,5 @@
 #include "PeachPCH.h"
-#include "Peach.h"
+#include "PeachEngine.h"
 #include <chrono>
 #include <thread>
 #include "InputManager.h"
@@ -52,7 +52,7 @@ void PeachEngine::Initialize()
 void PeachEngine::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-	
+
 	auto go = std::make_shared<GameObject>();
 	go->SetTexture("background.jpg");
 	scene.Add(go);
@@ -69,11 +69,11 @@ void PeachEngine::LoadGame() const
 	ScoreComponent* scoreComponent1 = new ScoreComponent(qBert1.get());
 
 	std::shared_ptr<Command> const takeDamageCommand1 = std::make_shared<DamageCommand>(healthComponent1);
-	std::shared_ptr<Command> const colorChangeScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1,25);
-	std::shared_ptr<Command> const coilyScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1,500);
-	std::shared_ptr<Command> const remainingDiscScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1,50);
-	std::shared_ptr<Command> const catchScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1,300);
-	
+	std::shared_ptr<Command> const colorChangeScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1, 25);
+	std::shared_ptr<Command> const coilyScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1, 500);
+	std::shared_ptr<Command> const remainingDiscScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1, 50);
+	std::shared_ptr<Command> const catchScoreCommand1 = std::make_shared<ScoreCommand>(scoreComponent1, 300);
+
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonLeftShoulder, takeDamageCommand1, CommandExecuteCause::ButtonDown);
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonUp, colorChangeScoreCommand1, CommandExecuteCause::ButtonDown);
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonLeft, coilyScoreCommand1, CommandExecuteCause::ButtonDown);
@@ -83,8 +83,8 @@ void PeachEngine::LoadGame() const
 	qBert1->AddComponent(healthComponent1);
 	qBert1->AddComponent(scoreComponent1);
 	scene.Add(qBert1);
-	
-	const auto playerUi1 = std::make_shared<PlayerUI>(ImVec2(100,150),"1", 0, 5,healthComponent1->GetpSubject(),scoreComponent1->GetpSubject());
+
+	const auto playerUi1 = std::make_shared<PlayerUI>(ImVec2(100, 150), "1", 0, 5, healthComponent1->GetpSubject(), scoreComponent1->GetpSubject());
 	scene.Add(playerUi1);
 
 
@@ -95,11 +95,11 @@ void PeachEngine::LoadGame() const
 	ScoreComponent* scoreComponent2 = new ScoreComponent(qBert2.get());
 
 	std::shared_ptr<Command> const takeDamageCommand2 = std::make_shared<DamageCommand>(healthComponent2);
-	std::shared_ptr<Command> const colorChangeScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2,25);
-	std::shared_ptr<Command> const coilyScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2,500);
-	std::shared_ptr<Command> const remainingDiscScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2,50);
-	std::shared_ptr<Command> const catchScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2,300);
-	
+	std::shared_ptr<Command> const colorChangeScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2, 25);
+	std::shared_ptr<Command> const coilyScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2, 500);
+	std::shared_ptr<Command> const remainingDiscScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2, 50);
+	std::shared_ptr<Command> const catchScoreCommand2 = std::make_shared<ScoreCommand>(scoreComponent2, 300);
+
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonRightShoulder, takeDamageCommand2, CommandExecuteCause::ButtonDown);
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonY, colorChangeScoreCommand2, CommandExecuteCause::ButtonDown);
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonX, coilyScoreCommand2, CommandExecuteCause::ButtonDown);
@@ -109,16 +109,16 @@ void PeachEngine::LoadGame() const
 	qBert2->AddComponent(healthComponent2);
 	qBert2->AddComponent(scoreComponent2);
 	scene.Add(qBert2);
-	const auto playerUi2 = std::make_shared<PlayerUI>(ImVec2(350,150),"2", 0, 5,healthComponent2->GetpSubject(),scoreComponent2->GetpSubject());
+	const auto playerUi2 = std::make_shared<PlayerUI>(ImVec2(350, 150), "2", 0, 5, healthComponent2->GetpSubject(), scoreComponent2->GetpSubject());
 	scene.Add(playerUi2);
 
-	
+
 	go = std::make_shared<GameObject>();
 	go->SetTexture("ControllerScheme.png");
 	go->SetPosition(0, 250);
 	scene.Add(go);
 
-	
+
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	auto to = std::make_shared<TextObject>("Programming 4 Assignment", font);
 	to->SetPosition(90, 20);
@@ -129,19 +129,19 @@ void PeachEngine::LoadGame() const
 	FPSCounter* fpsCounter = new FPSCounter((to).get());
 	to->AddComponent(fpsCounter);
 	scene.Add(to);
-	
-	auto& t1 =ServiceLocator::GetSoundSystem();
-	t1.PlaySoundEffect(5,50);
+
+	auto& t1 = ServiceLocator::GetSoundSystem();
+	t1.PlaySoundEffect(5, 50);
 
 
 	auto* sdlSs = new SDLMixerSoundSystem();
 	ServiceLocator::RegisterSoundSystem(sdlSs);
 	SoundEffectID const soundID = sdlSs->AddSound("../Data/Sound/Powerup.wav");
 	MusicID const musicID = sdlSs->AddMusic("../Data/Sound/TWICE_Mix.wav");
-	
+
 	auto& ss = ServiceLocator::GetSoundSystem();
-	ss.PlaySoundEffect(soundID,50);
-	ss.PlayMusic(musicID,10);
+	ss.PlaySoundEffect(soundID, 50);
+	ss.PlayMusic(musicID, 10);
 
 	delete sdlSs;
 }
@@ -162,7 +162,7 @@ void PeachEngine::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	InputManager::GetInstance().Init();
-	
+
 	LoadGame();
 	{
 		auto& renderer = Renderer::GetInstance();
