@@ -1,11 +1,12 @@
 #pragma once
 #include "ComponentBase.h"
+#include <memory>
 
 namespace peach {
     class Subject;
     class GameObject;
 
-    class Health final: public ComponentBase
+    class Health final : public ComponentBase
     {
     public:
         Health(GameObject* m_pOwner, int maxHealth, int startHealth);

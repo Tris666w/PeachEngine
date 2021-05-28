@@ -28,26 +28,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -219,38 +219,25 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Command.h" />
     <ClInclude Include="src\ComponentBase.h" />
-    <ClInclude Include="src\Core.h" />
-    <ClInclude Include="src\DamageCommand.h" />
-    <ClInclude Include="src\EntryPoint.h" />
     <ClInclude Include="src\Font.h" />
-    <ClInclude Include="src\FPS.h" />
-    <ClInclude Include="src\FPSCounter.h" />
     <ClInclude Include="src\GameObject.h" />
-    <ClInclude Include="src\Health.h" />
-    <ClInclude Include="src\HealthObserver.h" />
     <ClInclude Include="src\InputManager.h" />
     <ClInclude Include="src\Peach.h" />
-    <ClInclude Include="src\PeachEngine.h" />
     <ClInclude Include="src\PeachPCH.h" />
     <ClInclude Include="src\Observer.h" />
-    <ClInclude Include="src\PlayerUI.h" />
     <ClInclude Include="src\SceneObject.h" />
     <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\ResourceManager.h" />
     <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\SceneManager.h" />
-    <ClInclude Include="src\ScoreCommand.h" />
-    <ClInclude Include="src\ScoreComponent.h" />
-    <ClInclude Include="src\ScoreObserver.h" />
     <ClInclude Include="src\ServicesBase.h" />
     <ClInclude Include="src\Singleton.h" />
     <ClInclude Include="src\SoundSystems.h" />
     <ClInclude Include="src\Subject.h" />
     <ClInclude Include="src\TextObject.h" />
     <ClInclude Include="src\Texture2D.h" />
-    <ClInclude Include="src\Time.h" />
+    <ClInclude Include="src\GameTime.h" />
     <ClInclude Include="src\Transform.h" />
-    <ClInclude Include="src\Test.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.81\backends\imgui_impl_opengl2.cpp">
@@ -297,16 +284,9 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ClCompile>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Command.cpp" />
-    <ClCompile Include="src\DamageCommand.cpp" />
     <ClCompile Include="src\Font.cpp" />
-    <ClCompile Include="src\FPS.cpp" />
-    <ClCompile Include="src\FPSCounter.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\Health.cpp" />
-    <ClCompile Include="src\HealthObserver.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\PeachEngine.cpp" />
     <ClCompile Include="src\PeachPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -315,21 +295,16 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PeachPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="src\Observer.cpp" />
-    <ClCompile Include="src\PlayerUI.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\ResourceManager.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
-    <ClCompile Include="src\ScoreCommand.cpp" />
-    <ClCompile Include="src\ScoreComponent.cpp" />
-    <ClCompile Include="src\ScoreObserver.cpp" />
     <ClCompile Include="src\SoundSystems.cpp" />
     <ClCompile Include="src\Subject.cpp" />
     <ClCompile Include="src\TextObject.cpp" />
     <ClCompile Include="src\Texture2D.cpp" />
-    <ClCompile Include="src\Time.cpp" />
+    <ClCompile Include="src\GameTime.cpp" />
     <ClCompile Include="src\Transform.cpp" />
-    <ClCompile Include="src\Test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

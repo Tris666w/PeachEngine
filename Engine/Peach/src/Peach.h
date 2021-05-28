@@ -4,12 +4,9 @@
 //For use by peach apps
 //-------------------------------------
 
-
 #include "Application.h"
-
-
-//-------------------------------------
-//Entry point
-//-------------------------------------
-
-#include "EntryPoint.h"
+#include "SceneManager.h"
+#include "GameObject.h"
+#include "Scene.h"
+#include "ResourceManager.h"
+#include "InputManager.h"

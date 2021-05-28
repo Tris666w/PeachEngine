@@ -1,7 +1,7 @@
 #include "PeachPCH.h"
 #include "FPS.h"
 
-#include "Time.h"
+#include "GameTime.h"
 
 void FPS::Initialize()
 {
@@ -15,7 +15,7 @@ void FPS::Update()
 {
 	m_AmountOfPassedFrames++;
 
-	m_PassedTime += peach::Time::GetInstance().GetElapsedSec();
+	m_PassedTime += peach::GameTime::GetInstance().GetElapsedSec();
 
 	if (m_PassedTime > m_PassTime)
 	{

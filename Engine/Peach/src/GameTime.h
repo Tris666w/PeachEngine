@@ -4,7 +4,7 @@
 
 namespace peach
 {
-	class Time final : public Singleton<Time>
+	class GameTime final : public Singleton<GameTime>
 	{
 	public:
 		void SetElapsedSec(const float elapsedSec) {
@@ -14,8 +14,8 @@ namespace peach
 		float GetElapsedSec()const { return m_ElapsedSec; }
 
 	private:
-		friend class Singleton<Time>;
-		Time() = default;
+		friend class Singleton<GameTime>;
+		GameTime() = default;
 
 		float m_ElapsedSec = 0.f;
 	};
