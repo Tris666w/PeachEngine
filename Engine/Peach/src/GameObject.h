@@ -1,22 +1,20 @@
 #pragma once
 #include "Transform.h"
-#include "SceneObject.h"
 
 namespace peach
 {
 	class ComponentBase;
 	class Texture2D;
-	class GameObject final : public SceneObject
+	class GameObject final
 	{
 	public:
 
-		void Initialize()override;
-		void FixedUpdate()override;
-		void Update()override;
-		void LateUpdate()override;
-		void Render() const override;
+		void Initialize();
+		void FixedUpdate();
+		void Update();
+		void LateUpdate();
+		void Render() const;
 
-		void SetTexture(const std::string& filename);
 		void SetPosition(float x, float y);
 
 		GameObject() = default;
@@ -35,7 +33,6 @@ namespace peach
 		Transform* GetpTransform() { return &m_Transform; }
 	private:
 		Transform m_Transform;
-		std::shared_ptr<Texture2D> m_Texture{};
 		std::vector<ComponentBase*> m_pComponents{};
 	};
 

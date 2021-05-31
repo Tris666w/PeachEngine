@@ -8,23 +8,22 @@
 #include "Texture2D.h"
 #include "Font.h"
 
-void peach::ResourceManager::Init(const std::string& dataPath)
+void peach::ResourceManager::Init()
 {
-	m_DataPath = dataPath;
 
 	// load support for png and jpg, this takes a while!
 
-	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG) 
+	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG)
 	{
 		throw std::runtime_error(std::string("Failed to load support for png's: ") + SDL_GetError());
 	}
 
-	if ((IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG) != IMG_INIT_JPG) 
+	if ((IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG) != IMG_INIT_JPG)
 	{
 		throw std::runtime_error(std::string("Failed to load support for jpg's: ") + SDL_GetError());
 	}
 
-	if (TTF_Init() != 0) 
+	if (TTF_Init() != 0)
 	{
 		throw std::runtime_error(std::string("Failed to load support for fonts: ") + SDL_GetError());
 	}
@@ -32,9 +31,9 @@ void peach::ResourceManager::Init(const std::string& dataPath)
 
 std::shared_ptr<peach::Texture2D> peach::ResourceManager::LoadTexture(const std::string& file) const
 {
-	const auto fullPath = m_DataPath + file;
+	const auto& fullPath = file;
 	auto texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
-	if (texture == nullptr) 
+	if (texture == nullptr)
 	{
 		throw std::runtime_error(std::string("Failed to load texture: ") + SDL_GetError());
 	}
@@ -43,5 +42,5 @@ std::shared_ptr<peach::Texture2D> peach::ResourceManager::LoadTexture(const std:
 
 std::shared_ptr<peach::Font> peach::ResourceManager::LoadFont(const std::string& file, unsigned int size) const
 {
-	return std::make_shared<Font>(m_DataPath + file, size);
+	return std::make_shared<Font>(file, size);
 }

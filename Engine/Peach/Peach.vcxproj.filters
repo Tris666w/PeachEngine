@@ -61,9 +61,6 @@
     <ClCompile Include="src\ResourceManager.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="src\TextObject.cpp">
-      <Filter>Resources\Textures</Filter>
-    </ClCompile>
     <ClCompile Include="src\Texture2D.cpp">
       <Filter>Resources\Textures</Filter>
     </ClCompile>
@@ -72,6 +69,13 @@
     </ClCompile>
     <ClCompile Include="src\Renderer.cpp">
       <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextureComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MathStructs.cpp" />
+    <ClCompile Include="src\TextComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -147,12 +151,6 @@
     <ClInclude Include="src\ResourceManager.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="src\SceneObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TextObject.h">
-      <Filter>Resources\Textures</Filter>
-    </ClInclude>
     <ClInclude Include="src\Texture2D.h">
       <Filter>Resources\Textures</Filter>
     </ClInclude>
@@ -164,6 +162,13 @@
     </ClInclude>
     <ClInclude Include="src\Singleton.h">
       <Filter>Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextureComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MathStructs.h" />
+    <ClInclude Include="src\TextComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

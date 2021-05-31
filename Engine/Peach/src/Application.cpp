@@ -12,7 +12,8 @@ using namespace std;
 using namespace std::chrono;
 using namespace peach;
 
-Application::Application()
+Application::Application(IVector2 windowDimensions)
+	:m_WindowDimensions(windowDimensions)
 {
 }
 
@@ -31,8 +32,8 @@ void Application::Initialize()
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
-		480,
+		m_WindowDimensions.x,
+		m_WindowDimensions.y,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_Window == nullptr)
@@ -59,8 +60,7 @@ void Application::Run()
 {
 	Initialize();
 
-	// tell the resource manager where he can find the game data
-	ResourceManager::GetInstance().Init("../Data/");
+	ResourceManager::GetInstance().Init();
 
 	InputManager::GetInstance().Init();
 
@@ -102,5 +102,10 @@ void Application::Run()
 	}
 
 	Cleanup();
+}
+
+IVector2 peach::Application::GetWindowDimensions() const
+{
+	return m_WindowDimensions;
 }
 

@@ -8,6 +8,13 @@ namespace peach
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
+		~SceneManager() = default;
+		SceneManager(const SceneManager& other) = delete;
+		SceneManager(SceneManager&& other) noexcept = delete;
+		SceneManager& operator=(const SceneManager& other) = delete;
+		SceneManager& operator=(SceneManager&& other) noexcept = delete;
+
+
 		Scene& CreateScene(const std::string& name);
 
 		void Initialize();

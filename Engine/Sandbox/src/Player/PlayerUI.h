@@ -1,13 +1,13 @@
 #pragma once
 #include "imgui.h"
-#include "SceneObject.h"
+#include "ComponentBase.h"
 
 namespace peach {
 	class ScoreObserver;
 	class Subject;
 	class HealthObserver;
 
-	class PlayerUI : public peach::SceneObject
+	class PlayerUI : public ComponentBase
 	{
 	public:
 		PlayerUI(ImVec2 screenPos, const std::string& playerID,int playerScore, int playerHealth,Subject* pHealthSubject,Subject* pScoreSubject);

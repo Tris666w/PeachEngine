@@ -2,6 +2,8 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
+
+
 void peach::SceneManager::Update()
 {
 	for (auto& scene : m_Scenes)

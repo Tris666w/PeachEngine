@@ -1,18 +1,17 @@
 #pragma once
 #include "ComponentBase.h"
-class FPS final : public peach::ComponentBase
+namespace peach
 {
-public:
-	void Initialize() override;
-	void FixedUpdate() override;
-	void Update() override;
-	void LateUpdate() override;
-	void Render() override;
+	class FPS final : public ComponentBase
+	{
+	public:
+		void Update() override;
 
-	int GetAverageFPS()const { return m_AverageFPS; }
-private:
-	int m_AverageFPS{};
-	int m_AmountOfPassedFrames{};
-	float m_PassedTime{ 1.5f };
-	const float m_PassTime{ 0.5f };
-};
+		int GetAverageFPS()const { return m_AverageFPS; }
+	private:
+		int m_AverageFPS{};
+		int m_AmountOfPassedFrames{};
+		float m_PassedTime{ 1.5f };
+		const float m_PassTime{ 0.5f };
+	};
+}

@@ -92,7 +92,6 @@ void peach::TextObject::Render() const
 	}
 }
 
-// This implementation uses the "dirty flag" pattern
 void peach::TextObject::SetText(const std::string& text)
 {
 	m_Text = text;

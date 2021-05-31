@@ -2,8 +2,8 @@
 #include "PlayerUI.h"
 #include "Subject.h"
 #include "imgui.h"
-#include "HealthObserver.h"
-#include "ScoreObserver.h"
+#include "Health/HealthObserver.h"
+#include "Score/ScoreObserver.h"
 
 peach::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, Subject* pHealthSubject,Subject* pScoreSubject)
 	:m_ScreenPos(screenPos)
@@ -15,7 +15,7 @@ peach::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int pla
 	m_pScoreObserver = std::make_unique<ScoreObserver>(&m_PlayerScore, pScoreSubject);
 }
 
-void peach::PlayerUI::Render() const
+void peach::PlayerUI::Render()const
 {
 	const std::string windowTitle = "Player " + m_PlayerID;
 	const std::string playerScore = "Score: " + std::to_string(m_PlayerScore);

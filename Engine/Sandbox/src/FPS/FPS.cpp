@@ -2,33 +2,19 @@
 #include "FPS.h"
 
 #include "GameTime.h"
-
-void FPS::Initialize()
+namespace peach
 {
-}
-
-void FPS::FixedUpdate()
-{
-}
-
-void FPS::Update()
-{
-	m_AmountOfPassedFrames++;
-
-	m_PassedTime += peach::GameTime::GetInstance().GetElapsedSec();
-
-	if (m_PassedTime > m_PassTime)
+	void FPS::Update()
 	{
-		m_AverageFPS = static_cast<int>(static_cast<float>(m_AmountOfPassedFrames) / m_PassTime);
-		m_AmountOfPassedFrames = 0;
-		m_PassedTime = 0;
+		m_AmountOfPassedFrames++;
+
+		m_PassedTime += peach::GameTime::GetInstance().GetElapsedSec();
+
+		if (m_PassedTime > m_PassTime)
+		{
+			m_AverageFPS = static_cast<int>(static_cast<float>(m_AmountOfPassedFrames) / m_PassTime);
+			m_AmountOfPassedFrames = 0;
+			m_PassedTime = 0;
+		}
 	}
-}
-
-void FPS::LateUpdate()
-{
-}
-
-void FPS::Render()
-{
 }

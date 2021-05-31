@@ -17,7 +17,10 @@ peach::GameObject::~GameObject()
 void peach::GameObject::AddComponent(ComponentBase* newComponent)
 {
 	if (newComponent)
+	{
 		m_pComponents.push_back(newComponent);
+		newComponent->SetParent(this);
+	}
 }
 
 void peach::GameObject::Initialize()
@@ -54,18 +57,10 @@ void peach::GameObject::LateUpdate()
 
 void peach::GameObject::Render() const
 {
-	const auto pos = m_Transform.GetPosition();
-	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
-
 	for (ComponentBase* element : m_pComponents)
 	{
 		element->Render();
 	}
-}
-
-void peach::GameObject::SetTexture(const std::string& filename)
-{
-	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
 void peach::GameObject::SetPosition(float x, float y)
