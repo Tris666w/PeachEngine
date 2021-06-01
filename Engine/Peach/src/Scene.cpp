@@ -8,24 +8,37 @@ unsigned int Scene::m_IdCounter = 0;
 
 Scene::Scene(const std::string& name) : m_Name(name) {}
 
-Scene::~Scene() = default;
-
-void Scene::Add(const std::shared_ptr<GameObject>&object)
+Scene::~Scene()
 {
-	m_Objects.push_back(object);
+	for (auto go : m_pObjects)
+		SafeDelete(go);
+};
+
+void Scene::Add(GameObject* object)
+{
+	object->SetScene(this);
+	m_pObjects.push_back(object);
 }
 
 void Scene::Initialize()
 {
-	for (auto& object : m_Objects)
+	for (auto& object : m_pObjects)
 	{
 		object->Initialize();
 	}
 }
 
+void Scene::PostInitialize()
+{
+	for (auto& object : m_pObjects)
+	{
+		object->PostInitialize();
+	}
+}
+
 void Scene::FixedUpdate()
 {
-	for (auto& object : m_Objects)
+	for (auto& object : m_pObjects)
 	{
 		object->FixedUpdate();
 	}
@@ -33,7 +46,7 @@ void Scene::FixedUpdate()
 
 void Scene::LateUpdate()
 {
-	for (auto& object : m_Objects)
+	for (auto& object : m_pObjects)
 	{
 		object->LateUpdate();
 	}
@@ -41,7 +54,7 @@ void Scene::LateUpdate()
 
 void Scene::Update()
 {
-	for (auto& object : m_Objects)
+	for (auto& object : m_pObjects)
 	{
 		object->Update();
 	}
@@ -49,8 +62,20 @@ void Scene::Update()
 
 void Scene::Render() const
 {
-	for (const auto& object : m_Objects)
+	for (const auto& object : m_pObjects)
 	{
 		object->Render();
 	}
+}
+
+std::vector<GameObject*> Scene::GetObjectsWithTag(const std::string& tag)
+{
+	std::vector<GameObject*> vector{};
+	for (const auto& object : m_pObjects)
+	{
+		if (strcmp(tag.c_str(), object->GetTag().c_str()) == 0)
+			vector.push_back(object);
+	}
+
+	return vector;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneManager.h"
+#include "Peach.h"
 
 namespace peach
 {
@@ -8,13 +9,19 @@ namespace peach
 	{
 		friend Scene& SceneManager::CreateScene(const std::string& name);
 	public:
-		void Add(const std::shared_ptr<GameObject>& object);
+		void Add(GameObject* object);
 
 		void Initialize();
+		void PostInitialize();
+
 		void FixedUpdate();
 		void Update();
 		void LateUpdate();
 		void Render() const;
+
+		std::vector<GameObject*> GetObjectsWithTag(const std::string& tag);
+
+		const std::string& GetName()const { return m_Name; }
 
 		~Scene();
 		Scene(const Scene& other) = delete;
@@ -26,7 +33,7 @@ namespace peach
 		explicit Scene(const std::string& name);
 
 		std::string m_Name;
-		std::vector < std::shared_ptr<GameObject>> m_Objects{};
+		std::vector < GameObject*> m_pObjects{};
 
 		static unsigned int m_IdCounter;
 	};

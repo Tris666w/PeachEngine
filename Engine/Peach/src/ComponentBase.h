@@ -10,6 +10,10 @@ namespace peach
 		{
 
 		};
+		virtual void PostInitialize()
+		{
+
+		};
 		virtual void FixedUpdate()
 		{
 

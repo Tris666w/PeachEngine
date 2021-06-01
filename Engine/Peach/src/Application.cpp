@@ -7,6 +7,7 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include "GameTime.h"
+#include "Logger.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -51,6 +52,7 @@ void Application::LoadGame() const
 void Application::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
+	Logger::Release();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
 	SDL_Quit();
@@ -64,12 +66,15 @@ void Application::Run()
 
 	InputManager::GetInstance().Init();
 
+	Logger::Initialize();
 	LoadGame();
 	{
+
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
-
+		sceneManager.Initialize();
+		sceneManager.PostInitialize();
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		float lag = 0.f;

@@ -196,6 +196,9 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="QbertComponent.cpp" />
+    <ClCompile Include="src\QbertGameSettings.cpp" />
+    <ClCompile Include="src\Level\LevelComponent.cpp" />
     <ClCompile Include="SandboxApp.cpp" />
     <ClCompile Include="src\FPS\FPS.cpp" />
     <ClCompile Include="src\FPS\FPSCounter.cpp" />
@@ -206,8 +209,12 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClCompile Include="src\Score\ScoreCommand.cpp" />
     <ClCompile Include="src\Score\ScoreComponent.cpp" />
     <ClCompile Include="src\Score\ScoreObserver.cpp" />
+    <ClCompile Include="src\Level\TileComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="QbertComponent.h" />
+    <ClInclude Include="src\QbertGameSettings.h" />
+    <ClInclude Include="src\Level\LevelComponent.h" />
     <ClInclude Include="src\FPS\FPS.h" />
     <ClInclude Include="src\FPS\FPSCounter.h" />
     <ClInclude Include="src\Health\DamageCommand.h" />
@@ -217,6 +224,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="src\Score\ScoreCommand.h" />
     <ClInclude Include="src\Score\ScoreComponent.h" />
     <ClInclude Include="src\Score\ScoreObserver.h" />
+    <ClInclude Include="src\Level\TileComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

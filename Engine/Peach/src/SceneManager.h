@@ -16,8 +16,13 @@ namespace peach
 
 
 		Scene& CreateScene(const std::string& name);
+		std::shared_ptr<Scene> GetScene(const std::string& name);
+
+		void SetActiveGameScene(const std::string& sceneName);
 
 		void Initialize();
+		void PostInitialize();
+
 		void FixedUpdate();
 		void Update();
 		void LateUpdate();
@@ -26,5 +31,6 @@ namespace peach
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
 		std::vector<std::shared_ptr<Scene>> m_Scenes;
+		std::shared_ptr<Scene>m_ActiveScene;
 	};
 }
