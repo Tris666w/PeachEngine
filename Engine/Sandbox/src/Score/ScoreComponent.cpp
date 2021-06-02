@@ -1,10 +1,11 @@
-#include "PeachPCH.h"
+#include "QbertPCH.h"
+
 #include "ScoreComponent.h"
 #include "Subject.h"
 
 peach::ScoreComponent::ScoreComponent(GameObject* pOwner)
 	:m_pOwner(pOwner)
-	,m_ScoreSubject(std::make_unique<Subject>())
+	, m_ScoreSubject(std::make_unique<Subject>())
 {
 }
 

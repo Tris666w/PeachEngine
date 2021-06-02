@@ -1,21 +1,21 @@
-#include "PeachPCH.h"
+#include "QbertPCH.h"
 #include "Health.h"
 
 #include "Subject.h"
 
-peach::Health::Health(GameObject* pOwner, int maxHealth,const int startHealth)
+peach::Health::Health(GameObject* pOwner, int maxHealth, const int startHealth)
 	:m_pOwner(pOwner)
-	,m_MaxHealth(maxHealth)
-	,m_CurrentHealth(startHealth)
-	,m_HealthSubject(std::make_unique<Subject>())
+	, m_MaxHealth(maxHealth)
+	, m_CurrentHealth(startHealth)
+	, m_HealthSubject(std::make_unique<Subject>())
 {
 }
 void peach::Health::DoDamage(const int damage)
 {
 	m_CurrentHealth -= damage;
 	m_HealthSubject.get()->Notify(*(m_pOwner), Event::OwnerDamaged);
-	
-	if (!m_PlayerIsDead && m_CurrentHealth<= 0)
+
+	if (!m_PlayerIsDead && m_CurrentHealth <= 0)
 	{
 		m_PlayerIsDead = true;
 		m_HealthSubject.get()->Notify(*(m_pOwner), Event::OwnerDied);

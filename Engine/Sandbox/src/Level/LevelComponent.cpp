@@ -1,10 +1,11 @@
+#include "QbertPCH.h"
 #include "LevelComponent.h"
 
 #include "GameObject.h"
 #include "TileComponent.h"
 #include "TextureComponent.h"
 #include "QbertGameSettings.h"
-
+#include "LevelMovementComponent.h"
 
 void peach::LevelComponent::Initialize()
 {
@@ -46,10 +47,17 @@ void peach::LevelComponent::PostInitialize()
 	if (amountOfPlayers != qbertGameObjects.size())
 		Logger::LogWarning("LevelComponent::PostInitialize(), amount of players in the scene != amount of players in the game");
 
+	auto moveComp = qbertGameObjects[0]->GetComponent<LevelMovementComponent>();
+	auto player = qbertGameObjects[0];
 	switch (amountOfPlayers)
 	{
 	case 1:
-		qbertGameObjects[0]->SetPosition(GetTopCubeTilePos().x, GetTopCubeTilePos().y);
+		player->SetPosition(GetTopCubeTilePos().x, GetTopCubeTilePos().y);
+		if (moveComp)
+			moveComp->SetGridSpawnPos(0, level_size - 1);
+		else
+			Logger::LogInfo("LevelComponent::PostInitialize(), no LevelMovementComponent was found");
+
 		break;
 	case 2:
 		qbertGameObjects[0]->SetPosition(GetBottomLeftCubeTilePos().x, GetBottomLeftCubeTilePos().y);
@@ -82,7 +90,7 @@ glm::vec3 peach::LevelComponent::GetBottomRightCubeTilePos()
 
 peach::GameObject* peach::LevelComponent::GetTile(uint32_t col, uint32_t row)
 {
-	if (row > level_size || col > level_size - row)
+	if (row >= level_size || col >= level_size - row)
 		return nullptr;
 
 	return m_pTiles.at(row)[col];

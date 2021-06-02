@@ -1,14 +1,15 @@
-#include "PeachPCH.h"
+#include "QbertPCH.h"
+
 #include "ScoreCommand.h"
 
-ScoreCommand::ScoreCommand(peach::ScoreComponent* pScoreComponent, int addedScore)
+Qbert::ScoreCommand::ScoreCommand(peach::ScoreComponent* pScoreComponent, int addedScore)
 	:m_pScoreComponent(pScoreComponent)
-	,m_AmountOfAddedScore(addedScore)
+	, m_AmountOfAddedScore(addedScore)
 {
-	
+
 }
 
-void ScoreCommand::Execute()
+void Qbert::ScoreCommand::Execute()
 {
 	m_pScoreComponent->IncreaseScore(m_AmountOfAddedScore);
 }

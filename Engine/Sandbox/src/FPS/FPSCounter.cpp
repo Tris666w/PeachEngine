@@ -1,12 +1,13 @@
-#include "PeachPCH.h"
+#include "QbertPCH.h"
+
 #include "FPSCounter.h"
 #include "FPS.h"
 #include "TextComponent.h"
 namespace peach
 {
 	FPSCounter::FPSCounter(peach::TextComponent* pTextComp)
-	:m_pTextComp(pTextComp)
-	, m_pFPS(new FPS())
+		:m_pTextComp(pTextComp)
+		, m_pFPS(new FPS())
 	{
 	}
 

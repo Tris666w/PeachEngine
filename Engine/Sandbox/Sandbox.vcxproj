@@ -102,6 +102,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\imgui-1.81;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)/Peach/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>QbertPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,6 +128,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x86\*.dll" "$(OutputPath)" /R /Y</C
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\imgui-1.81;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)/Peach/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>QbertPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,6 +154,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x86\*.dll" "$(OutputPath)" /R /Y</C
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\imgui-1.81;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)/Peach/src;$(ProjectDir)/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>QbertPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -174,6 +180,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\imgui-1.81;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)/Peach/src;$(ProjectDir)/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>QbertPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -196,35 +204,48 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="QbertComponent.cpp" />
+    <ClCompile Include="QbertController.cpp" />
+    <ClCompile Include="src\Health\DamageCommand.cpp" />
+    <ClCompile Include="src\Health\Health.cpp" />
+    <ClCompile Include="src\Health\HealthObserver.cpp" />
+    <ClCompile Include="src\Level\LevelMovementComponent.cpp" />
     <ClCompile Include="src\QbertGameSettings.cpp" />
     <ClCompile Include="src\Level\LevelComponent.cpp" />
     <ClCompile Include="SandboxApp.cpp" />
     <ClCompile Include="src\FPS\FPS.cpp" />
     <ClCompile Include="src\FPS\FPSCounter.cpp" />
-    <ClCompile Include="src\Health\DamageCommand.cpp" />
-    <ClCompile Include="src\Health\Health.cpp" />
-    <ClCompile Include="src\Health\HealthObserver.cpp" />
     <ClCompile Include="src\Player\PlayerUI.cpp" />
+    <ClCompile Include="src\Level\TileComponent.cpp" />
+    <ClCompile Include="src\QbertPCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\Score\ScoreCommand.cpp" />
     <ClCompile Include="src\Score\ScoreComponent.cpp" />
     <ClCompile Include="src\Score\ScoreObserver.cpp" />
-    <ClCompile Include="src\Level\TileComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="QbertComponent.h" />
+    <ClInclude Include="QbertController.h" />
+    <ClInclude Include="src\Health\DamageCommand.h" />
+    <ClInclude Include="src\Health\Health.h" />
+    <ClInclude Include="src\Health\HealthObserver.h" />
+    <ClInclude Include="src\Level\LevelMovementComponent.h" />
     <ClInclude Include="src\QbertGameSettings.h" />
     <ClInclude Include="src\Level\LevelComponent.h" />
     <ClInclude Include="src\FPS\FPS.h" />
     <ClInclude Include="src\FPS\FPSCounter.h" />
-    <ClInclude Include="src\Health\DamageCommand.h" />
-    <ClInclude Include="src\Health\Health.h" />
-    <ClInclude Include="src\Health\HealthObserver.h" />
     <ClInclude Include="src\Player\PlayerUI.h" />
+    <ClInclude Include="src\Level\TileComponent.h" />
+    <ClInclude Include="src\QbertPCH.h" />
     <ClInclude Include="src\Score\ScoreCommand.h" />
     <ClInclude Include="src\Score\ScoreComponent.h" />
     <ClInclude Include="src\Score\ScoreObserver.h" />
-    <ClInclude Include="src\Level\TileComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

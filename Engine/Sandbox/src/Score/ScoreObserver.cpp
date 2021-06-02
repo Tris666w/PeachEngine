@@ -1,11 +1,12 @@
-#include "PeachPCH.h"
+#include "QbertPCH.h"
+
 #include "ScoreObserver.h"
 
 #include "ScoreComponent.h"
 
 peach::ScoreObserver::ScoreObserver(int* pOwnerScore, Subject* pSubject)
 	:m_pOwnerScore(pOwnerScore)
-	,m_Subject(pSubject)
+	, m_Subject(pSubject)
 {
 	m_Subject->AddObserver(this);
 }

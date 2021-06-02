@@ -1,15 +1,16 @@
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-
+#include "QbertPCH.h"
 #include "FPS/FPSCounter.h"
 #include "Peach.h"
 #include "QbertGameSettings.h"
 #include "ResourceManager.h"
+#include "QbertComponent.h"
+#include "QbertController.h"
 #include "ServicesBase.h"
 #include "SoundSystems.h"
 #include "TextureComponent.h"
 #include "TextComponent.h"
 #include "Level/LevelComponent.h"
+#include "Level/LevelMovementComponent.h"
 
 #ifdef _DEBUG
 #include <vld.h>
@@ -51,8 +52,13 @@ public:
 		go = new GameObject();
 		textureComp = new TextureComponent("Resources/Images/Qbert.png", 32, 32);
 		go->AddComponent(textureComp);
+		auto qbertComp = new QbertComponent();
+		go->AddComponent(qbertComp);
+		auto moveComponent = new LevelMovementComponent();
+		go->AddComponent(moveComponent);
+		auto controllerComp = new QbertController();
+		go->AddComponent(controllerComp);
 		scene.Add(go);
-		go->SetTag(QbertGameSettings::qbert_tag);
 
 
 

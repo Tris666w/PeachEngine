@@ -1,17 +1,8 @@
 #pragma once
 #include "ComponentBase.h"
-#include "Peach.h"
 
 namespace peach
 {
-	class LevelComponent;
-	enum class MoveDirection
-	{
-		UpLeft = 0,
-		UpRight = 1,
-		DownLeft = 2,
-		DownRight = 3
-	};
 	class QbertComponent final : public ComponentBase
 	{
 	public:
@@ -25,12 +16,7 @@ namespace peach
 		void Update() override;
 
 	private:
-		IVector2 m_GridPos = { -1,-1 };
-		bool m_IsMoving = false;
-		LevelComponent* m_pLevel;
 
-
-		void Move(MoveDirection direction);
 	};
 
 }
