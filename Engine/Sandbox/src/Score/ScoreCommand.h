@@ -7,11 +7,11 @@ namespace Qbert
 	class ScoreCommand final : public peach::Command
 	{
 	public:
-		ScoreCommand(peach::ScoreComponent* pScoreComponent, int addedScore);
+		ScoreCommand(ScoreComponent* pScoreComponent, int addedScore);
 		void Execute() override;
 
 	private:
-		peach::ScoreComponent* m_pScoreComponent = nullptr;
+		ScoreComponent* m_pScoreComponent = nullptr;
 		int m_AmountOfAddedScore = 0;
 	};
 }

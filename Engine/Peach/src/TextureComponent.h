@@ -22,6 +22,6 @@ namespace peach
 
     private:
         std::shared_ptr<Texture2D> m_Texture{};
-        FVector2 m_Dimensions = { -1,-1 };
+        glm::vec3 m_Dimensions = { -1,-1 ,0};
     };
 }

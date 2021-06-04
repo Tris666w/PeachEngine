@@ -2,7 +2,7 @@
 
 #include "DamageCommand.h"
 
-Qbert::DamageCommand::DamageCommand(peach::Health* pHealthComponent)
+Qbert::DamageCommand::DamageCommand(Health* pHealthComponent)
 	:m_pHealth(pHealthComponent)
 {
 }

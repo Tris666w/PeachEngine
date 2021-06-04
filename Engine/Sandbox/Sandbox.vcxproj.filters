@@ -57,16 +57,22 @@
     <ClCompile Include="src\Health\HealthObserver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MoveCommand.cpp">
+    <ClCompile Include="src\Commands\MoveCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QbertComponent.cpp">
+    <ClCompile Include="src\Player\QbertComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="QbertController.cpp">
+    <ClCompile Include="src\Player\QbertController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\QbertPCH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemies\CoilyComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelEnemyManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,16 +116,22 @@
     <ClInclude Include="src\Health\HealthObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MoveCommand.h">
+    <ClInclude Include="src\Commands\MoveCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QbertComponent.h">
+    <ClInclude Include="src\Player\QbertComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QbertController.h">
+    <ClInclude Include="src\Player\QbertController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\QbertPCH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemies\CoilyComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelEnemyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

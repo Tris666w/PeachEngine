@@ -2,17 +2,24 @@
 #include "ComponentBase.h"
 #include "Peach.h"
 
-namespace peach
+namespace Qbert
 {
-    class TileComponent final :public ComponentBase
+    class LevelComponent;
+    class TileComponent final :public peach::ComponentBase
     {
     public:
-        TileComponent() = default;
-        void SetTextureVector(std::vector<std::string> vector);
+        explicit TileComponent(const std::vector<std::string>& textureVector, LevelComponent* pLevel, bool reverses = false);
+        void QbertStepOn();
+
+        bool GetIsFinished()const { return m_IsFinished; }
+
     private:
         std::vector<std::string>m_pTextureVector;
-        int m_CurrentStage = 0;
-
+        LevelComponent* m_pLevel;
+        uint32_t m_CurrentStage;
+        uint32_t m_MaxStages;
+        bool m_Reverses;
+        bool m_IsFinished;
     };
 }
 

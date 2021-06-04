@@ -1,11 +1,8 @@
 #pragma once
-#include <cstdint>
-#include <string>
-
 #include "Singleton.h"
-namespace peach
+namespace Qbert
 {
-	class QbertGameSettings :public Singleton<QbertGameSettings>
+	class QbertGameSettings :public peach::Singleton<QbertGameSettings>
 	{
 	public:
 		~QbertGameSettings() = default;
@@ -18,9 +15,12 @@ namespace peach
 
 		inline static std::string level_tag = "Level";
 		inline static std::string qbert_tag = "Qbert";
+		inline static std::string purple_enemy_tag = "Purple";
+
+		static int const level_size = 7;
 
 	private:
-		friend class Singleton<QbertGameSettings>;
+		friend class peach::Singleton<QbertGameSettings>;
 		QbertGameSettings() = default;
 
 		uint32_t m_AmountOfPlayers = 1;

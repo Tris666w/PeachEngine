@@ -8,13 +8,18 @@
 #include "ResourceManager.h"
 #include "GameTime.h"
 #include "Logger.h"
+#include <SDL.h>
+#include <SDL_image.h>
+
+#include "Texture2D.h"
 
 using namespace std;
 using namespace std::chrono;
 using namespace peach;
 
-Application::Application(IVector2 windowDimensions)
-	:m_WindowDimensions(windowDimensions)
+Application::Application(glm::vec3 windowDimensions)
+	:m_WindowDimensions(windowDimensions),
+	m_ApplicationName()
 {
 }
 
@@ -24,25 +29,35 @@ Application::~Application()
 
 void Application::Initialize()
 {
+
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
+	std::string windowText = "Peach Engine: ";
+	windowText.append(m_ApplicationName);
 
 	m_Window = SDL_CreateWindow(
-		"Programming 4 assignment",
+		windowText.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		m_WindowDimensions.x,
-		m_WindowDimensions.y,
+		static_cast<int>(m_WindowDimensions.x),
+		static_cast<int>(m_WindowDimensions.y),
 		SDL_WINDOW_OPENGL
 	);
+
+
 	if (m_Window == nullptr)
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
 
 	Renderer::GetInstance().Init(m_Window);
+
+	//Create window icon
+	ResourceManager::GetInstance().Init();
+	auto const pSurface = IMG_Load("Resources/Images/Engine_icon.png");
+	SDL_SetWindowIcon(m_Window, pSurface);
 }
 
 void Application::LoadGame() const
@@ -61,8 +76,6 @@ void Application::Cleanup()
 void Application::Run()
 {
 	Initialize();
-
-	ResourceManager::GetInstance().Init();
 
 	InputManager::GetInstance().Init();
 
@@ -109,7 +122,7 @@ void Application::Run()
 	Cleanup();
 }
 
-IVector2 peach::Application::GetWindowDimensions() const
+glm::vec3 peach::Application::GetWindowDimensions() const
 {
 	return m_WindowDimensions;
 }

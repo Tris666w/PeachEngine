@@ -1,11 +1,10 @@
 #pragma once
 #include "ComponentBase.h"
-#include "Peach.h"
 
-namespace peach
+namespace Qbert
 {
 	class LevelMovementComponent;
-	class QbertController final :public ComponentBase
+	class QbertController final :public peach::ComponentBase
 	{
 	public:
 		void Initialize() override;

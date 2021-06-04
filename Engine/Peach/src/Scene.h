@@ -1,6 +1,6 @@
 #pragma once
 #include "SceneManager.h"
-#include "Peach.h"
+#include "Logger.h"
 
 namespace peach
 {

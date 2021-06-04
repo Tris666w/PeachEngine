@@ -3,31 +3,31 @@
 
 #include "Subject.h"
 
-peach::Health::Health(GameObject* pOwner, int maxHealth, const int startHealth)
+Qbert::Health::Health(peach::GameObject* pOwner, int maxHealth, const int startHealth)
 	:m_pOwner(pOwner)
 	, m_MaxHealth(maxHealth)
 	, m_CurrentHealth(startHealth)
-	, m_HealthSubject(std::make_unique<Subject>())
+	, m_HealthSubject(std::make_unique<peach::Subject>())
 {
 }
-void peach::Health::DoDamage(const int damage)
+void Qbert::Health::DoDamage(const int damage)
 {
 	m_CurrentHealth -= damage;
-	m_HealthSubject.get()->Notify(*(m_pOwner), Event::OwnerDamaged);
+	m_HealthSubject.get()->Notify(*(m_pOwner), peach::Event::OwnerDamaged);
 
 	if (!m_PlayerIsDead && m_CurrentHealth <= 0)
 	{
 		m_PlayerIsDead = true;
-		m_HealthSubject.get()->Notify(*(m_pOwner), Event::OwnerDied);
+		m_HealthSubject.get()->Notify(*(m_pOwner), peach::Event::OwnerDied);
 	}
 }
 
-int peach::Health::GetHealth() const
+int Qbert::Health::GetHealth() const
 {
 	return m_CurrentHealth;
 }
 
-peach::Subject* peach::Health::GetpSubject() const
+peach::Subject* Qbert::Health::GetpSubject() const
 {
 	return m_HealthSubject.get();
 }

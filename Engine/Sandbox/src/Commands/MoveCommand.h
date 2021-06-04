@@ -2,12 +2,12 @@
 #include "Command.h"
 #include "Level/LevelMovementComponent.h"
 
-namespace peach
+namespace Qbert
 {
-	class MoveCommand : public Command
+	class MoveCommand : public peach::Command
 	{
 	public:
-		MoveCommand(GameObject* pObject, MoveDirection direction);
+		MoveCommand(peach::GameObject* pObject, MoveDirection direction);
 
 		void Execute() override;
 	private:

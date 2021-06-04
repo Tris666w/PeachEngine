@@ -4,18 +4,18 @@
 
 #include "ScoreComponent.h"
 
-peach::ScoreObserver::ScoreObserver(int* pOwnerScore, Subject* pSubject)
+Qbert::ScoreObserver::ScoreObserver(int* pOwnerScore, peach::Subject* pSubject)
 	:m_pOwnerScore(pOwnerScore)
 	, m_Subject(pSubject)
 {
 	m_Subject->AddObserver(this);
 }
 
-void peach::ScoreObserver::Notify(const GameObject& GameObject, Event event)
+void Qbert::ScoreObserver::Notify(const peach::GameObject& GameObject, peach::Event event)
 {
 	switch (event)
 	{
-	case Event::ScoreIncreased:
+	case peach::Event::ScoreIncreased:
 		*(m_pOwnerScore) = GameObject.GetComponent<ScoreComponent>()->GetScore();
 		break;
 	}

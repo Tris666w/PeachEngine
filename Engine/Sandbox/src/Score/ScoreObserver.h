@@ -1,13 +1,13 @@
 #pragma once
 #include "Observer.h"
-namespace peach {
-    class ScoreObserver final: public Observer
+namespace Qbert {
+    class ScoreObserver final: public peach::Observer
     {
     public:
-        ScoreObserver(int* pOwnerScore, Subject* pSubject);
-        void Notify(const GameObject& GameObject, Event event) override;
+        ScoreObserver(int* pOwnerScore, peach::Subject* pSubject);
+        void Notify(const peach::GameObject& GameObject, peach::Event event) override;
     private:
         int* m_pOwnerScore = nullptr;
-        Subject* m_Subject = nullptr;
+        peach::Subject* m_Subject = nullptr;
     };
 }

@@ -12,7 +12,7 @@ Scene::~Scene()
 {
 	for (auto go : m_pObjects)
 		SafeDelete(go);
-};
+}
 
 void Scene::Add(GameObject* object)
 {
@@ -40,7 +40,8 @@ void Scene::FixedUpdate()
 {
 	for (auto& object : m_pObjects)
 	{
-		object->FixedUpdate();
+		if (object->GetIsActive())
+			object->FixedUpdate();
 	}
 }
 
@@ -48,7 +49,8 @@ void Scene::LateUpdate()
 {
 	for (auto& object : m_pObjects)
 	{
-		object->LateUpdate();
+		if (object->GetIsActive())
+			object->LateUpdate();
 	}
 }
 
@@ -56,7 +58,8 @@ void Scene::Update()
 {
 	for (auto& object : m_pObjects)
 	{
-		object->Update();
+		if (object->GetIsActive())
+			object->Update();
 	}
 }
 
@@ -64,7 +67,8 @@ void Scene::Render() const
 {
 	for (const auto& object : m_pObjects)
 	{
-		object->Render();
+		if (object->GetIsActive())
+			object->Render();
 	}
 }
 

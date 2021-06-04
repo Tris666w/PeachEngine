@@ -96,9 +96,9 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>P_PLATFORM_WINDOWS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\imgui-1.81;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_mixer\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)/Peach/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -120,7 +120,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x86\*.dll" "$(OutputPath)" /R /Y</C
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -204,9 +204,11 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MoveCommand.cpp" />
-    <ClCompile Include="QbertComponent.cpp" />
-    <ClCompile Include="QbertController.cpp" />
+    <ClCompile Include="LevelEnemyManager.cpp" />
+    <ClCompile Include="src\Enemies\CoilyComponent.cpp" />
+    <ClCompile Include="src\Commands\MoveCommand.cpp" />
+    <ClCompile Include="src\Player\QbertComponent.cpp" />
+    <ClCompile Include="src\Player\QbertController.cpp" />
     <ClCompile Include="src\Health\DamageCommand.cpp" />
     <ClCompile Include="src\Health\Health.cpp" />
     <ClCompile Include="src\Health\HealthObserver.cpp" />
@@ -229,9 +231,11 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClCompile Include="src\Score\ScoreObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MoveCommand.h" />
-    <ClInclude Include="QbertComponent.h" />
-    <ClInclude Include="QbertController.h" />
+    <ClInclude Include="LevelEnemyManager.h" />
+    <ClInclude Include="src\Enemies\CoilyComponent.h" />
+    <ClInclude Include="src\Commands\MoveCommand.h" />
+    <ClInclude Include="src\Player\QbertComponent.h" />
+    <ClInclude Include="src\Player\QbertController.h" />
     <ClInclude Include="src\Health\DamageCommand.h" />
     <ClInclude Include="src\Health\Health.h" />
     <ClInclude Include="src\Health\HealthObserver.h" />

@@ -3,14 +3,15 @@
 #include "Peach.h"
 #include "QbertGameSettings.h"
 #include "ResourceManager.h"
-#include "QbertComponent.h"
-#include "QbertController.h"
+#include "Player/QbertComponent.h"
+#include "Player/QbertController.h"
 #include "ServicesBase.h"
 #include "SoundSystems.h"
 #include "TextureComponent.h"
 #include "TextComponent.h"
 #include "Level/LevelComponent.h"
 #include "Level/LevelMovementComponent.h"
+#include "LevelEnemyManager.h"
 
 #ifdef _DEBUG
 #include <vld.h>
@@ -19,18 +20,18 @@
 class SandboxApp final :public peach::Application
 {
 public:
-	SandboxApp() :Application({ 1280,720 })
+	SandboxApp() :Application({ 1280,720 ,0 })
 	{
-
+		SetApplicationName("Qbert");
 	}
 	~SandboxApp() override
 	{
 
 	}
-
 	void LoadGame() const override
 	{
 		using namespace peach;
+		using namespace Qbert;
 
 		auto windowDimensions = GetWindowDimensions();
 
@@ -46,6 +47,8 @@ public:
 		go = new GameObject();
 		auto lc = new LevelComponent();
 		go->AddComponent(lc);
+		auto lvmC = new LevelEnemyManager();
+		go->AddComponent(lvmC);
 		scene.Add(go);
 		go->SetPosition(windowDimensions.x / 3.f, 2 * windowDimensions.y / 3.f);
 
@@ -59,8 +62,6 @@ public:
 		auto controllerComp = new QbertController();
 		go->AddComponent(controllerComp);
 		scene.Add(go);
-
-
 
 		auto font = ResourceManager::GetInstance().LoadFont("Resources/Fonts/Lingua.otf", 36);
 		go = new GameObject();

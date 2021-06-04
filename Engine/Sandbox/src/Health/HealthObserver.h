@@ -1,16 +1,17 @@
 #pragma once
 #include "Observer.h"
-namespace peach {
+
+namespace Qbert {
     class Health;
 
     class HealthObserver final:
-        public Observer
+        public peach::Observer
     {
     public:
-        HealthObserver(int* pOwnerHeatlth, Subject* pSubject);
-        void Notify(const GameObject& GameObject, Event event) override;
+        HealthObserver(int* pOwnerHeatlth, peach::Subject* pSubject);
+        void Notify(const peach::GameObject& GameObject, peach::Event event) override;
     private:
         int* m_pOwnerHealth = nullptr;
-        Subject* m_Subject = nullptr;
+        peach::Subject* m_Subject = nullptr;
     };
 }

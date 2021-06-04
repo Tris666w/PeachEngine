@@ -2,10 +2,11 @@
 
 #include "QbertController.h"
 #include "InputManager.h"
-#include "MoveCommand.h"
+#include "Commands/MoveCommand.h"
 
-void peach::QbertController::Initialize()
+void Qbert::QbertController::Initialize()
 {
+	using namespace peach;
 	auto moveCommand = std::make_shared<MoveCommand>(GetParent(), MoveDirection::UpLeft);
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonX, moveCommand, CommandExecuteCause::ButtonDown);
 

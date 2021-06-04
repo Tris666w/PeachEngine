@@ -2,7 +2,7 @@
 
 #include "ScoreCommand.h"
 
-Qbert::ScoreCommand::ScoreCommand(peach::ScoreComponent* pScoreComponent, int addedScore)
+Qbert::ScoreCommand::ScoreCommand(Qbert::ScoreComponent* pScoreComponent, int addedScore)
 	:m_pScoreComponent(pScoreComponent)
 	, m_AmountOfAddedScore(addedScore)
 {

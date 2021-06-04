@@ -10,7 +10,9 @@
 #include <Peach.h>
 #include <vector>
 #include <stdio.h>
+#include <glm/detail/type_vec.hpp>
+#include <glm/detail/type_vec3.hpp>
 
 //Additional engine includes
-#include "MathStructs.h"
+#include "MathFunctions.h"
 

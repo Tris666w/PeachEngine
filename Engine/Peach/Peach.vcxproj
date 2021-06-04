@@ -216,6 +216,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_truetype.h" />
+    <ClInclude Include="src\MathFunctions.h" />
     <ClInclude Include="src\Logger.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Command.h" />
@@ -223,7 +224,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="src\Font.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\InputManager.h" />
-    <ClInclude Include="src\MathStructs.h" />
     <ClInclude Include="src\Peach.h" />
     <ClInclude Include="src\PeachPCH.h" />
     <ClInclude Include="src\Observer.h" />
@@ -284,13 +284,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\MathFunctions.cpp" />
     <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Command.cpp" />
     <ClCompile Include="src\Font.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
-    <ClCompile Include="src\MathStructs.cpp" />
     <ClCompile Include="src\PeachPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

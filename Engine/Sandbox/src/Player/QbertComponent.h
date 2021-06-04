@@ -1,9 +1,9 @@
 #pragma once
 #include "ComponentBase.h"
 
-namespace peach
+namespace Qbert
 {
-	class QbertComponent final : public ComponentBase
+	class QbertComponent final : public peach::ComponentBase
 	{
 	public:
 		QbertComponent() = default;

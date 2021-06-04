@@ -8,7 +8,7 @@
 
 peach::TextureComponent::TextureComponent(const std::string& assetPath, float width, float height)
 	:ComponentBase(),
-	m_Dimensions(width, height)
+	m_Dimensions(width, height,0)
 {
 	m_Texture = ResourceManager::GetInstance().LoadTexture(assetPath);
 }
@@ -32,5 +32,5 @@ void peach::TextureComponent::SetTexture(const std::string& assetPath)
 
 void peach::TextureComponent::SetDimensions(float width, float height)
 {
-	m_Dimensions = { width,height };
+	m_Dimensions = { width,height ,0};
 }

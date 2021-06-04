@@ -1,16 +1,19 @@
 #pragma once
 #include "imgui.h"
 #include "ComponentBase.h"
-
-namespace peach {
-	class ScoreObserver;
+namespace peach
+{
 	class Subject;
+}
+
+namespace Qbert {
+	class ScoreObserver;
 	class HealthObserver;
 
-	class PlayerUI : public ComponentBase
+	class PlayerUI : public peach::ComponentBase
 	{
 	public:
-		PlayerUI(ImVec2 screenPos, const std::string& playerID,int playerScore, int playerHealth,Subject* pHealthSubject,Subject* pScoreSubject);
+		PlayerUI(ImVec2 screenPos, const std::string& playerID,int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject);
 		void Render() const override;
 	private:
 		ImVec2 m_ScreenPos = {};

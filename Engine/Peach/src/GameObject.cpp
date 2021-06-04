@@ -14,9 +14,11 @@ peach::GameObject::~GameObject()
 
 void peach::GameObject::AddChild(GameObject* object)
 {
+	object->SetParent(this);
+	object->SetScene(m_pParentScene);
 	object->Initialize();
 	m_pChildren.push_back(object);
-	object->SetParent(this);
+
 }
 
 void peach::GameObject::SetParent(GameObject* object)
@@ -59,7 +61,10 @@ void peach::GameObject::FixedUpdate()
 	for (ComponentBase* element : m_pComponents)
 		element->FixedUpdate();
 	for (GameObject* child : m_pChildren)
-		child->FixedUpdate();
+	{
+		if (child->GetIsActive())
+			child->FixedUpdate();
+	}
 }
 
 void peach::GameObject::Update()
@@ -67,7 +72,10 @@ void peach::GameObject::Update()
 	for (ComponentBase* element : m_pComponents)
 		element->Update();
 	for (GameObject* child : m_pChildren)
-		child->Update();
+	{
+		if (child->GetIsActive())
+			child->Update();
+	}
 }
 
 void peach::GameObject::LateUpdate()
@@ -75,7 +83,10 @@ void peach::GameObject::LateUpdate()
 	for (ComponentBase* element : m_pComponents)
 		element->LateUpdate();
 	for (GameObject* child : m_pChildren)
-		child->LateUpdate();
+	{
+		if (child->GetIsActive())
+			child->LateUpdate();
+	}
 }
 
 void peach::GameObject::Render() const
@@ -83,7 +94,10 @@ void peach::GameObject::Render() const
 	for (ComponentBase* element : m_pComponents)
 		element->Render();
 	for (GameObject* child : m_pChildren)
-		child->Render();
+	{
+		if (child->GetIsActive())
+			child->Render();
+	}
 }
 
 void peach::GameObject::SetPosition(float x, float y)

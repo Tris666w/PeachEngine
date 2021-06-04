@@ -14,10 +14,10 @@ bool peach::InputManager::ProcessInput()
 			return false;
 		}
 		if (e.type == SDL_KEYDOWN) {
-			
+
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
+
 		}
 	}
 
@@ -34,7 +34,7 @@ bool peach::InputManager::ProcessInput()
 		{
 			if (command.second == CommandExecuteCause::ButtonUp && IsButtonUp(button))
 				command.first->Execute();
-			m_IsKeyPressedVector[static_cast<int>(button)] = false;	
+			m_IsKeyPressedVector[static_cast<int>(button)] = false;
 		}
 	}
 
@@ -43,14 +43,7 @@ bool peach::InputManager::ProcessInput()
 
 bool peach::InputManager::IsPressed(ControllerButton button) const
 {
-	bool isLargeEnumValue = false;
-	int const correctingFactor = 2;
-	if(static_cast<int>(button)>9)
-		isLargeEnumValue = true;
-
-	int const bitmask = static_cast<int>(pow(2.0, static_cast<double>(button) + static_cast<double>(isLargeEnumValue) * correctingFactor));
-	
-	return (m_CurrentState.Gamepad.wButtons & bitmask ) != 0;
+	return (m_CurrentState.Gamepad.wButtons & static_cast<WORD> (button)) != 0;
 }
 
 bool peach::InputManager::IsButtonUp(const ControllerButton button) const
@@ -64,23 +57,23 @@ bool peach::InputManager::IsButtonUp(const ControllerButton button) const
 
 bool peach::InputManager::IsButtonDown(const ControllerButton button) const
 {
-		if (m_IsKeyPressedVector[static_cast<int>(button)])
+	if (m_IsKeyPressedVector[static_cast<int>(button)])
 	{
 		return false;
 	}
 	return true;
 }
 
-void peach::InputManager::AddOrChangeCommand(const ControllerButton button, const std::shared_ptr<Command>& pCommand,CommandExecuteCause executeCause)
+void peach::InputManager::AddOrChangeCommand(const ControllerButton button, const std::shared_ptr<Command>& pCommand, CommandExecuteCause executeCause)
 {
-	std::pair<std::shared_ptr<Command>,CommandExecuteCause> pair = std::make_pair(pCommand,executeCause);
+	std::pair<std::shared_ptr<Command>, CommandExecuteCause> pair = std::make_pair(pCommand, executeCause);
 	m_CommandMap.insert_or_assign(button, pair);
 }
 
 void peach::InputManager::Init()
 {
 	//Setup IsKeyPressed vector
-	for (int index = 0; index<static_cast<int>(ControllerButton::Count); ++index)
+	for (int index = 0; index < static_cast<int>(ControllerButton::Count); ++index)
 		m_IsKeyPressedVector.push_back(false);
 }
 

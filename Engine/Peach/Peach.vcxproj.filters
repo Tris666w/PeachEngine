@@ -73,11 +73,11 @@
     <ClCompile Include="src\TextureComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\MathStructs.cpp" />
     <ClCompile Include="src\TextComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\MathFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h">
@@ -167,11 +167,11 @@
     <ClInclude Include="src\TextureComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\MathStructs.h" />
     <ClInclude Include="src\TextComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\MathFunctions.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

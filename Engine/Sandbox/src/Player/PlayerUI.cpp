@@ -6,7 +6,7 @@
 #include "Health/HealthObserver.h"
 #include "Score/ScoreObserver.h"
 
-peach::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, Subject* pHealthSubject, Subject* pScoreSubject)
+Qbert::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject)
 	:m_ScreenPos(screenPos)
 	, m_PlayerID(playerID)
 	, m_PlayerScore(playerScore)
@@ -16,7 +16,7 @@ peach::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int pla
 	m_pScoreObserver = std::make_unique<ScoreObserver>(&m_PlayerScore, pScoreSubject);
 }
 
-void peach::PlayerUI::Render()const
+void Qbert::PlayerUI::Render()const
 {
 	const std::string windowTitle = "Player " + m_PlayerID;
 	const std::string playerScore = "Score: " + std::to_string(m_PlayerScore);

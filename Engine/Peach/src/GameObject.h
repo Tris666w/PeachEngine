@@ -33,25 +33,34 @@ namespace peach
 		void AddChild(GameObject* object);
 		void SetParent(GameObject* object);
 
+		const std::string& GetTag() const { return m_Tag; }
+		void SetTag(const std::string& tag) { m_Tag = tag; }
+
+		bool GetIsActive()const { return m_IsActive; }
+		void SetIsActive(bool state) { m_IsActive = state; }
+
+
 		//Component stuff
 		void AddComponent(ComponentBase* newComponent);
 		template<class T>
 		T* GetComponent()const;
 
-		//Getters
 		Transform* GetpTransform() { return &m_Transform; }
 
-		const std::string& GetTag() const { return m_Tag; }
-		void SetTag(const std::string& tag) { m_Tag = tag; }
 	private:
 		Transform m_Transform;
 		std::vector<ComponentBase*> m_pComponents{};
+		std::vector<ComponentBase*> m_pComponentsToAdd{};
+
 		std::vector<GameObject*> m_pChildren{};
+		std::vector<GameObject*> m_pChildrenToADd{};
 
 		GameObject* m_pParent = nullptr;
 		Scene* m_pParentScene = nullptr;
 
 		std::string m_Tag;
+		bool m_IsActive = true;
+		bool m_IsInitialized = false;
 	};
 
 	template<class T>

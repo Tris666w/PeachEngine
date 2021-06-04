@@ -2,7 +2,6 @@
 #include <XInput.h>
 #include "Singleton.h"
 #include "unordered_map"
-#include <memory>
 
 namespace peach
 {
@@ -10,24 +9,24 @@ namespace peach
 	class Command;
 	enum class ControllerButton
 	{
-		ButtonUp = 0,
-		ButtonDown = 1,
-		ButtonLeft = 2,
-		ButtonRight = 3,
+		ButtonUp = 0x0001,
+		ButtonDown = 0x0002,
+		ButtonLeft = 0x0004,
+		ButtonRight = 0x0008,
 
-		ButtonStart = 4,
-		ButtonBack = 5,
+		ButtonStart = 0x0010,
+		ButtonBack = 0x0020,
 
-		ButtonLeftThumb = 6,
-		ButtonRightThumb = 7,
+		ButtonLeftThumb = 0x0040,
+		ButtonRightThumb = 0x0080,
 
-		ButtonLeftShoulder = 8,
-		ButtonRightShoulder = 9,
+		ButtonLeftShoulder = 0x0100,
+		ButtonRightShoulder = 0x0200,
 
-		ButtonA = 10,
-		ButtonB = 11,
-		ButtonX = 12,
-		ButtonY = 13,
+		ButtonA = 0x1000,
+		ButtonB = 0x2000,
+		ButtonX = 0x4000,
+		ButtonY = 0x8000,
 
 
 		Count

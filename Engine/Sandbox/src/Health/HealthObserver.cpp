@@ -2,18 +2,19 @@
 
 #include "HealthObserver.h"
 #include "Health.h"
-peach::HealthObserver::HealthObserver(int* pOwnerHealth, Subject* pSubject)
+
+Qbert::HealthObserver::HealthObserver(int* pOwnerHealth, peach::Subject* pSubject)
 	:m_pOwnerHealth(pOwnerHealth)
 	, m_Subject(pSubject)
 {
 	m_Subject->AddObserver(this);
 }
 
-void peach::HealthObserver::Notify(const GameObject& GameObject, Event event)
+void Qbert::HealthObserver::Notify(const peach::GameObject& GameObject, peach::Event event)
 {
 	switch (event)
 	{
-	case Event::OwnerDamaged:
+	case peach::Event::OwnerDamaged:
 		*(m_pOwnerHealth) = GameObject.GetComponent<Health>()->GetHealth();
 		break;
 

@@ -1,11 +1,12 @@
 #pragma once
 #include <map>
 #include <vector>
-#include <glm/vec3.hpp>
 #include "ComponentBase.h"
-namespace peach
+
+namespace Qbert
 {
-	class LevelComponent final : public ComponentBase
+	class TileComponent;
+	class LevelComponent final : public peach::ComponentBase
 	{
 	public:
 		void Initialize() override;
@@ -15,12 +16,15 @@ namespace peach
 		glm::vec3 GetBottomLeftCubeTilePos();
 		glm::vec3 GetBottomRightCubeTilePos();
 
-		GameObject* GetTile(uint32_t col, uint32_t row);
+		peach::GameObject* GetTile(uint32_t col, uint32_t row);
 
-		static int const level_size = 7;
+		void CheckForEnd();
+
 		static int const block_size = 64;
 
+	private:
+		bool m_IsFinished = false;
 		using row = uint32_t;
-		std::map<row, std::vector<GameObject*>> m_pTiles;
+		std::map<row, std::vector<TileComponent*>> m_pTiles;
 	};
 }

@@ -7,9 +7,9 @@ namespace Qbert
 	class DamageCommand final :public peach::Command
 	{
 	public:
-		DamageCommand(peach::Health* pHealthComponent);
+		DamageCommand(Health* pHealthComponent);
 		void Execute() override;
 	private:
-		peach::Health* m_pHealth = nullptr;
+		Health* m_pHealth = nullptr;
 	};
 }

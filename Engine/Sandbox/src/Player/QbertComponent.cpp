@@ -5,12 +5,12 @@
 #include "Level/LevelComponent.h"
 #include "Level/TileComponent.h"
 
-void peach::QbertComponent::Initialize()
+void Qbert::QbertComponent::Initialize()
 {
 	GetParent()->SetTag(QbertGameSettings::qbert_tag);
 }
 
-void peach::QbertComponent::Update()
+void Qbert::QbertComponent::Update()
 {
 }
 

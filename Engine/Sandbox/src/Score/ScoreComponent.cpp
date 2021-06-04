@@ -3,24 +3,24 @@
 #include "ScoreComponent.h"
 #include "Subject.h"
 
-peach::ScoreComponent::ScoreComponent(GameObject* pOwner)
+Qbert::ScoreComponent::ScoreComponent(peach::GameObject* pOwner)
 	:m_pOwner(pOwner)
-	, m_ScoreSubject(std::make_unique<Subject>())
+	, m_ScoreSubject(std::make_unique<peach::Subject>())
 {
 }
 
-void peach::ScoreComponent::IncreaseScore(const int amount)
+void Qbert::ScoreComponent::IncreaseScore(const int amount)
 {
 	m_Score += amount;
-	m_ScoreSubject.get()->Notify(*(m_pOwner), Event::ScoreIncreased);
+	m_ScoreSubject.get()->Notify(*(m_pOwner), peach::Event::ScoreIncreased);
 }
 
-int peach::ScoreComponent::GetScore() const
+int Qbert::ScoreComponent::GetScore() const
 {
 	return m_Score;
 }
 
-peach::Subject* peach::ScoreComponent::GetpSubject() const
+peach::Subject* Qbert::ScoreComponent::GetpSubject() const
 {
 	return m_ScoreSubject.get();
 }
