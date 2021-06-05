@@ -39,9 +39,6 @@
     <ClCompile Include="src\Level\LevelMovementComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Score\ScoreCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Score\ScoreComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,7 +69,13 @@
     <ClCompile Include="src\Enemies\CoilyComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LevelEnemyManager.cpp">
+    <ClCompile Include="src\Level\LevelEnemyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemies\SlickSamComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemies\UggWrongwayComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,9 +99,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Level\LevelMovementComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Score\ScoreCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Score\ScoreComponent.h">
@@ -131,7 +131,13 @@
     <ClInclude Include="src\Enemies\CoilyComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LevelEnemyManager.h">
+    <ClInclude Include="src\Level\LevelEnemyManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemies\SlickSamComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemies\UggWrongwayComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

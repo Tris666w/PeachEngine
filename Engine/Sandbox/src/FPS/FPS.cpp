@@ -5,6 +5,14 @@
 #include "GameTime.h"
 namespace peach
 {
+	void FPS::Initialize()
+	{
+	}
+
+	void FPS::Render() const
+	{
+	}
+
 	void FPS::Update()
 	{
 		m_AmountOfPassedFrames++;

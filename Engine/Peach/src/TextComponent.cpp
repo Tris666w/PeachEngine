@@ -8,6 +8,10 @@
 #include "GameObject.h"
 #include "Texture2D.h"
 
+void peach::TextComponent::Initialize()
+{
+}
+
 void peach::TextComponent::Update()
 {
 	if (m_NeedsUpdate)

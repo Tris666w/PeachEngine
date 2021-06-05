@@ -72,6 +72,14 @@ void Qbert::LevelComponent::PostInitialize()
 	}
 }
 
+void Qbert::LevelComponent::Update()
+{
+}
+
+void Qbert::LevelComponent::Render() const
+{
+}
+
 glm::vec3 Qbert::LevelComponent::GetTopCubeTilePos()
 {
 	auto topTile = m_pTiles.at(QbertGameSettings::level_size - 1)[0];

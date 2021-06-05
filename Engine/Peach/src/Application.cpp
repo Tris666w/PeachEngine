@@ -11,6 +11,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "CollisionManager.h"
 #include "Texture2D.h"
 
 using namespace std;
@@ -86,6 +87,8 @@ void Application::Run()
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
+		auto& collisionManager = CollisionManager::GetInstance();
+
 		sceneManager.Initialize();
 		sceneManager.PostInitialize();
 		bool doContinue = true;
@@ -110,6 +113,9 @@ void Application::Run()
 			}
 
 			sceneManager.Update();
+
+			collisionManager.CheckCollisions();
+
 			sceneManager.LateUpdate();
 
 			renderer.Render();

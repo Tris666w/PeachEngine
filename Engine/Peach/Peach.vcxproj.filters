@@ -76,8 +76,12 @@
     <ClCompile Include="src\TextComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\Logger.cpp" />
     <ClCompile Include="src\MathFunctions.cpp" />
+    <ClCompile Include="src\CollisionManager.cpp" />
+    <ClCompile Include="src\RectColliderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h">
@@ -170,8 +174,12 @@
     <ClInclude Include="src\TextComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\Logger.h" />
     <ClInclude Include="src\MathFunctions.h" />
+    <ClInclude Include="src\CollisionManager.h" />
+    <ClInclude Include="src\RectColliderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logger.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

@@ -38,7 +38,7 @@ void peach::GameObject::AddComponent(ComponentBase* newComponent)
 void peach::GameObject::Initialize()
 {
 	for (ComponentBase* element : m_pComponents)
-		element->Initialize();
+		element->RootInitialize();
 	for (GameObject* child : m_pChildren)
 		child->Initialize();
 

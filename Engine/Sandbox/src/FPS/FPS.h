@@ -5,7 +5,9 @@ namespace peach
 	class FPS final : public ComponentBase
 	{
 	public:
+		void Initialize() override;
 		void Update() override;
+		void Render() const override;
 
 		int GetAverageFPS()const { return m_AverageFPS; }
 	private:

@@ -14,12 +14,12 @@ namespace Qbert {
 	public:
 		ScoreComponent(peach::GameObject* pOwner);
 		~ScoreComponent() = default;
-		
+
 		void IncreaseScore(int amount);
 
 		[[nodiscard]] int GetScore() const;
-        [[nodiscard]] peach::Subject* GetpSubject()const;
-	
+		[[nodiscard]] peach::Subject* GetpSubject()const;
+
 	private:
 		int m_Score = 0;
 		peach::GameObject* m_pOwner = nullptr;

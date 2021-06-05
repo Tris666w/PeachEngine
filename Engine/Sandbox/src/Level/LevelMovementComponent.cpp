@@ -34,6 +34,10 @@ void Qbert::LevelMovementComponent::Update()
 	}
 }
 
+void Qbert::LevelMovementComponent::Render() const
+{
+}
+
 void Qbert::LevelMovementComponent::Move(MoveDirection direction)
 {
 	if (m_IsMoving)
@@ -55,6 +59,13 @@ void Qbert::LevelMovementComponent::Move(MoveDirection direction)
 	case MoveDirection::DownLeft:
 		--m_GridPos.y;
 		break;
+	case MoveDirection::Right:
+		++m_GridPos.x;
+		break;
+	case MoveDirection::Left:
+		--m_GridPos.x;
+		break;
+
 	}
 
 	m_IsMoving = true;
@@ -66,13 +77,28 @@ void Qbert::LevelMovementComponent::Move(MoveDirection direction)
 		targetTile = m_pLevel->GetTile(static_cast<uint32_t>(m_GridPos.x), static_cast<uint32_t>(m_GridPos.y));
 	}
 
-	//TODO: Add Tile Offset as constant
-	int const offset = 16;
-	m_TargetPos = { targetTile->GetpTransform()->GetPosition().x + offset, targetTile->GetpTransform()->GetPosition().y ,0 };
+	switch (m_TilePosition)
+	{
+	case TilePosition::Top:
+		m_TargetPos = { targetTile->GetpTransform()->GetPosition().x + m_TileOffset, targetTile->GetpTransform()->GetPosition().y  ,0 };
+		break;
+	case TilePosition::Left:
+		m_TargetPos = { targetTile->GetpTransform()->GetPosition().x , targetTile->GetpTransform()->GetPosition().y + 1.5f * m_TileOffset  ,0 };
+		break;
+	case TilePosition::Right:
+		m_TargetPos = { targetTile->GetpTransform()->GetPosition().x + 2 * m_TileOffset, targetTile->GetpTransform()->GetPosition().y + 1.5f * m_TileOffset ,0 };
+		break;
+	}
+
 	if (strcmp(GetParent()->GetTag().c_str(), QbertGameSettings::qbert_tag.c_str()) == 0)
 	{
 		auto tileComp = targetTile->GetComponent<TileComponent>();
 		tileComp->QbertStepOn();
+	}
+	else if (strcmp(GetParent()->GetTag().c_str(), QbertGameSettings::green_enemy_tag.c_str()) == 0)
+	{
+		auto tileComp = targetTile->GetComponent<TileComponent>();
+		tileComp->GreenStepOn();
 	}
 }
 
@@ -85,7 +111,24 @@ void Qbert::LevelMovementComponent::SetGridSpawnPos(int col, int row)
 void Qbert::LevelMovementComponent::MoveImmediatlyToSpawnPos()
 {
 	auto targetTile = m_pLevel->GetTile(static_cast<uint32_t>(m_GridPos.x), static_cast<uint32_t>(m_GridPos.y));
-	m_TargetPos = { targetTile->GetpTransform()->GetPosition().x, targetTile->GetpTransform()->GetPosition().y, 0 };
 
+	switch (m_TilePosition)
+	{
+	case TilePosition::Top:
+		m_TargetPos = { targetTile->GetpTransform()->GetPosition().x + m_TileOffset, targetTile->GetpTransform()->GetPosition().y  ,0 };
+		break;
+	case TilePosition::Left:
+		m_TargetPos = { targetTile->GetpTransform()->GetPosition().x , targetTile->GetpTransform()->GetPosition().y + 1.5f * m_TileOffset  ,0 };
+		break;
+	case TilePosition::Right:
+		m_TargetPos = { targetTile->GetpTransform()->GetPosition().x + 2 * m_TileOffset, targetTile->GetpTransform()->GetPosition().y + 1.5f * m_TileOffset ,0 };
+		break;
+
+	}
 	GetParent()->SetPosition(m_TargetPos.x, m_TargetPos.y);
+}
+
+void Qbert::LevelMovementComponent::SetTilePosition(TilePosition pos)
+{
+	m_TilePosition = pos;
 }

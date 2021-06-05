@@ -1,4 +1,6 @@
 #include "QbertPCH.h"
+
+#include "CollisionManager.h"
 #include "FPS/FPSCounter.h"
 #include "Peach.h"
 #include "QbertGameSettings.h"
@@ -11,7 +13,8 @@
 #include "TextComponent.h"
 #include "Level/LevelComponent.h"
 #include "Level/LevelMovementComponent.h"
-#include "LevelEnemyManager.h"
+#include "Level/LevelEnemyManager.h"
+#include "RectColliderComponent.h"
 
 #ifdef _DEBUG
 #include <vld.h>
@@ -39,6 +42,10 @@ public:
 		auto& scene = SceneManager::GetInstance().CreateScene("Qbert");
 		SceneManager::GetInstance().SetActiveGameScene("Qbert");
 
+		int const characterSize = 32;
+
+		CollisionManager::GetInstance().ToggleDebugRendering(true);
+
 		auto go = new GameObject();
 		auto textureComp = new TextureComponent("Resources/Images/background.jpg", windowDimensions.x, windowDimensions.y);
 		go->AddComponent(textureComp);
@@ -53,7 +60,7 @@ public:
 		go->SetPosition(windowDimensions.x / 3.f, 2 * windowDimensions.y / 3.f);
 
 		go = new GameObject();
-		textureComp = new TextureComponent("Resources/Images/Qbert.png", 32, 32);
+		textureComp = new TextureComponent("Resources/Images/Qbert.png", characterSize, characterSize);
 		go->AddComponent(textureComp);
 		auto qbertComp = new QbertComponent();
 		go->AddComponent(qbertComp);
@@ -61,6 +68,10 @@ public:
 		go->AddComponent(moveComponent);
 		auto controllerComp = new QbertController();
 		go->AddComponent(controllerComp);
+		SDL_Rect colliderRect = { 0,0,characterSize,characterSize };
+		auto collider = new RectColliderComponent(colliderRect);
+		go->AddComponent(collider);
+
 		scene.Add(go);
 
 		auto font = ResourceManager::GetInstance().LoadFont("Resources/Fonts/Lingua.otf", 36);

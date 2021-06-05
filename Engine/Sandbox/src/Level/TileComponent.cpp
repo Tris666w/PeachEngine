@@ -36,3 +36,25 @@ void Qbert::TileComponent::QbertStepOn()
 	Clamp(m_CurrentStage, static_cast<uint32_t>(0), m_MaxStages);
 	GetParent()->GetComponent<peach::TextureComponent>()->SetTexture(m_pTextureVector[m_CurrentStage]);
 }
+
+void Qbert::TileComponent::GreenStepOn()
+{
+	if (m_CurrentStage != 0)
+	{
+		--m_CurrentStage;
+		Clamp(m_CurrentStage, static_cast<uint32_t>(0), m_MaxStages);
+		GetParent()->GetComponent<peach::TextureComponent>()->SetTexture(m_pTextureVector[m_CurrentStage]);
+	}
+}
+
+void Qbert::TileComponent::Initialize()
+{
+}
+
+void Qbert::TileComponent::Update()
+{
+}
+
+void Qbert::TileComponent::Render() const
+{
+}

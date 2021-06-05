@@ -11,6 +11,8 @@ namespace Qbert
 	public:
 		void Initialize() override;
 		void PostInitialize() override;
+		void Update() override;
+		void Render() const override;
 
 		glm::vec3 GetTopCubeTilePos();
 		glm::vec3 GetBottomLeftCubeTilePos();
@@ -19,7 +21,6 @@ namespace Qbert
 		peach::GameObject* GetTile(uint32_t col, uint32_t row);
 
 		void CheckForEnd();
-
 		static int const block_size = 64;
 
 	private:

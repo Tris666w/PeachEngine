@@ -14,3 +14,7 @@ void Qbert::QbertComponent::Update()
 {
 }
 
+void Qbert::QbertComponent::Render() const
+{
+}
+

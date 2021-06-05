@@ -19,3 +19,11 @@ void Qbert::QbertController::Initialize()
 	moveCommand = std::make_shared<MoveCommand>(GetParent(), MoveDirection::DownRight);
 	InputManager::GetInstance().AddOrChangeCommand(ControllerButton::ButtonB, moveCommand, CommandExecuteCause::ButtonDown);
 }
+
+void Qbert::QbertController::Update()
+{
+}
+
+void Qbert::QbertController::Render() const
+{
+}

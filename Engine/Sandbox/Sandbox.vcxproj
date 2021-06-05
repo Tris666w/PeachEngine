@@ -204,7 +204,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LevelEnemyManager.cpp" />
+    <ClCompile Include="src\Enemies\SlickSamComponent.cpp" />
+    <ClCompile Include="src\Level\LevelEnemyManager.cpp" />
     <ClCompile Include="src\Enemies\CoilyComponent.cpp" />
     <ClCompile Include="src\Commands\MoveCommand.cpp" />
     <ClCompile Include="src\Player\QbertComponent.cpp" />
@@ -226,12 +227,13 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Score\ScoreCommand.cpp" />
     <ClCompile Include="src\Score\ScoreComponent.cpp" />
     <ClCompile Include="src\Score\ScoreObserver.cpp" />
+    <ClCompile Include="src\Enemies\UggWrongwayComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LevelEnemyManager.h" />
+    <ClInclude Include="src\Enemies\SlickSamComponent.h" />
+    <ClInclude Include="src\Level\LevelEnemyManager.h" />
     <ClInclude Include="src\Enemies\CoilyComponent.h" />
     <ClInclude Include="src\Commands\MoveCommand.h" />
     <ClInclude Include="src\Player\QbertComponent.h" />
@@ -247,9 +249,9 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="src\Player\PlayerUI.h" />
     <ClInclude Include="src\Level\TileComponent.h" />
     <ClInclude Include="src\QbertPCH.h" />
-    <ClInclude Include="src\Score\ScoreCommand.h" />
     <ClInclude Include="src\Score\ScoreComponent.h" />
     <ClInclude Include="src\Score\ScoreObserver.h" />
+    <ClInclude Include="src\Enemies\UggWrongwayComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

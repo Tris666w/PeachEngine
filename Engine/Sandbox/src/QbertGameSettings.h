@@ -16,6 +16,8 @@ namespace Qbert
 		inline static std::string level_tag = "Level";
 		inline static std::string qbert_tag = "Qbert";
 		inline static std::string purple_enemy_tag = "Purple";
+		inline static std::string green_enemy_tag = "Green";
+
 
 		static int const level_size = 7;
 
