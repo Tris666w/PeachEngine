@@ -6,7 +6,7 @@
 #include "Health/HealthObserver.h"
 #include "Level/LevelComponent.h"
 #include "Level/LevelMovementComponent.h"
-#include "Level/TileComponent.h"
+#include "SoundSystems.h"
 
 Qbert::QbertComponent::QbertComponent(peach::Subject* pHealthSubject)
 {
@@ -25,6 +25,10 @@ void Qbert::QbertComponent::Initialize()
 	{
 		peach::Logger::LogWarning("CoilyComponent::Initialize(), not texture or movement component!");
 	}
+
+	m_SoundID = ServiceLocator::GetSoundSystem()->AddSound("Resources/Sounds/Qbert/jump1.wav");
+
+
 }
 
 
@@ -38,6 +42,11 @@ void Qbert::QbertComponent::UpdateAnimTexture()
 	srcRect.x = (static_cast<int>(m_MoveDir) * 2 + static_cast<int>(m_pMovementComponent->GetIsMoving())) * spriteWidth;
 	m_TextureComponent->SetSourceRect(srcRect);
 
+}
+
+void Qbert::QbertComponent::PlayJumpSound()
+{
+	ServiceLocator::GetSoundSystem()->PlaySoundEffect(static_cast<MusicId>(m_SoundID));
 }
 
 void Qbert::QbertComponent::PostInitialize()

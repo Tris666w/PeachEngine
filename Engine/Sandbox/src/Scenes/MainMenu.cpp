@@ -20,6 +20,8 @@ void Qbert::MainMenu::Initialize()
 	go->AddComponent(textureComp);
 	Add(go);
 
+
+
 	auto fontBig = peach::ResourceManager::GetInstance().LoadFont("Resources/Fonts/q-bert-original.ttf", 64);
 	auto fontSmall = peach::ResourceManager::GetInstance().LoadFont("Resources/Fonts/q-bert-original.ttf", 32);
 	SDL_Color color = { 255,119,0 };
@@ -56,6 +58,13 @@ void Qbert::MainMenu::Initialize()
 	textComp->SetColor(color);
 	go->AddComponent(textComp);
 	go->SetPosition(drawPos.x, drawPos.y);
+	Add(go);
+
+	//Logo
+	go = new peach::GameObject();
+	textureComp = new peach::TextureComponent("Resources/Images/Game_icon.png");
+	go->AddComponent(textureComp);
+	go->SetPosition(drawPos.x, 0);
 	Add(go);
 
 	//Versus

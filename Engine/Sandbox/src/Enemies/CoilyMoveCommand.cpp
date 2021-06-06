@@ -25,9 +25,10 @@ void Qbert::CoilyMoveCommand::Execute()
 		peach::Logger::LogWarning("CoilyMoveCommand::Execute, one of the components is nullptr");
 		return;
 	}
-	if (!m_pCoilyComponent->GetIsEgg())
+	if (!m_pCoilyComponent->GetIsEgg() && m_pCoilyComponent->GetParent()->GetIsActive())
 	{
 		m_pMovementComponent->Move(m_MoveDirection);
 		m_pCoilyComponent->SetMoveDir(m_MoveDirection);
+		m_pCoilyComponent->PlayJumpSound();
 	}
 }

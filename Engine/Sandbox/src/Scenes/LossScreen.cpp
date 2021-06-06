@@ -2,6 +2,7 @@
 #include "LossScreen.h"
 
 #include "QuitCommand.h"
+#include "ServicesBase.h"
 #include "TextComponent.h"
 #include "TextureComponent.h"
 
@@ -41,4 +42,7 @@ void Qbert::LossScreen::Initialize()
 	Add(go);
 	auto quitCommnad = std::make_shared<QuitCommand>();
 	GetInputManager()->AddOrChangeCommand(SDLK_RETURN, quitCommnad, peach::CommandExecuteCause::ButtonDown);
+
+	auto id = ServiceLocator::GetSoundSystem()->AddSound("Resources/Sounds/Loss.wav");
+	ServiceLocator::GetSoundSystem()->PlaySoundEffect(id);
 }

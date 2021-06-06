@@ -36,6 +36,8 @@ namespace Qbert
 		std::vector<peach::GameObject*> m_pDiscs;
 		std::vector<glm::vec3>m_pDiscGridPosVector;
 		int m_LevelID = 1;
+		int m_SoundID = 1;
+
 		LevelEnemyManager* m_pEnemyManager = nullptr;
 
 		void ReadAndMakeLevelLayout(std::vector<std::string>& textureVect, bool& reversible);
@@ -43,6 +45,7 @@ namespace Qbert
 		void CheckDiscPoints();
 		void GoToVictoryScreen();
 		void GoToLossScreen();
+		void PlaySound();
 
 	};
 }

@@ -15,7 +15,6 @@ namespace Qbert
     class CoilyComponent final :public peach::ComponentBase
     {
     public:
-        CoilyComponent();
         ~CoilyComponent() override = default;
 
         void Initialize() override;
@@ -25,6 +24,8 @@ namespace Qbert
 
         void Spawn();
         void Remove() const;
+
+        void PlayJumpSound();
 
         void SetMoveDir(MoveDirection moveDir);
         bool GetIsEgg()const { return m_IsEgg; }
@@ -36,6 +37,8 @@ namespace Qbert
 
         float m_MovementTimer = 0.f;
         float const m_MoveWaitTime = 0.75f;
+
+        int m_SoundID = 0;
 
         bool m_IsEgg = true;
         MoveDirection m_MoveDir;

@@ -1,12 +1,7 @@
 #include "QbertPCH.h"
 #include "Peach.h"
-#include "scenes/QbertScene.h"
 #include "scenes/MainMenu.h"
-#include "Scenes/VictoryScreen.h"
-
-#ifdef _DEBUG
-#include <vld.h>
-#endif
+#include "SoundSystems.h"
 
 class SandboxApp final :public peach::Application
 {
@@ -17,12 +12,16 @@ public:
 	}
 	~SandboxApp() override
 	{
-
+		SafeDelete(ServiceLocator::GetSoundSystem());
 	}
 	void LoadGame() const override
 	{
+		auto* sdlss = new SDLMixerSoundSystem();
+		ServiceLocator::RegisterSoundSystem(sdlss);
+
 		peach::SceneManager::GetInstance().AddScene(std::make_shared<Qbert::MainMenu>());
 		peach::SceneManager::GetInstance().SetActiveGameScene("MainMenu");
+
 	}
 };
 

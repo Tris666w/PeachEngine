@@ -13,8 +13,10 @@ Qbert::GameModeChangeAndStartGameCommand::GameModeChangeAndStartGameCommand(Game
 void Qbert::GameModeChangeAndStartGameCommand::Execute()
 {
 	QbertGameSettings::GetInstance().SetGameMode(m_GameMode);
-
-	peach::SceneManager::GetInstance().AddScene(std::make_shared<QbertScene>());
-	peach::SceneManager::GetInstance().SetActiveGameScene("Qbert");
+	if (strcmp(peach::SceneManager::GetInstance().GetActiveSceneName().c_str(), "Qbert") != 0)
+	{
+		peach::SceneManager::GetInstance().AddScene(std::make_shared<QbertScene>());
+		peach::SceneManager::GetInstance().SetActiveGameScene("Qbert");
+	}
 
 }

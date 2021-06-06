@@ -37,11 +37,13 @@ namespace peach
 		virtual void Update() {};
 		virtual void LateUpdate() {};
 		virtual void Render() const {};
+
 	private:
 
 		std::string m_Name;
 		std::vector < GameObject*> m_pObjects{};
 		std::shared_ptr<InputManager> m_pInputManager = nullptr;
 		static unsigned int m_IdCounter;
+		bool m_IsInitialized = false;
 	};
 }

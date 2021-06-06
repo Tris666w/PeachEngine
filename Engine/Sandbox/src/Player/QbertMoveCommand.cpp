@@ -17,11 +17,10 @@ Qbert::QbertMoveCommand::QbertMoveCommand(peach::GameObject* pObject, MoveDirect
 
 void Qbert::QbertMoveCommand::Execute()
 {
-	if (m_pMovementComponent)
+	if (m_pMovementComponent->GetParent()->GetIsActive())
 	{
 		m_pMovementComponent->Move(m_MoveDirection);
 		m_pQbertComponent->SetMoveDir(m_MoveDirection);
+		m_pQbertComponent->PlayJumpSound();
 	}
-	else
-		peach::Logger::LogWarning("MoveCommand::Execute, m_pMovementComponent is nullptr");
 }

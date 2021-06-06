@@ -6,12 +6,7 @@
 #include "Player/QbertComponent.h"
 #include "Score/ScoreComponent.h"
 #include "CoilyController.h"
-
-Qbert::CoilyComponent::CoilyComponent()
-	:ComponentBase(),
-	m_MoveDir()
-{
-}
+#include "ServicesBase.h"
 
 void Qbert::CoilyComponent::Spawn()
 {
@@ -24,6 +19,11 @@ void Qbert::CoilyComponent::Spawn()
 void Qbert::CoilyComponent::Remove() const
 {
 	GetParent()->SetIsActive(false);
+}
+
+void Qbert::CoilyComponent::PlayJumpSound()
+{
+	ServiceLocator::GetSoundSystem()->PlaySoundEffect(static_cast<SoundId>(m_SoundID));
 }
 
 void Qbert::CoilyComponent::SetMoveDir(MoveDirection moveDir)
@@ -82,6 +82,8 @@ void Qbert::CoilyComponent::Initialize()
 
 	m_pMovementComponent->SetGridSpawnPos(1, QbertGameSettings::level_size - 3);
 	m_pMovementComponent->MoveImmediatelyToSpawnPos();
+
+	m_SoundID = ServiceLocator::GetSoundSystem()->AddSound("Resources/Sounds/jump2.wav");
 }
 
 void Qbert::CoilyComponent::Update()
@@ -150,6 +152,7 @@ void Qbert::CoilyComponent::Update()
 				m_MoveDir = MoveDirection::DownLeft;
 		}
 	}
+	PlayJumpSound();
 	m_pMovementComponent->Move(m_MoveDir);
 	m_MovementTimer = 0.f;
 }

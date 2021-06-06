@@ -8,6 +8,7 @@
 #include "LevelComponent.h"
 #include "TileComponent.h"
 #include "Health/Health.h"
+#include "Player/QbertComponent.h"
 
 void Qbert::LevelMovementComponent::Initialize()
 {

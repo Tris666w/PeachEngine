@@ -2,6 +2,8 @@
 #include "Singleton.h"
 #include <vector>
 
+#include "Scene.h"
+
 namespace peach
 {
 	class Scene;
@@ -14,6 +16,7 @@ namespace peach
 		SceneManager& operator=(const SceneManager& other) = delete;
 		SceneManager& operator=(SceneManager&& other) noexcept = delete;
 
+		const std::string& GetActiveSceneName()const;
 
 		std::shared_ptr<Scene> GetScene(const std::string& name);
 

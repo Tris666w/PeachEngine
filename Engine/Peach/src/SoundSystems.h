@@ -3,10 +3,8 @@
 #include <map>
 #include <mutex>
 #include <SDL_mixer.h>
-#include <thread>
-#include <queue>
 
-class SDLMixerSoundSystem final: public SoundSystem
+class SDLMixerSoundSystem final : public SoundSystem
 {
 public:
 	SDLMixerSoundSystem();
@@ -16,28 +14,32 @@ public:
 	SDLMixerSoundSystem(SDLMixerSoundSystem&& other) noexcept = delete;
 	SDLMixerSoundSystem& operator=(const SDLMixerSoundSystem& other) = delete;
 	SDLMixerSoundSystem& operator=(SDLMixerSoundSystem&& other) noexcept = delete;
-	
-	SoundEffectID AddSound(const std::string& filePath) override;
-	MusicID AddMusic(const std::string& filePath) override;
 
-	void PlayMusic(const MusicID id, const int volume) override;
-	void PlaySoundEffect(const SoundEffectID id, const int volume) override;
+	MusicId AddSound(const std::string& filePath) override;
+	SoundId AddMusic(const std::string& filePath) override;
+
+	void PlayMusic(const SoundId id, const int volume) override;
+	void PlaySoundEffect(const MusicId id, const int volume) override;
 
 private:
 	//SDL_Mixer logic data-members
-	using SoundEffectPair = std::pair<SoundEffectID,Mix_Chunk*>;
-	using MusicPair = std::pair<SoundEffectID,Mix_Music*>;
-	
-	std::map<SoundEffectID, Mix_Chunk*> m_SoundEffects = {};
-	std::map<MusicID, Mix_Music*> m_Music = {};
-	
+	using SoundEffectPair = std::pair<MusicId, Mix_Chunk*>;
+	using MusicPair = std::pair<MusicId, Mix_Music*>;
+
+	std::map<MusicId, Mix_Chunk*> m_SoundEffects = {};
+	std::map<SoundId, Mix_Music*> m_Music = {};
+
+	MusicId GetAvailableSoundID()const;
+	SoundId GetAvailableMusicID() const;
+
+
 	std::mutex m_Mutex{};
 
 };
 
-class MutedSoundSystem final: public SoundSystem
+class MutedSoundSystem final : public SoundSystem
 {
 public:
-	void PlayMusic(const SoundEffectID id, const int volume) override;
-	void PlaySoundEffect(const MusicID id, const int volume) override;
+	void PlayMusic(const MusicId id, const int volume) override;
+	void PlaySoundEffect(const SoundId id, const int volume) override;
 };

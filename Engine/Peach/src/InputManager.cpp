@@ -32,7 +32,6 @@ bool peach::InputManager::ProcessInput()
 					command.first->Execute();
 				m_IsButtonPressedVector[static_cast<int>(key)] = false;
 			}
-
 		}
 	}
 

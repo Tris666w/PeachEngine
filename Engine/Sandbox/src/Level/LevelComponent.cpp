@@ -11,6 +11,7 @@
 #include "BinaryReader.h"
 #include "Score/ScoreComponent.h"
 #include "LevelEnemyManager.h"
+#include "ServicesBase.h"
 #include "Player/QbertComponent.h"
 #include "Scenes/LossScreen.h"
 #include "Scenes/VictoryScreen.h"
@@ -50,6 +51,9 @@ void Qbert::LevelComponent::Initialize()
 	}
 
 	GetParent()->SetTag(QbertGameSettings::level_tag);
+
+	m_SoundID = ServiceLocator::GetSoundSystem()->AddSound("Resources/Sounds/Level.wav");
+	PlaySound();
 }
 
 void Qbert::LevelComponent::PostInitialize()
@@ -81,11 +85,9 @@ void Qbert::LevelComponent::PostInitialize()
 	default:
 		peach::Logger::LogWarning("LevelComponent::PostInitialize(), only single player or 2 player supported");
 		break;
-
 	}
 
-
-	for (int i = 0; i < m_pDiscGridPosVector.size(); ++i)
+	for (size_t i = 0; i < m_pDiscGridPosVector.size(); ++i)
 	{
 		auto go = new peach::GameObject();
 		auto discComp = new DiscComponent();
@@ -108,9 +110,6 @@ void Qbert::LevelComponent::PostInitialize()
 	m_pEnemyManager = GetParent()->GetComponent<LevelEnemyManager>();
 	if (!m_pEnemyManager)
 		peach::Logger::LogWarning("LevelComponent::PostInitialize(), m_pEnemyManager is nullptr");
-
-
-
 }
 
 void Qbert::LevelComponent::Update()
@@ -118,6 +117,7 @@ void Qbert::LevelComponent::Update()
 	if (m_IsFinished)
 	{
 		LoadNextLevel();
+		PlaySound();
 	}
 }
 
@@ -189,9 +189,6 @@ void Qbert::LevelComponent::CheckForEnd()
 			return;
 		}
 	}
-
-
-	//TODO: Go to loss screen
 
 	GoToLossScreen();
 }
@@ -268,7 +265,7 @@ void Qbert::LevelComponent::LoadNextLevel()
 		qbert->GetComponent<LevelMovementComponent>()->MoveImmediatelyToSpawnPos();
 	}
 
-	for (int i = 0; i < m_pDiscGridPosVector.size(); ++i)
+	for (size_t i = 0; i < m_pDiscGridPosVector.size(); ++i)
 	{
 		if (m_pDiscGridPosVector.size() <= m_pDiscs.size())
 		{
@@ -324,4 +321,9 @@ void Qbert::LevelComponent::GoToLossScreen()
 {
 	peach::SceneManager::GetInstance().AddScene(std::make_shared<LossScreen>());
 	peach::SceneManager::GetInstance().SetActiveGameScene("LossScreen");
+}
+
+void Qbert::LevelComponent::PlaySound()
+{
+	ServiceLocator::GetSoundSystem()->PlaySoundEffect(static_cast<SoundId>(m_SoundID));
 }

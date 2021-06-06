@@ -32,6 +32,8 @@ namespace Qbert
 		bool GetIsDead()const { return m_IsDead; }
 		void UpdateAnimTexture();
 
+		void PlayJumpSound();
+
 		void PostInitialize() override;
 		void SetMoveDir(MoveDirection moveDirection);
 	private:
@@ -41,8 +43,10 @@ namespace Qbert
 		MoveDirection m_MoveDir;
 		LevelMovementComponent* m_pMovementComponent = nullptr;
 
+		int m_SoundID{};
+
 		std::unique_ptr<HealthObserver> m_pHealthObserver = nullptr;
-		peach::TextureComponent* m_TextureComponent;
+		peach::TextureComponent* m_TextureComponent = nullptr;
 	};
 
 }

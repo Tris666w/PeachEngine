@@ -28,6 +28,11 @@ void peach::SceneManager::Render()const
 	}
 }
 
+const std::string& peach::SceneManager::GetActiveSceneName() const
+{
+	return m_ActiveScene->GetName();
+}
+
 std::shared_ptr<peach::Scene> peach::SceneManager::GetScene(const std::string& name)
 {
 	const auto it = std::find_if(m_Scenes.begin(), m_Scenes.end(),

@@ -30,6 +30,9 @@ void Scene::Remove(GameObject* object)
 
 void Scene::RootInitialize()
 {
+	if (m_IsInitialized)
+		return;
+
 	m_pInputManager = std::make_shared<InputManager>();
 	m_pInputManager->Init();
 
@@ -39,6 +42,8 @@ void Scene::RootInitialize()
 	{
 		object->Initialize();
 	}
+
+	m_IsInitialized = true;
 }
 
 void Scene::RootPostInitialize()
