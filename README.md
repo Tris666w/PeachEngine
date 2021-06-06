@@ -31,7 +31,6 @@ Qbert Clone made for my exam. This game shows most of the game engine features.
 
 ## Authors
  - **Tristan Wauthier** - *code
-    [PurpleBooth](https://github.com/PurpleBooth)
 
 ## License
 See LICENSE.MD
@@ -39,3 +38,5 @@ See LICENSE.MD
 ## Acknowledgments
   - Some code inspired by The Cherno's Game engine series : https://www.youtube.com/user/TheChernoProject
 
+### Github repository link
+https://github.com/Tris666w/Programming-4-Engine
