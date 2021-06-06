@@ -5,7 +5,7 @@ namespace peach
 	class RectColliderComponent : public ComponentBase
 	{
 	public:
-		typedef std::function<void(GameObject*)> CollisionCallback;
+		typedef std::function<void(GameObject*, GameObject*)> CollisionCallback;
 		~RectColliderComponent() override;
 		explicit RectColliderComponent(SDL_Rect rect = { 0,0,10,10 });
 

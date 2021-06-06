@@ -204,6 +204,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Level\DiscComponent.cpp" />
     <ClCompile Include="src\Enemies\SlickSamComponent.cpp" />
     <ClCompile Include="src\Level\LevelEnemyManager.cpp" />
     <ClCompile Include="src\Enemies\CoilyComponent.cpp" />
@@ -232,6 +233,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClCompile Include="src\Enemies\UggWrongwayComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Level\DiscComponent.h" />
     <ClInclude Include="src\Enemies\SlickSamComponent.h" />
     <ClInclude Include="src\Level\LevelEnemyManager.h" />
     <ClInclude Include="src\Enemies\CoilyComponent.h" />

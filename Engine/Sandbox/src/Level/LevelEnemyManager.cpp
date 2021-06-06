@@ -28,9 +28,7 @@ void Qbert::LevelEnemyManager::Initialize()
 
 void Qbert::LevelEnemyManager::PostInitialize()
 {
-	//m_CoilyComponent->Spawn();
-	//m_SlickComponent->Spawn();
-	//m_SamComponent->Spawn();
+	m_CoilyComponent->Spawn();
 	m_Ugg->Spawn();
 	m_Wrongway->Spawn();
 }
@@ -47,15 +45,15 @@ Qbert::CoilyComponent* Qbert::LevelEnemyManager::CreateCoilyGameObject() const
 {
 	auto go = new peach::GameObject();
 
-	auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Coily/Egg.png", m_CharSize, m_CharSize);
+	auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Coily/Egg.png", static_cast<float>(m_CharSize), static_cast<float>(m_CharSize));
 	go->AddComponent(textureComp);
 
 	auto const moveComponent = new LevelMovementComponent();
 	go->AddComponent(moveComponent);
 
-	//SDL_Rect colliderRect = { 0,0,m_CharSize,m_CharSize };
-	//auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
-	//go->AddComponent(colliderComponent);
+	SDL_Rect colliderRect = { 0.25 * m_CharSize,0.25 * m_CharSize,0.75 * m_CharSize, 0.75 * m_CharSize };
+	auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
+	go->AddComponent(colliderComponent);
 
 	auto const coilyComponent = new CoilyComponent();
 	go->AddComponent(coilyComponent);
@@ -83,9 +81,9 @@ Qbert::SlickSamComponent* Qbert::LevelEnemyManager::CreateSlickOrSamGameObject(b
 	auto const moveComponent = new LevelMovementComponent();
 	go->AddComponent(moveComponent);
 
-	//SDL_Rect colliderRect = { 0,0,m_CharSize,m_CharSize };
-	//auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
-	//go->AddComponent(colliderComponent);
+	SDL_Rect colliderRect = { 0.25 * m_CharSize,0.25 * m_CharSize,0.75 * m_CharSize, 0.75 * m_CharSize };
+	auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
+	go->AddComponent(colliderComponent);
 
 
 	auto const slickSamComp = new SlickSamComponent(isSlick);
@@ -114,7 +112,7 @@ Qbert::UggWrongwayComponent* Qbert::LevelEnemyManager::CreateUggOrWrongwayGameOb
 	auto const moveComponent = new LevelMovementComponent();
 	go->AddComponent(moveComponent);
 
-	SDL_Rect colliderRect = { 0,0,m_CharSize,m_CharSize };
+	SDL_Rect colliderRect = { 0.25 * m_CharSize,0.25 * m_CharSize,0.75 * m_CharSize, 0.75 * m_CharSize };
 	auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
 	go->AddComponent(colliderComponent);
 

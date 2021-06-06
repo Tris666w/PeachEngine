@@ -216,6 +216,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_rectpack.h" />
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.81\imstb_truetype.h" />
+    <ClInclude Include="src\BinaryReader.h" />
+    <ClInclude Include="src\BinaryWriter.h" />
     <ClInclude Include="src\CollisionManager.h" />
     <ClInclude Include="src\RectColliderComponent.h" />
     <ClInclude Include="src\MathFunctions.h" />

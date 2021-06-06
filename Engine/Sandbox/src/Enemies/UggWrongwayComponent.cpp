@@ -36,7 +36,7 @@ void Qbert::UggWrongwayComponent::Initialize()
 	}
 
 
-	m_pMovementComponent->MoveImmediatlyToSpawnPos();
+	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 
 void Qbert::UggWrongwayComponent::Update()
@@ -82,7 +82,7 @@ void Qbert::UggWrongwayComponent::Spawn()
 {
 	GetParent()->SetIsActive(true);
 	m_MovementTimer = 0.f;
-	m_pMovementComponent->MoveImmediatlyToSpawnPos();
+	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 
 void Qbert::UggWrongwayComponent::Remove() const

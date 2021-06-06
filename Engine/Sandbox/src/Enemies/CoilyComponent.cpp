@@ -16,7 +16,7 @@ void Qbert::CoilyComponent::Spawn()
 	GetParent()->SetIsActive(true);
 	m_IsEgg = true;
 	m_MovementTimer = 0.f;
-	m_pMovementComponent->MoveImmediatlyToSpawnPos();
+	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 
 void Qbert::CoilyComponent::Remove() const
@@ -72,7 +72,7 @@ void Qbert::CoilyComponent::Initialize()
 	}
 
 	m_pMovementComponent->SetGridSpawnPos(0, QbertGameSettings::level_size - 1);
-	m_pMovementComponent->MoveImmediatlyToSpawnPos();
+	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 
 void Qbert::CoilyComponent::Update()

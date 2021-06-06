@@ -28,7 +28,7 @@ void peach::RectColliderComponent::Collide(GameObject* pOther)
 {
 	if (m_CollisionCallback)
 	{
-		m_CollisionCallback(pOther);
+		m_CollisionCallback(GetParent(), pOther);
 	}
 }
 

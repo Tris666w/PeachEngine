@@ -1,5 +1,7 @@
 #pragma once
 #include "ComponentBase.h"
+#include "imgui.h"
+
 namespace peach
 {
 	class Texture2D;
@@ -12,6 +14,8 @@ namespace peach
 		void Render() const override;
 
 		void SetText(const std::string& text);
+		void SetPosition(ImVec2 relativePos);
+		void SetColor(SDL_Color newColor);
 
 		explicit TextComponent(const std::string& text, const std::shared_ptr<Font>& font);
 		~TextComponent() override;
@@ -25,7 +29,8 @@ namespace peach
 		std::string m_Text;
 		std::shared_ptr<Font> m_Font;
 		std::shared_ptr<Texture2D> m_Texture;
-
+		ImVec2 m_relativePos;
+		SDL_Color m_Color = { 255,255,255 };
 	};
 
 }

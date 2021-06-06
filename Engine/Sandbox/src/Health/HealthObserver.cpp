@@ -3,9 +3,10 @@
 #include "HealthObserver.h"
 #include "Health.h"
 
-Qbert::HealthObserver::HealthObserver(int* pOwnerHealth, peach::Subject* pSubject)
-	:m_pOwnerHealth(pOwnerHealth)
-	, m_Subject(pSubject)
+Qbert::HealthObserver::HealthObserver(int* pOwnerHealth, bool* pTextUpdateBool, peach::Subject* pSubject)
+	:m_pOwnerHealth(pOwnerHealth),
+	m_pTextUpdateBool(pTextUpdateBool),
+	m_Subject(pSubject)
 {
 	m_Subject->AddObserver(this);
 }
@@ -16,6 +17,7 @@ void Qbert::HealthObserver::Notify(const peach::GameObject& GameObject, peach::E
 	{
 	case peach::Event::OwnerDamaged:
 		*(m_pOwnerHealth) = GameObject.GetComponent<Health>()->GetHealth();
+		*m_pTextUpdateBool = true;
 		break;
 
 	}

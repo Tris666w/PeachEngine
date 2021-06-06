@@ -23,6 +23,8 @@ namespace Qbert
 
         void Spawn();
         void Remove() const;
+
+        bool GetIsEgg()const { return m_IsEgg; }
     private:
         LevelMovementComponent* m_pMovementComponent = nullptr;
         peach::TextureComponent* m_TextureComponent = nullptr;

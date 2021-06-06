@@ -20,6 +20,14 @@ void Scene::Add(GameObject* object)
 	m_pObjects.push_back(object);
 }
 
+void Scene::Remove(GameObject* object)
+{
+	if (object)
+	{
+		std::_Erase_remove(m_pObjects, object);
+	}
+}
+
 void Scene::Initialize()
 {
 	for (auto& object : m_pObjects)

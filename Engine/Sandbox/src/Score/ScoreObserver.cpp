@@ -4,9 +4,10 @@
 
 #include "ScoreComponent.h"
 
-Qbert::ScoreObserver::ScoreObserver(int* pOwnerScore, peach::Subject* pSubject)
-	:m_pOwnerScore(pOwnerScore)
-	, m_Subject(pSubject)
+Qbert::ScoreObserver::ScoreObserver(int* pOwnerScore, bool* pTextUpdateBool, peach::Subject* pSubject)
+	:m_pOwnerScore(pOwnerScore),
+	m_pTextUpdateBool(pTextUpdateBool),
+	m_Subject(pSubject)
 {
 	m_Subject->AddObserver(this);
 }
@@ -17,6 +18,7 @@ void Qbert::ScoreObserver::Notify(const peach::GameObject& GameObject, peach::Ev
 	{
 	case peach::Event::ScoreIncreased:
 		*(m_pOwnerScore) = GameObject.GetComponent<ScoreComponent>()->GetScore();
+		*m_pTextUpdateBool = true;
 		break;
 	}
 }

@@ -17,9 +17,10 @@ namespace Qbert
 		inline static std::string qbert_tag = "Qbert";
 		inline static std::string purple_enemy_tag = "Purple";
 		inline static std::string green_enemy_tag = "Green";
+		inline static std::string disc_tag = "Disc";
 
 
-		static int const level_size = 7;
+		static int const level_size = 10;
 
 	private:
 		friend class peach::Singleton<QbertGameSettings>;

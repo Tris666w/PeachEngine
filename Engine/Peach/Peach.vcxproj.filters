@@ -81,7 +81,9 @@
     <ClCompile Include="src\RectColliderComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\Logger.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h">
@@ -179,7 +181,15 @@
     <ClInclude Include="src\RectColliderComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\Logger.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BinaryWriter.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BinaryReader.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -223,6 +233,9 @@
     </Filter>
     <Filter Include="Singleton">
       <UniqueIdentifier>{eadd5ae4-dc60-48dd-9d04-7ba32e5e4741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{60daecc7-8800-4bee-948d-ef67cd40faeb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

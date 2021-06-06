@@ -8,11 +8,15 @@ namespace Qbert
     class TileComponent final :public peach::ComponentBase
     {
     public:
-        explicit TileComponent(const std::vector<std::string>& textureVector, LevelComponent* pLevel, bool reverses = false);
-        void QbertStepOn();
+        TileComponent(const std::vector<std::string>& textureVector, LevelComponent* pLevel, bool reverses = false);
+        void QbertStepOn(peach::GameObject* pQbert);
         void GreenStepOn();
 
         bool GetIsFinished()const { return m_IsFinished; }
+
+        void SetReverses(bool state);
+        void SetTextureVector(const std::vector<std::string>& m_pTextureVector);
+
 
         void Initialize() override;
         void Update() override;

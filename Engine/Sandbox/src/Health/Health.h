@@ -13,15 +13,17 @@ namespace Qbert {
     class Health final : public peach::ComponentBase
     {
     public:
-        Health(peach::GameObject* m_pOwner, int maxHealth, int startHealth);
+        Health(int maxHealth, int startHealth);
         ~Health() = default;
 
         void DoDamage(int damage);
         [[nodiscard]] int GetHealth() const;
 
         [[nodiscard]] peach::Subject* GetpSubject()const;
+        void Initialize() override;
+        void Update() override;
+        void Render() const override;
     private:
-        peach::GameObject* m_pOwner = nullptr;
         bool m_PlayerIsDead = false;
         int m_MaxHealth = {};
         int m_CurrentHealth = {};

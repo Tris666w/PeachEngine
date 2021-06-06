@@ -23,7 +23,7 @@ void Qbert::SlickSamComponent::Initialize()
 	}
 
 	m_pMovementComponent->SetGridSpawnPos(0, QbertGameSettings::level_size - 1);
-	m_pMovementComponent->MoveImmediatlyToSpawnPos();
+	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 
 void Qbert::SlickSamComponent::Update()
@@ -56,7 +56,7 @@ void Qbert::SlickSamComponent::Spawn()
 {
 	GetParent()->SetIsActive(true);
 	m_MovementTimer = 0.f;
-	m_pMovementComponent->MoveImmediatlyToSpawnPos();
+	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 
 void Qbert::SlickSamComponent::Remove() const

@@ -5,39 +5,51 @@
 #include "imgui.h"
 #include "Health/HealthObserver.h"
 #include "Score/ScoreObserver.h"
+#include "TextComponent.h"
 
-Qbert::PlayerUI::PlayerUI(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject)
+Qbert::PlayerUi::PlayerUi(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject)
 	:m_ScreenPos(screenPos)
 	, m_PlayerID(playerID)
 	, m_PlayerScore(playerScore)
 	, m_RemainingHealth(playerHealth)
 {
-	m_pHealthObserver = std::make_unique<HealthObserver>(&m_RemainingHealth, pHealthSubject);
-	m_pScoreObserver = std::make_unique<ScoreObserver>(&m_PlayerScore, pScoreSubject);
+	m_pHealthObserver = std::make_unique<HealthObserver>(&m_RemainingHealth, &m_ShouldUpdateText, pHealthSubject);
+	m_pScoreObserver = std::make_unique<ScoreObserver>(&m_PlayerScore, &m_ShouldUpdateText, pScoreSubject);
 }
 
-void Qbert::PlayerUI::Render()const
+void Qbert::PlayerUi::Render()const
 {
-	const std::string windowTitle = "Player " + m_PlayerID;
-	const std::string playerScore = "Score: " + std::to_string(m_PlayerScore);
-	const std::string playerHealth = "Health: " + std::to_string(m_RemainingHealth);
 
-	const ImVec2 windowSize = { 150,100 };
-	ImGui::SetNextWindowSize(windowSize);
-	ImGui::SetNextWindowPos(m_ScreenPos);
+}
+
+void Qbert::PlayerUi::Initialize()
+{
+	m_Font = peach::ResourceManager::GetInstance().LoadFont("Resources/Fonts/q-bert-original.ttf", m_CharSize);
+
+	m_pPlayerTextComponent = new peach::TextComponent("Player " + m_PlayerID, m_Font);
+	m_pPlayerTextComponent->SetColor(m_TextColor);
+
+	m_pHealthTextComponent = new peach::TextComponent("Health " + std::to_string(m_RemainingHealth), m_Font);
+	m_pHealthTextComponent->SetPosition({ 0, static_cast<float>(m_CharSize) });
+	m_pHealthTextComponent->SetColor(m_TextColor);
+
+	m_pScoreTextComponent = new peach::TextComponent("Score " + std::to_string(m_PlayerScore), m_Font);
+	m_pScoreTextComponent->SetPosition({ 0, static_cast<float>(2 * m_CharSize) });
+	m_pScoreTextComponent->SetColor(m_TextColor);
 
 
-	ImGui::Begin(windowTitle.c_str());
-	ImGui::Text(playerScore.c_str());
-	ImGui::Text(playerHealth.c_str());
+	GetParent()->AddComponent(m_pPlayerTextComponent);
+	GetParent()->AddComponent(m_pHealthTextComponent);
+	GetParent()->AddComponent(m_pScoreTextComponent);
 
-	if (m_RemainingHealth <= 0)
+}
+
+void Qbert::PlayerUi::Update()
+{
+	if (m_ShouldUpdateText)
 	{
-		const std::string playerDied = "Player " + m_PlayerID + " has died";
-		ImGui::Text(playerDied.c_str());
+		m_pHealthTextComponent->SetText("Health " + std::to_string(m_RemainingHealth));
+		m_pScoreTextComponent->SetText("Score " + std::to_string(m_PlayerScore));
 
 	}
-
-
-	ImGui::End();
 }
