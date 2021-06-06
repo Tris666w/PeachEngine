@@ -2,7 +2,7 @@
 2D game engine for my programming 4 course. 
 The engine is a static library and works with an application system through inheritance.
 
-![]blob/main/Engine/Sandbox/Resources/Images/Engine_icon.png
+![]Engine/Sandbox/Resources/Images/Engine_icon.png
 
 ## Features
 - Entity Component system (ECS). GameObject owns Components
