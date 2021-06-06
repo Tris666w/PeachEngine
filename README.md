@@ -21,10 +21,7 @@ The engine is a static library and works with an application system through inhe
 
 ![Game Icon](Engine/Sandbox/Resources/Images/Game_icon.png)
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 ##Sample Project - Qbert
 Qbert Clone made for my exam. This game shows most of the game engine features.
 
