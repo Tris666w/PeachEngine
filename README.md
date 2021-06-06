@@ -1,8 +1,8 @@
+![Engine Icon](Engine/Sandbox/Resources/Images/Engine_icon.png)
+
 # Peach Engine
 2D game engine for my programming 4 course. 
 The engine is a static library and works with an application system through inheritance.
-
-![](Engine/Sandbox/Resources/Images/Engine_icon.png)
 
 ## Features
 - Entity Component system (ECS). GameObject owns Components
@@ -18,8 +18,10 @@ The engine is a static library and works with an application system through inhe
 - Observer pattern
 - SDL Rendering
 
+
+![Game Icon](Engine/Sandbox/Resources/Images/Game_icon.png)
 ##Sample Project - Qbert
-Qbert Clone made for my exam. This game shhows most of the game engine features.
+Qbert Clone made for my exam. This game shows most of the game engine features.
 
 
 ## Built With
