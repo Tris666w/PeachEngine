@@ -28,24 +28,33 @@ void Scene::Remove(GameObject* object)
 	}
 }
 
-void Scene::Initialize()
+void Scene::RootInitialize()
 {
+	m_pInputManager = std::make_shared<InputManager>();
+	m_pInputManager->Init();
+
+	Initialize();
+
 	for (auto& object : m_pObjects)
 	{
 		object->Initialize();
 	}
 }
 
-void Scene::PostInitialize()
+void Scene::RootPostInitialize()
 {
+	PostInitialize();
+
 	for (auto& object : m_pObjects)
 	{
 		object->PostInitialize();
 	}
 }
 
-void Scene::FixedUpdate()
+void Scene::RootFixedUpdate()
 {
+	FixedUpdate();
+
 	for (auto& object : m_pObjects)
 	{
 		if (object->GetIsActive())
@@ -53,8 +62,10 @@ void Scene::FixedUpdate()
 	}
 }
 
-void Scene::LateUpdate()
+void Scene::RootLateUpdate()
 {
+	LateUpdate();
+
 	for (auto& object : m_pObjects)
 	{
 		if (object->GetIsActive())
@@ -62,17 +73,25 @@ void Scene::LateUpdate()
 	}
 }
 
-void Scene::Update()
+bool Scene::RootUpdate()
 {
+	auto const shouldStop = !m_pInputManager->ProcessInput();
+
+	Update();
+
 	for (auto& object : m_pObjects)
 	{
 		if (object->GetIsActive())
 			object->Update();
 	}
+
+	return shouldStop;
 }
 
-void Scene::Render() const
+void Scene::RootRender() const
 {
+	Render();
+
 	for (const auto& object : m_pObjects)
 	{
 		if (object->GetIsActive())

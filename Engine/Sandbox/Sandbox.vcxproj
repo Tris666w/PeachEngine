@@ -204,11 +204,18 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Scenes\LossScreen.cpp" />
+    <ClCompile Include="src\Scenes\QuitCommand.cpp" />
+    <ClCompile Include="src\Scenes\GameModeChangeAndStartGameCommand.cpp" />
+    <ClCompile Include="src\Scenes\MainMenu.cpp" />
+    <ClCompile Include="src\Scenes\QbertScene.cpp" />
+    <ClCompile Include="src\Enemies\CoilyController.cpp" />
+    <ClCompile Include="src\Enemies\CoilyMoveCommand.cpp" />
     <ClCompile Include="src\Level\DiscComponent.cpp" />
     <ClCompile Include="src\Enemies\SlickSamComponent.cpp" />
     <ClCompile Include="src\Level\LevelEnemyManager.cpp" />
     <ClCompile Include="src\Enemies\CoilyComponent.cpp" />
-    <ClCompile Include="src\Commands\MoveCommand.cpp" />
+    <ClCompile Include="src\Player\QbertMoveCommand.cpp" />
     <ClCompile Include="src\Player\QbertComponent.cpp" />
     <ClCompile Include="src\Player\QbertController.cpp" />
     <ClCompile Include="src\Health\DamageCommand.cpp" />
@@ -231,13 +238,21 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClCompile Include="src\Score\ScoreComponent.cpp" />
     <ClCompile Include="src\Score\ScoreObserver.cpp" />
     <ClCompile Include="src\Enemies\UggWrongwayComponent.cpp" />
+    <ClCompile Include="src\Scenes\VictoryScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Scenes\LossScreen.h" />
+    <ClInclude Include="src\Scenes\QuitCommand.h" />
+    <ClInclude Include="src\Scenes\GameModeChangeAndStartGameCommand.h" />
+    <ClInclude Include="src\Scenes\MainMenu.h" />
+    <ClInclude Include="src\Scenes\QbertScene.h" />
+    <ClInclude Include="src\Enemies\CoilyController.h" />
+    <ClInclude Include="src\Enemies\CoilyMoveCommand.h" />
     <ClInclude Include="src\Level\DiscComponent.h" />
     <ClInclude Include="src\Enemies\SlickSamComponent.h" />
     <ClInclude Include="src\Level\LevelEnemyManager.h" />
     <ClInclude Include="src\Enemies\CoilyComponent.h" />
-    <ClInclude Include="src\Commands\MoveCommand.h" />
+    <ClInclude Include="src\Player\QbertMoveCommand.h" />
     <ClInclude Include="src\Player\QbertComponent.h" />
     <ClInclude Include="src\Player\QbertController.h" />
     <ClInclude Include="src\Health\DamageCommand.h" />
@@ -254,6 +269,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_mixer\lib\x64\*.dll" "$(OutputPath)" /R /Y</C
     <ClInclude Include="src\Score\ScoreComponent.h" />
     <ClInclude Include="src\Score\ScoreObserver.h" />
     <ClInclude Include="src\Enemies\UggWrongwayComponent.h" />
+    <ClInclude Include="src\Scenes\VictoryScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

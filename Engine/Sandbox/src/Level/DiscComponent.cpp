@@ -50,7 +50,9 @@ void Qbert::DiscComponent::Update()
     m_ActivationTimer += peach::GameTime::GetInstance().GetElapsedSec();
     if (m_ActivationTimer > m_ActivationTime)
     {
+        m_pTransportingQbert->GetComponent<LevelMovementComponent>()->SetGridPosBeforeOnDisk();
         m_pTransportingQbert->GetComponent<LevelMovementComponent>()->MoveToTop();
+
         m_pLevelMovementComponent->MoveToTop();
         m_ActivationTimer = 0.f;
         m_StartedMoving = true;

@@ -5,7 +5,7 @@
 #include "TextureComponent.h"
 #include "Player/QbertComponent.h"
 #include "Score/ScoreComponent.h"
-
+#include "CoilyController.h"
 
 Qbert::CoilyComponent::CoilyComponent()
 	:ComponentBase(),
@@ -26,12 +26,19 @@ void Qbert::CoilyComponent::Remove() const
 	GetParent()->SetIsActive(false);
 }
 
+void Qbert::CoilyComponent::SetMoveDir(MoveDirection moveDir)
+{
+	m_MoveDir = moveDir;
+}
+
 void Qbert::CoilyComponent::PostInitialize()
 {
 	//Players are initialized after the level!!
 	auto qbertVector = GetParent()->GetScene()->GetObjectsWithTag(QbertGameSettings::qbert_tag);
 
 	m_pQbert = qbertVector[0];
+
+	m_pController = GetParent()->GetComponent<CoilyController>();
 }
 
 void Qbert::CoilyComponent::SetAnimTexture()
@@ -79,10 +86,9 @@ void Qbert::CoilyComponent::Initialize()
 
 void Qbert::CoilyComponent::Update()
 {
+	SetAnimTexture();
 	if (m_pMovementComponent->GetIsMoving())
 		return;
-
-	SetAnimTexture();
 
 	//Check the move Timer
 	m_MovementTimer += peach::GameTime::GetInstance().GetElapsedSec();
@@ -102,22 +108,30 @@ void Qbert::CoilyComponent::Update()
 		{
 			m_IsEgg = false;
 			m_TextureComponent->SetTexture("Resources/Images/Enemies/Coily/Snake.png");
-			SetAnimTexture();
 			return;
 		}
 	}
 	else
 	{
-		auto const pos = m_pMovementComponent->GetGridPos();
-		auto const qbertpos = m_pQbert->GetComponent<LevelMovementComponent>()->GetGridPos();
-		auto const moveDirection = qbertpos - pos;
+		//Use controller for movement
+		if (m_pController)
+			return;
 
-		if ((moveDirection.x == 0 && moveDirection.y == 1 ||
-			moveDirection.x == 1 && moveDirection.y == 0) &&
-			m_pQbert->GetComponent<QbertComponent>()->GetIsOnDisc())
+		auto const pos = m_pMovementComponent->GetGridPos();
+		auto qbertpos = m_pQbert->GetComponent<LevelMovementComponent>()->GetGridPos();
+		auto moveDirection = qbertpos - pos;
+
+		if (m_pQbert->GetComponent<QbertComponent>()->GetIsOnDisc())
 		{
-			m_pMovementComponent->MoveImmediatelyToSpawnPos();
-			m_pQbert->GetComponent<ScoreComponent>()->IncreaseScore(500);
+			qbertpos = m_pQbert->GetComponent<LevelMovementComponent>()->GetGridPosBeforeOnDisk();
+			moveDirection = qbertpos - pos;
+			if ((moveDirection.x == 0 && abs(moveDirection.y) == 1) ||
+				(abs(moveDirection.x) == 1 && moveDirection.y == 0))
+			{
+				Remove();
+				m_pQbert->GetComponent<ScoreComponent>()->IncreaseScore(500);
+
+			}
 		}
 
 		if (moveDirection.x != 0)
@@ -138,8 +152,6 @@ void Qbert::CoilyComponent::Update()
 	}
 	m_pMovementComponent->Move(m_MoveDir);
 	m_MovementTimer = 0.f;
-
-	SetAnimTexture();
 }
 
 void Qbert::CoilyComponent::Render() const

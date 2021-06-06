@@ -14,6 +14,8 @@ void Qbert::Health::DoDamage(const int damage)
 	m_CurrentHealth -= damage;
 	m_HealthSubject.get()->Notify(*(GetParent()), peach::Event::OwnerDamaged);
 
+
+	
 	if (!m_PlayerIsDead && m_CurrentHealth <= 0)
 	{
 		m_PlayerIsDead = true;

@@ -38,6 +38,8 @@ void peach::CollisionManager::CheckCollisions()
 
 void peach::CollisionManager::Render() const
 {
+	if (!m_DebugRender)
+		return;
 	for (auto collider : m_pColliders)
 	{
 		auto shape = collider->GetWorldPosRect();

@@ -34,23 +34,31 @@ namespace Qbert
         void Update() override;
         void Render() const override;
 
-        void Move(MoveDirection direction);
         void SetGridSpawnPos(int col, int row);
         glm::vec3 GetGridSpawnPos()const { return m_GridPos; }
 
-        void MoveImmediatelyToSpawnPos();
         void SetTilePosition(TilePosition pos);
         void SetWaitTime(float waitTime) { m_WaitTime = waitTime; }
         bool GetIsMoving()const { return m_IsMoving; }
-        glm::vec3 GetGridPos()const { return m_GridPos; }
-        void MoveToTop();
-        float GetMoveWaitTime() { return m_MoveTime; }
+
         void SetGridPos(int i, int i1);
+        glm::vec3 GetGridPos()const { return m_GridPos; }
+
+        glm::vec3 GetGridPosBeforeOnDisk()const { return m_GridPosBeforeOnDisk; }
+        void SetGridPosBeforeOnDisk() { m_GridPosBeforeOnDisk = m_GridPos; }
+
+        void MoveToTop();
+        void MoveImmediatelyToSpawnPos();
         void MoveImmediatelyToTopCube();
+        void Move(MoveDirection direction);
+
+        float GetMoveWaitTime() const { return m_MoveTime; }
 
     private:
         glm::vec3 m_GridPos = { -1,-1,0 };
         glm::vec3 m_GridSpawnPos = { -1,-1,0 };
+        glm::vec3 m_GridPosBeforeOnDisk = { -1,-1,0 };
+
         bool m_IsMoving = false;
 
         LevelComponent* m_pLevel = nullptr;

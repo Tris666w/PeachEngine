@@ -10,6 +10,10 @@
 #include "RectColliderComponent.h"
 #include "BinaryReader.h"
 #include "Score/ScoreComponent.h"
+#include "LevelEnemyManager.h"
+#include "Player/QbertComponent.h"
+#include "Scenes/LossScreen.h"
+#include "Scenes/VictoryScreen.h"
 
 void Qbert::LevelComponent::Initialize()
 {
@@ -58,13 +62,11 @@ void Qbert::LevelComponent::PostInitialize()
 		peach::Logger::LogWarning("LevelComponent::PostInitialize(), amount of players in the scene != amount of players in the game");
 
 	auto moveComp = qbertGameObjects[0]->GetComponent<LevelMovementComponent>();
-	auto player = qbertGameObjects[0];
 	switch (amountOfPlayers)
 	{
 	case 1:
-		player->SetPosition(GetTopCubeTilePos().x, GetTopCubeTilePos().y);
 		moveComp->SetGridSpawnPos(1, QbertGameSettings::level_size - 3);
-
+		moveComp->MoveImmediatelyToSpawnPos();
 		break;
 	case 2:
 		moveComp = qbertGameObjects[0]->GetComponent<LevelMovementComponent>();
@@ -101,6 +103,13 @@ void Qbert::LevelComponent::PostInitialize()
 		lmc->SetGridSpawnPos(static_cast<int>(m_pDiscGridPosVector[i].x), static_cast<int>(m_pDiscGridPosVector[i].y));
 		lmc->MoveImmediatelyToSpawnPos();
 	}
+
+
+	m_pEnemyManager = GetParent()->GetComponent<LevelEnemyManager>();
+	if (!m_pEnemyManager)
+		peach::Logger::LogWarning("LevelComponent::PostInitialize(), m_pEnemyManager is nullptr");
+
+
 
 }
 
@@ -172,8 +181,19 @@ void Qbert::LevelComponent::CheckForEnd()
 		}
 	}
 
+	auto players = GetParent()->GetScene()->GetObjectsWithTag(QbertGameSettings::qbert_tag);
+	for (auto qbertObject : players)
+	{
+		if (!qbertObject->GetComponent<QbertComponent>()->GetIsDead())
+		{
+			return;
+		}
+	}
 
 
+	//TODO: Go to loss screen
+
+	GoToLossScreen();
 }
 
 void Qbert::LevelComponent::ReadAndMakeLevelLayout(std::vector<std::string>& textureVect, bool& reversible)
@@ -215,9 +235,15 @@ void Qbert::LevelComponent::ReadAndMakeLevelLayout(std::vector<std::string>& tex
 void Qbert::LevelComponent::LoadNextLevel()
 {
 	CheckDiscPoints();
-
+	m_pEnemyManager->Reset();
 	m_IsFinished = false;
 	++m_LevelID;
+
+	if (m_LevelID >= m_AmountOfLevels)
+	{
+		GoToVictoryScreen();
+		return;
+	}
 
 	bool reversible;
 	std::vector<std::string> textureVect{};
@@ -249,7 +275,7 @@ void Qbert::LevelComponent::LoadNextLevel()
 			auto discComp = m_pDiscs[i]->GetComponent<DiscComponent>();
 			discComp->Reset();
 			auto moveComp = m_pDiscs[i]->GetComponent<LevelMovementComponent>();
-			moveComp->SetGridSpawnPos(m_pDiscGridPosVector[i].x, m_pDiscGridPosVector[i].y);
+			moveComp->SetGridSpawnPos(static_cast<int>(m_pDiscGridPosVector[i].x), static_cast<int>(m_pDiscGridPosVector[i].y));
 			moveComp->MoveImmediatelyToSpawnPos();
 		}
 		else
@@ -285,4 +311,17 @@ void Qbert::LevelComponent::CheckDiscPoints()
 				qbert->GetComponent<ScoreComponent>()->IncreaseScore(50);
 		}
 	}
+}
+
+void Qbert::LevelComponent::GoToVictoryScreen()
+{
+	peach::SceneManager::GetInstance().AddScene(std::make_shared<VictoryScreen>());
+	peach::SceneManager::GetInstance().SetActiveGameScene("VictoryScreen");
+
+}
+
+void Qbert::LevelComponent::GoToLossScreen()
+{
+	peach::SceneManager::GetInstance().AddScene(std::make_shared<LossScreen>());
+	peach::SceneManager::GetInstance().SetActiveGameScene("LossScreen");
 }

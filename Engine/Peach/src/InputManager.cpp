@@ -3,6 +3,11 @@
 #include <SDL.h>
 #include "Command.h"
 
+peach::InputManager::InputManager()
+	:m_KeyBoardSupported(SDLK_z)
+{
+}
+
 bool peach::InputManager::ProcessInput()
 {
 	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
@@ -111,7 +116,7 @@ void peach::InputManager::Init()
 	for (int index = 0; index < static_cast<int>(ControllerButton::Count); ++index)
 		m_IsButtonPressedVector.push_back(false);
 
-	for (int index = 0; index < static_cast<int>(ControllerButton::Count); ++index)
+	for (int index = 0; index <= m_KeyBoardSupported; ++index)
 		m_IsKeyPressedVector.push_back(false);
 }
 

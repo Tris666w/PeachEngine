@@ -8,6 +8,8 @@
 #include "Enemies/SlickSamComponent.h"
 #include "Enemies/UggWrongwayComponent.h"
 #include "RectColliderComponent.h"
+#include "QbertGameSettings.h"
+#include "Enemies/CoilyController.h"
 
 
 Qbert::LevelEnemyManager::LevelEnemyManager(int charSize)
@@ -24,6 +26,11 @@ void Qbert::LevelEnemyManager::Initialize()
 	m_Ugg = CreateUggOrWrongwayGameObject(true);
 	m_Wrongway = CreateUggOrWrongwayGameObject(false);
 
+	if (QbertGameSettings::GetInstance().GetGameMode() == GameMode::Versus)
+	{
+		m_CoilyComponent->Spawn();
+		m_amountOfEnemiesSpawned = 1;
+	}
 }
 
 void Qbert::LevelEnemyManager::PostInitialize()
@@ -47,6 +54,25 @@ void Qbert::LevelEnemyManager::Render() const
 {
 }
 
+void Qbert::LevelEnemyManager::Reset()
+{
+	m_CoilyComponent->Remove();
+	m_SlickComponent->Remove();
+	m_SamComponent->Remove();
+	m_Ugg->Remove();
+	m_Wrongway->Remove();
+
+	m_SpawnTimer = 0.f;
+	m_amountOfEnemiesSpawned = 0;
+
+	if (QbertGameSettings::GetInstance().GetGameMode() == GameMode::Versus)
+	{
+		m_CoilyComponent->Spawn();
+		m_amountOfEnemiesSpawned = 1;
+	}
+
+}
+
 Qbert::CoilyComponent* Qbert::LevelEnemyManager::CreateCoilyGameObject() const
 {
 	auto go = new peach::GameObject();
@@ -60,6 +86,12 @@ Qbert::CoilyComponent* Qbert::LevelEnemyManager::CreateCoilyGameObject() const
 	SDL_Rect colliderRect = { static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.75 * m_CharSize), static_cast<int>(0.75 * m_CharSize) };
 	auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
 	go->AddComponent(colliderComponent);
+
+	if (QbertGameSettings::GetInstance().GetGameMode() == GameMode::Versus)
+	{
+		auto coilyController = new CoilyController();
+		go->AddComponent(coilyController);
+	}
 
 	auto const coilyComponent = new CoilyComponent();
 	go->AddComponent(coilyComponent);

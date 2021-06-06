@@ -7,5 +7,6 @@ namespace peach
 	public:
 		virtual ~Command() = default;
 		virtual void Execute() = 0;
+
 	};
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include <XInput.h>
-#include "Singleton.h"
 #include "unordered_map"
 
 namespace peach
@@ -37,9 +36,11 @@ namespace peach
 		ButtonUp = 1,
 		ButtonDown = 2
 	};
-	class InputManager final : public Singleton<InputManager>
+	class InputManager final
 	{
 	public:
+		InputManager();
+
 		bool ProcessInput();
 		[[nodiscard]] bool IsPressed(const ControllerButton button) const;
 		[[nodiscard]] bool IsButtonUp(const ControllerButton button) const;
@@ -61,5 +62,9 @@ namespace peach
 
 		std::unordered_map<int, std::pair< std::shared_ptr<Command>, CommandExecuteCause>> m_KeyboardUnorderedMap = {};
 		std::vector<bool>m_IsKeyPressedVector = {};
+
+		//SEE SDLK.h for the key that are supported
+		//WARNING:: Setting this too high, will make the program very heavy and init very long
+		int const m_KeyBoardSupported;
 	};
 }

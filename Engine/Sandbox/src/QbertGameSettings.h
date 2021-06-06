@@ -5,8 +5,8 @@ namespace Qbert
 	enum class GameMode
 	{
 		SinglePlayer = 0,
-		MultiPlayer = 1,
-		Coop = 2
+		Coop = 1,
+		Versus = 2
 	};
 	class QbertGameSettings :public peach::Singleton<QbertGameSettings>
 	{
@@ -28,6 +28,8 @@ namespace Qbert
 		inline static std::string purple_enemy_tag = "Purple";
 		inline static std::string green_enemy_tag = "Green";
 		inline static std::string disc_tag = "Disc";
+		inline static std::string ui_tag = "Ui";
+
 
 
 		static int const level_size = 10;
@@ -36,7 +38,7 @@ namespace Qbert
 		friend class peach::Singleton<QbertGameSettings>;
 		QbertGameSettings() = default;
 
-		GameMode m_GameMode;
-		uint32_t m_AmountOfPlayers = 2;
+		GameMode m_GameMode = GameMode::Versus;
+		uint32_t m_AmountOfPlayers = 1;
 	};
 }

@@ -14,7 +14,6 @@ namespace Qbert
 		void Render() const override;
 
 	private:
-		LevelMovementComponent* m_pMovementComponent = nullptr;
 		bool m_UseController;
 	};
 }

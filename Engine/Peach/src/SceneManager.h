@@ -15,22 +15,26 @@ namespace peach
 		SceneManager& operator=(SceneManager&& other) noexcept = delete;
 
 
-		Scene& CreateScene(const std::string& name);
 		std::shared_ptr<Scene> GetScene(const std::string& name);
 
+
+		void AddScene(std::shared_ptr<Scene>);
+		void RemoveScene(std::shared_ptr<Scene>);
 		void SetActiveGameScene(const std::string& sceneName);
 
 		void Initialize();
 		void PostInitialize();
-
 		void FixedUpdate();
-		void Update();
+		bool Update();
 		void LateUpdate();
 		void Render() const;
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;
+
+		bool m_IsInitialized = false;
 		std::vector<std::shared_ptr<Scene>> m_Scenes;
 		std::shared_ptr<Scene>m_ActiveScene;
+
 	};
 }

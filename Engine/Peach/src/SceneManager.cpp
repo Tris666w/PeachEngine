@@ -2,19 +2,21 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-void peach::SceneManager::Update()
+bool peach::SceneManager::Update()
 {
 	if (m_ActiveScene)
 	{
-		m_ActiveScene->Update();
+		if (m_ActiveScene->RootUpdate())
+			return false;
 	}
+	return true;
 }
 
 void peach::SceneManager::LateUpdate()
 {
 	if (m_ActiveScene)
 	{
-		m_ActiveScene->LateUpdate();
+		m_ActiveScene->RootLateUpdate();
 	}
 }
 
@@ -22,16 +24,8 @@ void peach::SceneManager::Render()const
 {
 	if (m_ActiveScene)
 	{
-		m_ActiveScene->Render();
+		m_ActiveScene->RootRender();
 	}
-}
-
-peach::Scene& peach::SceneManager::CreateScene(const std::string& name)
-{
-	const auto scene = std::shared_ptr<Scene>(new Scene(name));
-	m_Scenes.push_back(scene);
-
-	return *m_Scenes.at((m_Scenes.size() - 1));
 }
 
 std::shared_ptr<peach::Scene> peach::SceneManager::GetScene(const std::string& name)
@@ -46,6 +40,31 @@ std::shared_ptr<peach::Scene> peach::SceneManager::GetScene(const std::string& n
 		return *it;
 	else
 		return std::shared_ptr<Scene>();
+}
+
+void peach::SceneManager::AddScene(std::shared_ptr<Scene> scene)
+{
+	const auto it = std::find(m_Scenes.begin(), m_Scenes.end(), scene);
+
+	if (it == m_Scenes.end())
+	{
+		m_Scenes.push_back(scene);
+		if (m_IsInitialized)
+		{
+			scene->RootInitialize();
+			scene->RootPostInitialize();
+		}
+		if (m_ActiveScene == nullptr)
+			m_ActiveScene = scene;
+	}
+}
+
+void peach::SceneManager::RemoveScene(std::shared_ptr<Scene> scene)
+{
+	const auto it = std::find(m_Scenes.begin(), m_Scenes.end(), scene);
+
+	if (it != m_Scenes.end())
+		m_Scenes.erase(it);
 }
 
 void peach::SceneManager::SetActiveGameScene(const std::string& name)
@@ -67,15 +86,16 @@ void peach::SceneManager::Initialize()
 {
 	for (auto& scene : m_Scenes)
 	{
-		scene->Initialize();
+		scene->RootInitialize();
 	}
+	m_IsInitialized = true;
 }
 
 void peach::SceneManager::PostInitialize()
 {
 	for (auto& scene : m_Scenes)
 	{
-		scene->PostInitialize();
+		scene->RootPostInitialize();
 	}
 }
 
@@ -83,6 +103,6 @@ void peach::SceneManager::FixedUpdate()
 {
 	if (m_ActiveScene)
 	{
-		m_ActiveScene->FixedUpdate();
+		m_ActiveScene->RootFixedUpdate();
 	}
 }

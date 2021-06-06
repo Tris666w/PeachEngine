@@ -10,6 +10,8 @@ namespace Qbert
 {
     enum class MoveDirection;
     class LevelMovementComponent;
+    class CoilyController;
+
     class CoilyComponent final :public peach::ComponentBase
     {
     public:
@@ -24,11 +26,13 @@ namespace Qbert
         void Spawn();
         void Remove() const;
 
+        void SetMoveDir(MoveDirection moveDir);
         bool GetIsEgg()const { return m_IsEgg; }
     private:
         LevelMovementComponent* m_pMovementComponent = nullptr;
         peach::TextureComponent* m_TextureComponent = nullptr;
         peach::GameObject* m_pQbert = nullptr;
+        CoilyController* m_pController = nullptr;
 
         float m_MovementTimer = 0.f;
         float const m_MoveWaitTime = 0.75f;

@@ -9,10 +9,10 @@ void Qbert::QbertGameSettings::SetGameMode(GameMode gameMode)
 	case GameMode::SinglePlayer:
 		m_AmountOfPlayers = 1;
 		break;
-	case GameMode::MultiPlayer:
+	case GameMode::Coop:
 		m_AmountOfPlayers = 2;
 		break;
-	case GameMode::Coop:
+	case GameMode::Versus:
 		m_AmountOfPlayers = 1;
 		break;
 	}

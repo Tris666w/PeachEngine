@@ -18,10 +18,17 @@ using namespace std;
 using namespace std::chrono;
 using namespace peach;
 
-Application::Application(glm::vec3 windowDimensions)
-	:m_WindowDimensions(windowDimensions),
-	m_ApplicationName()
+
+Application::Application()
+	:m_ApplicationName()
 {
+}
+
+Application::Application(glm::vec2 windowDimensions)
+	: m_ApplicationName()
+{
+	m_WindowDimensions = windowDimensions;
+
 }
 
 Application::~Application()
@@ -78,15 +85,12 @@ void Application::Run()
 {
 	Initialize();
 
-	InputManager::GetInstance().Init();
-
 	Logger::Initialize();
 	LoadGame();
 	{
 
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
-		auto& input = InputManager::GetInstance();
 		auto& collisionManager = CollisionManager::GetInstance();
 
 		sceneManager.Initialize();
@@ -105,14 +109,13 @@ void Application::Run()
 			lastTime = currentTime;
 			lag += elapsedSec;
 
-			doContinue = input.ProcessInput();
 			while (lag >= MsPerFrame)
 			{
 				sceneManager.FixedUpdate();
 				lag -= MsPerFrame;
 			}
 
-			sceneManager.Update();
+			doContinue = sceneManager.Update();
 
 			collisionManager.CheckCollisions();
 
@@ -128,7 +131,7 @@ void Application::Run()
 	Cleanup();
 }
 
-glm::vec3 peach::Application::GetWindowDimensions() const
+glm::vec2 peach::Application::GetWindowDimensions()
 {
 	return m_WindowDimensions;
 }
