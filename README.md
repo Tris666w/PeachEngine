@@ -31,7 +31,6 @@ Qbert Clone made for my exam. This game shows most of the game engine features.
 
 ## Authors
  - **Tristan Wauthier** - *code
-    [PurpleBooth](https://github.com/PurpleBooth)
 
 ## License
 See LICENSE.MD
