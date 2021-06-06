@@ -7,9 +7,8 @@
 #include "Score/ScoreObserver.h"
 #include "TextComponent.h"
 
-Qbert::PlayerUi::PlayerUi(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject)
-	:m_ScreenPos(screenPos)
-	, m_PlayerID(playerID)
+Qbert::PlayerUi::PlayerUi(const std::string& playerID, int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject)
+	:m_PlayerID(playerID)
 	, m_PlayerScore(playerScore)
 	, m_RemainingHealth(playerHealth)
 {

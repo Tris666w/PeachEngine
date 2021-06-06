@@ -11,10 +11,10 @@ namespace Qbert {
 	class ScoreObserver;
 	class HealthObserver;
 
-	class PlayerUi : public peach::ComponentBase
+	class PlayerUi final : public peach::ComponentBase
 	{
 	public:
-		PlayerUi(ImVec2 screenPos, const std::string& playerID, int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject);
+		PlayerUi(const std::string& playerID, int playerScore, int playerHealth, peach::Subject* pHealthSubject, peach::Subject* pScoreSubject);
 
 		void Initialize() override;
 		void Update() override;

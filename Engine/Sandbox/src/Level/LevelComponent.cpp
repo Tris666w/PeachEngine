@@ -9,6 +9,7 @@
 #include "LevelMovementComponent.h"
 #include "RectColliderComponent.h"
 #include "BinaryReader.h"
+#include "Score/ScoreComponent.h"
 
 void Qbert::LevelComponent::Initialize()
 {
@@ -30,9 +31,6 @@ void Qbert::LevelComponent::Initialize()
 
 			go->AddComponent(tileComp);
 			go->AddComponent(textureComp);
-			SDL_Rect rect = { 0,0,32,32 };
-			auto collider = new peach::RectColliderComponent(rect);
-			go->AddComponent(collider);
 			GetParent()->AddChild(go);
 			go->SetPosition(pos.x + col * block_size, pos.y);
 			pTiles.push_back(tileComp);
@@ -65,15 +63,18 @@ void Qbert::LevelComponent::PostInitialize()
 	{
 	case 1:
 		player->SetPosition(GetTopCubeTilePos().x, GetTopCubeTilePos().y);
-		if (moveComp)
-			moveComp->SetGridSpawnPos(1, QbertGameSettings::level_size - 3);
-		else
-			peach::Logger::LogInfo("LevelComponent::PostInitialize(), no LevelMovementComponent was found");
+		moveComp->SetGridSpawnPos(1, QbertGameSettings::level_size - 3);
 
 		break;
 	case 2:
-		qbertGameObjects[0]->SetPosition(GetBottomLeftCubeTilePos().x, GetBottomLeftCubeTilePos().y);
-		qbertGameObjects[1]->SetPosition(GetBottomRightCubeTilePos().x, GetBottomRightCubeTilePos().y);
+		moveComp = qbertGameObjects[0]->GetComponent<LevelMovementComponent>();
+		moveComp->SetGridSpawnPos(1, 1);
+		moveComp->MoveImmediatelyToSpawnPos();
+
+		moveComp = qbertGameObjects[1]->GetComponent<LevelMovementComponent>();
+		moveComp->SetGridSpawnPos(QbertGameSettings::level_size - 3, 1);
+		moveComp->MoveImmediatelyToSpawnPos();
+
 		break;
 	default:
 		peach::Logger::LogWarning("LevelComponent::PostInitialize(), only single player or 2 player supported");
@@ -213,6 +214,8 @@ void Qbert::LevelComponent::ReadAndMakeLevelLayout(std::vector<std::string>& tex
 
 void Qbert::LevelComponent::LoadNextLevel()
 {
+	CheckDiscPoints();
+
 	m_IsFinished = false;
 	++m_LevelID;
 
@@ -237,5 +240,49 @@ void Qbert::LevelComponent::LoadNextLevel()
 	for (auto qbert : qbertVector)
 	{
 		qbert->GetComponent<LevelMovementComponent>()->MoveImmediatelyToSpawnPos();
+	}
+
+	for (int i = 0; i < m_pDiscGridPosVector.size(); ++i)
+	{
+		if (m_pDiscGridPosVector.size() <= m_pDiscs.size())
+		{
+			auto discComp = m_pDiscs[i]->GetComponent<DiscComponent>();
+			discComp->Reset();
+			auto moveComp = m_pDiscs[i]->GetComponent<LevelMovementComponent>();
+			moveComp->SetGridSpawnPos(m_pDiscGridPosVector[i].x, m_pDiscGridPosVector[i].y);
+			moveComp->MoveImmediatelyToSpawnPos();
+		}
+		else
+		{
+			auto go = new peach::GameObject();
+			auto discComp = new DiscComponent();
+			go->AddComponent(discComp);
+			auto textureComp = new peach::TextureComponent("Resources/Images/Disc.png", 32, 32);
+			go->AddComponent(textureComp);
+			auto lmc = new LevelMovementComponent();
+			go->AddComponent(lmc);
+			SDL_Rect rect = { 0,0,32,32 };
+			auto collider = new peach::RectColliderComponent(rect);
+			go->AddComponent(collider);
+			GetParent()->AddChild(go);
+			m_pDiscs.push_back(go);
+
+			lmc->SetGridSpawnPos(static_cast<int>(m_pDiscGridPosVector[i].x), static_cast<int>(m_pDiscGridPosVector[i].y));
+			lmc->MoveImmediatelyToSpawnPos();
+		}
+	}
+}
+
+void Qbert::LevelComponent::CheckDiscPoints()
+{
+	auto qbertGameObjects = GetParent()->GetScene()->GetObjectsWithTag(QbertGameSettings::qbert_tag);
+
+	for (auto element : m_pDiscs)
+	{
+		if (element->GetIsActive())
+		{
+			for (auto qbert : qbertGameObjects)
+				qbert->GetComponent<ScoreComponent>()->IncreaseScore(50);
+		}
 	}
 }

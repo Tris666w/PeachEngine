@@ -2,6 +2,12 @@
 #include "Singleton.h"
 namespace Qbert
 {
+	enum class GameMode
+	{
+		SinglePlayer = 0,
+		MultiPlayer = 1,
+		Coop = 2
+	};
 	class QbertGameSettings :public peach::Singleton<QbertGameSettings>
 	{
 	public:
@@ -12,6 +18,10 @@ namespace Qbert
 		QbertGameSettings& operator=(QbertGameSettings&& other) noexcept = delete;
 
 		uint32_t GetAmountOfPlayers()const { return m_AmountOfPlayers; }
+
+
+		void SetGameMode(GameMode gameMode);
+		GameMode GetGameMode()const { return m_GameMode; }
 
 		inline static std::string level_tag = "Level";
 		inline static std::string qbert_tag = "Qbert";
@@ -26,6 +36,7 @@ namespace Qbert
 		friend class peach::Singleton<QbertGameSettings>;
 		QbertGameSettings() = default;
 
-		uint32_t m_AmountOfPlayers = 1;
+		GameMode m_GameMode;
+		uint32_t m_AmountOfPlayers = 2;
 	};
 }

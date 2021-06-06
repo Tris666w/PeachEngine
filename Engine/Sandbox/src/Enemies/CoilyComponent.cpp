@@ -3,6 +3,8 @@
 #include "Level/LevelMovementComponent.h"
 #include "QbertGameSettings.h"
 #include "TextureComponent.h"
+#include "Player/QbertComponent.h"
+#include "Score/ScoreComponent.h"
 
 
 Qbert::CoilyComponent::CoilyComponent()
@@ -71,7 +73,7 @@ void Qbert::CoilyComponent::Initialize()
 		peach::Logger::LogWarning("CoilyComponent::Initialize(), not texture or movement component!");
 	}
 
-	m_pMovementComponent->SetGridSpawnPos(0, QbertGameSettings::level_size - 1);
+	m_pMovementComponent->SetGridSpawnPos(1, QbertGameSettings::level_size - 3);
 	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 
@@ -89,7 +91,7 @@ void Qbert::CoilyComponent::Update()
 
 	if (m_IsEgg)
 	{
-		if (m_pMovementComponent->GetGridSpawnPos().y != 0)
+		if (m_pMovementComponent->GetGridSpawnPos().y != 1)
 		{
 			if (rand() % 2 == 0)
 				m_MoveDir = MoveDirection::DownLeft;
@@ -109,6 +111,14 @@ void Qbert::CoilyComponent::Update()
 		auto const pos = m_pMovementComponent->GetGridPos();
 		auto const qbertpos = m_pQbert->GetComponent<LevelMovementComponent>()->GetGridPos();
 		auto const moveDirection = qbertpos - pos;
+
+		if ((moveDirection.x == 0 && moveDirection.y == 1 ||
+			moveDirection.x == 1 && moveDirection.y == 0) &&
+			m_pQbert->GetComponent<QbertComponent>()->GetIsOnDisc())
+		{
+			m_pMovementComponent->MoveImmediatelyToSpawnPos();
+			m_pQbert->GetComponent<ScoreComponent>()->IncreaseScore(500);
+		}
 
 		if (moveDirection.x != 0)
 		{

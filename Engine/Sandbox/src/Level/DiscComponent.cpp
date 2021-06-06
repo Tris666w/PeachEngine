@@ -4,6 +4,7 @@
 #include "LevelMovementComponent.h"
 #include "QbertGameSettings.h"
 #include "TextureComponent.h"
+#include "Player/QbertComponent.h"
 
 void Qbert::DiscComponent::Initialize()
 {
@@ -21,6 +22,7 @@ void Qbert::DiscComponent::Update()
     {
         m_pLevelMovementComponent->SetGridPos(-100, 0);
         m_pTransportingQbert->GetComponent<LevelMovementComponent>()->MoveImmediatelyToTopCube();
+        m_pTransportingQbert->GetComponent<QbertComponent>()->SetIsOnDisc(false);
 
         GetParent()->SetIsActive(false);
     }
@@ -63,9 +65,19 @@ void Qbert::DiscComponent::Activate(peach::GameObject* pQbert)
 {
     m_IsActive = true;
     m_pTransportingQbert = pQbert;
+    pQbert->GetComponent<QbertComponent>()->SetIsOnDisc(true);
 }
 
 void Qbert::DiscComponent::Deactivate()
 {
     GetParent()->SetIsActive(false);
+}
+
+void Qbert::DiscComponent::Reset()
+{
+    GetParent()->SetIsActive(true);
+    m_StartedMoving = false;
+    m_IsActive = false;
+    m_ActivationTimer = 0.f;
+
 }

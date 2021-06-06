@@ -25,13 +25,13 @@ void Qbert::UggWrongwayComponent::Initialize()
 	}
 	if (m_IsUgg)
 	{
-		m_pMovementComponent->SetGridSpawnPos(0, 0);
+		m_pMovementComponent->SetGridSpawnPos(1, 1);
 		m_pMovementComponent->SetTilePosition(TilePosition::Right);
 
 	}
 	else
 	{
-		m_pMovementComponent->SetGridSpawnPos(QbertGameSettings::level_size - 1, 0);
+		m_pMovementComponent->SetGridSpawnPos(QbertGameSettings::level_size - 3, 1);
 		m_pMovementComponent->SetTilePosition(TilePosition::Left);
 	}
 

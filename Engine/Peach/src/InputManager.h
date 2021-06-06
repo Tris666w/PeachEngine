@@ -45,14 +45,21 @@ namespace peach
 		[[nodiscard]] bool IsButtonUp(const ControllerButton button) const;
 		[[nodiscard]] bool IsButtonDown(const ControllerButton button) const;
 
+		[[nodiscard]] bool IsButtonUp(const int key) const;
+		[[nodiscard]] bool IsButtonDown(const int key) const;
+
 		void AddOrChangeCommand(ControllerButton button, const std::shared_ptr<Command>& pCommand, CommandExecuteCause executeCause);
+		void AddOrChangeCommand(int keyboardKey, const std::shared_ptr<Command>& pCommand, CommandExecuteCause executeCause);
 
 		void Init();
 	private:
 
 		XINPUT_STATE m_CurrentState{};
 
-		std::unordered_map<ControllerButton, std::pair< std::shared_ptr<Command>, CommandExecuteCause>> m_CommandMap = {};
+		std::unordered_map<ControllerButton, std::pair< std::shared_ptr<Command>, CommandExecuteCause>> m_ControllerUnorderedMap = {};
+		std::vector<bool>m_IsButtonPressedVector = {};
+
+		std::unordered_map<int, std::pair< std::shared_ptr<Command>, CommandExecuteCause>> m_KeyboardUnorderedMap = {};
 		std::vector<bool>m_IsKeyPressedVector = {};
 	};
 }

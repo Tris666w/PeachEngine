@@ -33,6 +33,10 @@ namespace Qbert
 
 		int m_CharSize;
 
+		float m_SpawnTimer = 0.f;
+		float const m_SpawnTime = 2.5f;
+		int m_amountOfEnemiesSpawned = 0;
+		void SpawnRandomEnemy();
 	};
 
 }

@@ -16,8 +16,11 @@ namespace Qbert
 		void Update() override;
 		void Render() const override;
 
-	private:
+		void SetIsOnDisc(bool state) { m_IsOnDisc = state; }
+		bool GetIsOnDisc()const { return m_IsOnDisc; }
 
+	private:
+		bool m_IsOnDisc = false;
 	};
 
 }

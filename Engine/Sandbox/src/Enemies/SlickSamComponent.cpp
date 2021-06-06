@@ -6,7 +6,8 @@
 
 Qbert::SlickSamComponent::SlickSamComponent(bool isSlick)
 	:ComponentBase(),
-	m_IsSlick(isSlick)
+	m_IsSlick(isSlick),
+	m_MoveDir()
 {
 }
 
@@ -22,7 +23,7 @@ void Qbert::SlickSamComponent::Initialize()
 		peach::Logger::LogWarning("CoilyComponent::Initialize(), not texture or movement component!");
 	}
 
-	m_pMovementComponent->SetGridSpawnPos(0, QbertGameSettings::level_size - 1);
+	m_pMovementComponent->SetGridSpawnPos(1, QbertGameSettings::level_size - 3);
 	m_pMovementComponent->MoveImmediatelyToSpawnPos();
 }
 

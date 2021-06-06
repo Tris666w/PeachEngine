@@ -33,9 +33,10 @@ namespace Qbert
 		std::map<row, std::vector<TileComponent*>> m_pTiles;
 		std::vector<peach::GameObject*> m_pDiscs;
 		std::vector<glm::vec3>m_pDiscGridPosVector;
-		int m_LevelID = 3;
+		int m_LevelID = 1;
 
 		void ReadAndMakeLevelLayout(std::vector<std::string>& textureVect, bool& reversible);
 		void LoadNextLevel();
+		void CheckDiscPoints();
 	};
 }

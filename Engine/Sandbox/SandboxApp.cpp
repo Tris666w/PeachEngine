@@ -1,16 +1,12 @@
 #include "QbertPCH.h"
 
 #include "CollisionManager.h"
-#include "FPS/FPSCounter.h"
 #include "Peach.h"
 #include "QbertGameSettings.h"
-#include "ResourceManager.h"
 #include "Player/QbertComponent.h"
 #include "Player/QbertController.h"
-#include "ServicesBase.h"
 #include "SoundSystems.h"
 #include "TextureComponent.h"
-#include "TextComponent.h"
 #include "Level/LevelComponent.h"
 #include "Level/LevelMovementComponent.h"
 #include "Level/LevelEnemyManager.h"
@@ -18,7 +14,6 @@
 #include "Enemies/CoilyComponent.h"
 #include "Enemies/SlickSamComponent.h"
 #include "Health/Health.h"
-#include "Level/DiscComponent.h"
 #include "Player/PlayerUI.h"
 #include "Score/ScoreComponent.h"
 
@@ -53,62 +48,65 @@ public:
         CollisionManager::GetInstance().ToggleDebugRendering(true);
 
         auto go = new GameObject();
-        auto textureComp = new TextureComponent("Resources/Images/background.jpg", windowDimensions.x, windowDimensions.y);
+        auto textureComp = new TextureComponent("Resources/Images/background.jpeg", windowDimensions.x, windowDimensions.y);
         go->AddComponent(textureComp);
         scene.Add(go);
 
         go = new GameObject();
         auto lc = new LevelComponent();
         go->AddComponent(lc);
-        //auto lvmC = new LevelEnemyManager();
-        //go->AddComponent(lvmC);
+        auto lvmC = new LevelEnemyManager();
+        go->AddComponent(lvmC);
         scene.Add(go);
         go->SetPosition(windowDimensions.x / 3.f, 2 * windowDimensions.y / 3.f);
 
-        go = new GameObject();
-        textureComp = new TextureComponent("Resources/Images/Qbert.png", characterSize, characterSize);
-        go->AddComponent(textureComp);
-        auto qbertComp = new QbertComponent();
-        go->AddComponent(qbertComp);
-        auto moveComponent = new LevelMovementComponent();
-        go->AddComponent(moveComponent);
-        auto controllerComp = new QbertController();
-        go->AddComponent(controllerComp);
-        SDL_Rect colliderRect = { characterSize / 4,characterSize / 4,characterSize / 2,characterSize / 2 };
-        auto collider = new RectColliderComponent(colliderRect);
-
-        std::function const lambda = [](GameObject* qBert, GameObject* pOther)
+        for (size_t i = 0; i < QbertGameSettings::GetInstance().GetAmountOfPlayers(); ++i)
         {
-            auto scoreComp = qBert->GetComponent<ScoreComponent>();
-            if (strcmp(QbertGameSettings::green_enemy_tag.c_str(), pOther->GetTag().c_str()) == 0)
+            go = new GameObject();
+            textureComp = new TextureComponent("Resources/Images/Qbert.png", characterSize, characterSize);
+            go->AddComponent(textureComp);
+            auto qbertComp = new QbertComponent();
+            go->AddComponent(qbertComp);
+            auto moveComponent = new LevelMovementComponent();
+            go->AddComponent(moveComponent);
+            auto controllerComp = new QbertController(static_cast<bool>(i));
+            go->AddComponent(controllerComp);
+            SDL_Rect colliderRect = { characterSize / 4,characterSize / 4,characterSize / 2,characterSize / 2 };
+            auto collider = new RectColliderComponent(colliderRect);
+            std::function const lambda = [](GameObject* qBert, GameObject* pOther)
             {
-                scoreComp->IncreaseScore(300);
-                pOther->GetComponent<SlickSamComponent>()->Remove();
-            }
-            if (strcmp(QbertGameSettings::purple_enemy_tag.c_str(), pOther->GetTag().c_str()) == 0)
-            {
-                if (auto coilyComp = pOther->GetComponent<CoilyComponent>(); coilyComp)
+                auto scoreComp = qBert->GetComponent<ScoreComponent>();
+                if (strcmp(QbertGameSettings::green_enemy_tag.c_str(), pOther->GetTag().c_str()) == 0)
                 {
-                    if (coilyComp->GetIsEgg())
-                        return;
+                    scoreComp->IncreaseScore(300);
+                    pOther->GetComponent<SlickSamComponent>()->Remove();
                 }
-                qBert->GetComponent<Health>()->DoDamage(1);
-                qBert->GetComponent<LevelMovementComponent>()->MoveImmediatelyToSpawnPos();
-            }
-        };
-        collider->SetCollisionCallback(lambda);
-        go->AddComponent(collider);
+                if (strcmp(QbertGameSettings::purple_enemy_tag.c_str(), pOther->GetTag().c_str()) == 0)
+                {
+                    if (auto coilyComp = pOther->GetComponent<CoilyComponent>(); coilyComp)
+                    {
+                        if (coilyComp->GetIsEgg())
+                            return;
+                    }
+                    qBert->GetComponent<Health>()->DoDamage(1);
+                    qBert->GetComponent<LevelMovementComponent>()->MoveImmediatelyToSpawnPos();
+                }
+            };
+            collider->SetCollisionCallback(lambda);
+            go->AddComponent(collider);
+            auto healthComp = new Health(3, 3);
+            go->AddComponent(healthComp);
+            auto scoreComp = new ScoreComponent();
+            go->AddComponent(scoreComp);
+            scene.Add(go);
 
-        auto healthComp = new Health(3, 3);
-        go->AddComponent(healthComp);
-        auto scoreComp = new ScoreComponent();
-        go->AddComponent(scoreComp);
-        scene.Add(go);
+            go = new GameObject();
+            const auto playerUi = new PlayerUi(std::to_string(i + 1), 0, 5, healthComp->GetpSubject(), scoreComp->GetpSubject());
+            go->AddComponent(playerUi);
+            go->SetPosition(0, (i + 1) * windowDimensions.y / 5);
+            scene.Add(go);
+        }
 
-        go = new GameObject();
-        const auto playerUi1 = new PlayerUi(ImVec2(100, 150), "1", 0, 5, healthComp->GetpSubject(), scoreComp->GetpSubject());
-        go->AddComponent(playerUi1);
-        scene.Add(go);
 
         /*	auto* sdlSs = new SDLMixerSoundSystem();
             ServiceLocator::RegisterSoundSystem(sdlSs);

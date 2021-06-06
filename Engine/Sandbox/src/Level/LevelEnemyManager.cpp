@@ -28,13 +28,19 @@ void Qbert::LevelEnemyManager::Initialize()
 
 void Qbert::LevelEnemyManager::PostInitialize()
 {
-	m_CoilyComponent->Spawn();
-	m_Ugg->Spawn();
-	m_Wrongway->Spawn();
 }
 
 void Qbert::LevelEnemyManager::Update()
 {
+	if (m_amountOfEnemiesSpawned < 5)
+	{
+		m_SpawnTimer += peach::GameTime::GetInstance().GetElapsedSec();
+		if (m_SpawnTimer > m_SpawnTime)
+		{
+			SpawnRandomEnemy();
+			m_SpawnTimer = 0.f;
+		}
+	}
 }
 
 void Qbert::LevelEnemyManager::Render() const
@@ -51,7 +57,7 @@ Qbert::CoilyComponent* Qbert::LevelEnemyManager::CreateCoilyGameObject() const
 	auto const moveComponent = new LevelMovementComponent();
 	go->AddComponent(moveComponent);
 
-	SDL_Rect colliderRect = { 0.25 * m_CharSize,0.25 * m_CharSize,0.75 * m_CharSize, 0.75 * m_CharSize };
+	SDL_Rect colliderRect = { static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.75 * m_CharSize), static_cast<int>(0.75 * m_CharSize) };
 	auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
 	go->AddComponent(colliderComponent);
 
@@ -69,19 +75,19 @@ Qbert::SlickSamComponent* Qbert::LevelEnemyManager::CreateSlickOrSamGameObject(b
 
 	if (isSlick)
 	{
-		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Slick/Slick.png", m_CharSize, m_CharSize);
+		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Slick/Slick.png", static_cast<float>(m_CharSize), static_cast<float>(m_CharSize));
 		go->AddComponent(textureComp);
 	}
 	else
 	{
-		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Sam/Sam.png", m_CharSize, m_CharSize);
+		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Sam/Sam.png", static_cast<float>(m_CharSize), static_cast<float>(m_CharSize));
 		go->AddComponent(textureComp);
 	}
 
 	auto const moveComponent = new LevelMovementComponent();
 	go->AddComponent(moveComponent);
 
-	SDL_Rect colliderRect = { 0.25 * m_CharSize,0.25 * m_CharSize,0.75 * m_CharSize, 0.75 * m_CharSize };
+	SDL_Rect colliderRect = { static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.75 * m_CharSize), static_cast<int>(0.75 * m_CharSize) };
 	auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
 	go->AddComponent(colliderComponent);
 
@@ -100,19 +106,19 @@ Qbert::UggWrongwayComponent* Qbert::LevelEnemyManager::CreateUggOrWrongwayGameOb
 
 	if (isUgg)
 	{
-		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Ugg/Ugg.png", m_CharSize, m_CharSize);
+		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Ugg/Ugg.png", static_cast<float>(m_CharSize), static_cast<float>(m_CharSize));
 		go->AddComponent(textureComp);
 	}
 	else
 	{
-		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Wrongway/Wrongway.png", m_CharSize, m_CharSize);
+		auto const textureComp = new peach::TextureComponent("Resources/Images/Enemies/Wrongway/Wrongway.png", static_cast<float>(m_CharSize), static_cast<float>(m_CharSize));
 		go->AddComponent(textureComp);
 	}
 
 	auto const moveComponent = new LevelMovementComponent();
 	go->AddComponent(moveComponent);
 
-	SDL_Rect colliderRect = { 0.25 * m_CharSize,0.25 * m_CharSize,0.75 * m_CharSize, 0.75 * m_CharSize };
+	SDL_Rect colliderRect = { static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.25 * m_CharSize),static_cast<int>(0.75 * m_CharSize), static_cast<int>(0.75 * m_CharSize) };
 	auto const colliderComponent = new peach::RectColliderComponent(colliderRect);
 	go->AddComponent(colliderComponent);
 
@@ -123,4 +129,54 @@ Qbert::UggWrongwayComponent* Qbert::LevelEnemyManager::CreateUggOrWrongwayGameOb
 	GetParent()->AddChild(go);
 
 	return uggWrongwayComp;
+}
+
+void Qbert::LevelEnemyManager::SpawnRandomEnemy()
+{
+	m_amountOfEnemiesSpawned++;
+
+	while (true)
+	{
+		int random = rand() % 5;
+		switch (random)
+		{
+		case 0:
+			if (!m_CoilyComponent->GetParent()->GetIsActive())
+			{
+				m_CoilyComponent->Spawn();
+				return;
+			}
+			break;
+		case 1:
+			if (!m_SamComponent->GetParent()->GetIsActive())
+			{
+				m_SamComponent->Spawn();
+				return;
+			}
+			break;
+		case 2:
+		{
+			if (!m_SlickComponent->GetParent()->GetIsActive())
+			{
+				m_SlickComponent->Spawn();
+				return;
+			}
+			break;
+		}
+		case 3:
+			if (!m_Ugg->GetParent()->GetIsActive())
+			{
+				m_Ugg->Spawn();
+				return;
+			}
+			break;
+		case 4:
+			if (!m_Wrongway->GetParent()->GetIsActive())
+			{
+				m_Wrongway->Spawn();
+				return;
+			}
+			break;
+		}
+	}
 }

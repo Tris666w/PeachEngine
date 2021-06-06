@@ -20,6 +20,7 @@ namespace Qbert
 
         void Activate(peach::GameObject* pQbert);
         void Deactivate();
+        void Reset();
     private:
         peach::TextureComponent* m_pTextureComponent = nullptr;
         LevelMovementComponent* m_pLevelMovementComponent = nullptr;
